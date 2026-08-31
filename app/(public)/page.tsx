@@ -27,8 +27,8 @@ const TOPICS = [
     desc: "Agricultural & investment",
     icon: (
       <svg width="22" height="22" fill="none" stroke="#D7242A" strokeWidth="1.8" viewBox="0 0 24 24">
-        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z" strokeLinecap="round" />
-        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" strokeLinecap="round" />
+        <path d="M2 20 L8 8 L12 14 L17 4 L22 20" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M2 20 h20" strokeLinecap="round" />
       </svg>
     ),
   },
@@ -38,10 +38,9 @@ const TOPICS = [
     desc: "Costs, planning & tips",
     icon: (
       <svg width="22" height="22" fill="none" stroke="#D7242A" strokeWidth="1.8" viewBox="0 0 24 24">
-        <rect x="2" y="7" width="20" height="14" rx="2" />
-        <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" strokeLinecap="round" />
-        <line x1="12" y1="12" x2="12" y2="16" strokeLinecap="round" />
-        <line x1="8" y1="14" x2="16" y2="14" strokeLinecap="round" />
+        <path d="M3 14 h18" strokeLinecap="round" />
+        <path d="M5 14 Q5 7 12 7 Q19 7 19 14" strokeLinecap="round" />
+        <path d="M12 7 V4" strokeLinecap="round" />
       </svg>
     ),
   },
@@ -51,7 +50,11 @@ const TOPICS = [
     desc: "Docs, registration & law",
     icon: (
       <svg width="22" height="22" fill="none" stroke="#D7242A" strokeWidth="1.8" viewBox="0 0 24 24">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round" />
+        <line x1="12" y1="3" x2="12" y2="21" strokeLinecap="round" />
+        <line x1="5" y1="3" x2="19" y2="3" strokeLinecap="round" />
+        <path d="M5 3 L2 10 h6 Z" strokeLinejoin="round" />
+        <path d="M19 3 L16 10 h6 Z" strokeLinejoin="round" />
+        <line x1="8" y1="21" x2="16" y2="21" strokeLinecap="round" />
       </svg>
     ),
   },
@@ -61,8 +64,10 @@ const TOPICS = [
     desc: "Loans, EMI & tax",
     icon: (
       <svg width="22" height="22" fill="none" stroke="#D7242A" strokeWidth="1.8" viewBox="0 0 24 24">
-        <line x1="12" y1="1" x2="12" y2="23" strokeLinecap="round" />
-        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" strokeLinecap="round" />
+        <path d="M7 5 h10" strokeLinecap="round" />
+        <path d="M7 10 h8" strokeLinecap="round" />
+        <path d="M7 5 v14" strokeLinecap="round" />
+        <path d="M7 10 L16 19" strokeLinecap="round" />
       </svg>
     ),
   },
@@ -72,7 +77,9 @@ const TOPICS = [
     desc: "Lifestyle & local insights",
     icon: (
       <svg width="22" height="22" fill="none" stroke="#D7242A" strokeWidth="1.8" viewBox="0 0 24 24">
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" strokeLinecap="round" />
+        <circle cx="12" cy="9" r="6" />
+        <line x1="12" y1="15" x2="12" y2="20" strokeLinecap="round" />
+        <line x1="9" y1="20" x2="15" y2="20" strokeLinecap="round" />
       </svg>
     ),
   },
