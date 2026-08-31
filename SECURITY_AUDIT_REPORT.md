@@ -188,7 +188,7 @@ No known npm dependency vulnerabilities were found (`npm audit` reported 0 issue
 
 | ID | Severity | Fix |
 |----|----------|-----|
-| VULN-01 | CRITICAL | Created `middleware.ts` — edge-layer admin route protection |
+| VULN-01 | CRITICAL | Confirmed `proxy.ts` — Next.js 16 edge-layer admin route protection (replaces middleware.ts) |
 | VULN-02 | CRITICAL | Admin layout now redirects unauthenticated visitors |
 | VULN-03 | CRITICAL | HTML sanitized via `sanitize-html` before DB storage |
 | VULN-04 | CRITICAL | JSON-LD uses `safeJsonLd()` which escapes `</script>` |
