@@ -43,7 +43,8 @@ export default function MediaPage() {
 
   const [copied, setCopied] = useState<string | null>(null);
   const copyUrl = (url: string) => {
-    navigator.clipboard.writeText(window.location.origin + url);
+    const full = url.startsWith("http") ? url : window.location.origin + url;
+    navigator.clipboard.writeText(full);
     setCopied(url);
     setTimeout(() => setCopied(null), 1500);
   };
