@@ -39,7 +39,7 @@ export async function PATCH(req: NextRequest, { params }: Params) {
       updatedAt: new Date(),
     },
   });
-  revalidateTag("articles");
+  revalidateTag("articles", { expire: 0 });
   return NextResponse.json(article);
 }
 
@@ -48,6 +48,6 @@ export async function DELETE(_req: NextRequest, { params }: Params) {
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const { id } = await params;
   await db.article.delete({ where: { id } });
-  revalidateTag("articles");
+  revalidateTag("articles", { expire: 0 });
   return NextResponse.json({ success: true });
 }

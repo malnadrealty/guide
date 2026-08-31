@@ -1,7 +1,17 @@
 import slugify from "slugify";
 
 export function toSlug(str: string): string {
-  return slugify(str, { lower: true, strict: true });
+  const ascii = slugify(str, { lower: true, strict: true });
+  if (ascii) return ascii;
+  // Non-ASCII titles (e.g. Kannada): encode as percent-decoded unicode slug
+  const unicode = str
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^ಀ-೿ऀ-ॿঀ-৿\w-]/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+  return unicode || Math.random().toString(36).slice(2, 8);
 }
 
 export function formatDate(date: Date | string): string {
@@ -13,7 +23,14 @@ export function formatDate(date: Date | string): string {
 }
 
 export function readingTime(content: string): number {
-  const words = content.replace(/<[^>]+>/g, "").split(/\s+/).length;
+  const text = content.replace(/<[^>]+>/g, "");
+  // Kannada/Devanagari: count syllables (approx 2 chars each), 100 wpm
+  const hasIndic = /[ಀ-೿ऀ-ॿ]/.test(text);
+  if (hasIndic) {
+    const syllables = Math.ceil(text.replace(/\s/g, "").length / 2);
+    return Math.max(1, Math.ceil(syllables / 100));
+  }
+  const words = text.split(/\s+/).length;
   return Math.max(1, Math.ceil(words / 200));
 }
 

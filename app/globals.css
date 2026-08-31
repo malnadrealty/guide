@@ -14,8 +14,8 @@
   --color-brand-charcoal: #1A1A1A;
 
   /* Typography */
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-heading: "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: "Inter", "Noto Sans Kannada", system-ui, -apple-system, sans-serif;
+  --font-heading: "Inter", "Noto Sans Kannada", system-ui, -apple-system, sans-serif;
 
   /* Radius */
   --radius-card: 12px;
