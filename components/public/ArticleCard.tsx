@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { formatDate, readingTime } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 
 const CATEGORY_COLORS: Record<string, string> = {
   property: "#1D4ED8",
@@ -28,7 +28,6 @@ interface ArticleCardProps {
 }
 
 export function ArticleCard({ article, variant = "default" }: ArticleCardProps) {
-  const mins = article.content ? readingTime(article.content) : null;
   const categoryColor = article.category
     ? CATEGORY_COLORS[article.category.slug] || "#D7242A"
     : "#D7242A";
@@ -64,9 +63,6 @@ export function ArticleCard({ article, variant = "default" }: ArticleCardProps) 
           >
             {article.title}
           </h3>
-          {mins && (
-            <p className="text-[11px] text-[#9A9A9A] mt-1">{mins} min read</p>
-          )}
         </div>
       </Link>
     );
@@ -130,15 +126,6 @@ export function ArticleCard({ article, variant = "default" }: ArticleCardProps) 
 
         <div className="mt-auto flex items-center justify-between text-[11px] text-[#9A9A9A] pt-3 border-t border-[#F0EDE9]">
           <div className="flex items-center gap-3">
-            {mins && (
-              <span className="flex items-center gap-1">
-                <svg width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-                {mins} min read
-              </span>
-            )}
             {article.publishedAt && <span>{formatDate(article.publishedAt)}</span>}
           </div>
           <svg

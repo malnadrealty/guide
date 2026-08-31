@@ -6,7 +6,7 @@ import { db } from "@/lib/db";
 import { Breadcrumbs } from "@/components/public/Breadcrumbs";
 import { ArticleCard } from "@/components/public/ArticleCard";
 import { CTASection } from "@/components/public/CTASection";
-import { formatDate, readingTime } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -62,8 +62,6 @@ export default async function ArticlePage({ params }: Props) {
       location: { select: { name: true, slug: true } },
     },
   });
-
-  const mins = article.content ? readingTime(article.content) : null;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -124,14 +122,6 @@ export default async function ArticlePage({ params }: Props) {
           <div className="flex items-center gap-4 text-sm text-gray-400 pb-6 border-b border-gray-100">
             {article.author.name && <span className="font-medium text-gray-600">{article.author.name}</span>}
             {article.publishedAt && <span>{formatDate(article.publishedAt)}</span>}
-            {mins && (
-              <span className="flex items-center gap-1">
-                <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
-                </svg>
-                {mins} min read
-              </span>
-            )}
             {article.updatedAt && article.publishedAt && article.updatedAt > article.publishedAt && (
               <span className="text-xs bg-gray-100 px-2 py-0.5 rounded-full">Updated {formatDate(article.updatedAt)}</span>
             )}
