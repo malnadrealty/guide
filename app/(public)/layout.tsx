@@ -14,7 +14,7 @@ export default async function PublicLayout({ children }: { children: React.React
         logoImageUrl={settings.logo_image_url || undefined}
         logoDarkUrl={settings.logo_dark_url || undefined}
       />
-      <main className="flex-1 pb-16 md:pb-0">
+      <main className="flex-1">
         {children}
       </main>
       <Footer settings={settings} />

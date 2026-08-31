@@ -40,7 +40,7 @@ export function Footer({ settings }: FooterProps) {
   const hasContact = phone || email || address;
 
   return (
-    <footer className="bg-black text-white">
+    <footer className="bg-black text-white pb-16 md:pb-0">
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
           {/* Brand */}
