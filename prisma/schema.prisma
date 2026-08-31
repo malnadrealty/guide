@@ -100,3 +100,9 @@ model Redirect {
   statusCode Int      @default(301)
   createdAt  DateTime @default(now())
 }
+
+model SiteSetting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}

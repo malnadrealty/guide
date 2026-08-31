@@ -5,7 +5,13 @@ import { Logo } from "@/components/ui/Logo";
 import { MobileMenu } from "@/components/public/MobileMenu";
 import { SearchModal } from "@/components/public/SearchModal";
 
-export function Header() {
+interface HeaderProps {
+  logoLine1?: string;
+  logoLine2?: string;
+  logoImageUrl?: string;
+}
+
+export function Header({ logoLine1, logoLine2, logoImageUrl }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -27,7 +33,7 @@ export function Header() {
         }}
       >
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-          <Logo />
+          <Logo line1={logoLine1} line2={logoLine2} imageUrl={logoImageUrl} />
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-black">

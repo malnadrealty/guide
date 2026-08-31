@@ -1,0 +1,46 @@
+export const SETTING_KEYS = [
+  "site_name",
+  "site_tagline",
+  "site_description",
+  "logo_image_url",
+  "logo_text_line1",
+  "logo_text_line2",
+  "hero_title",
+  "hero_subtitle",
+  "hero_bg_image",
+  "hero_cta_text",
+  "hero_cta_url",
+  "footer_tagline",
+  "footer_copyright",
+  "footer_facebook",
+  "footer_instagram",
+  "footer_youtube",
+  "contact_phone",
+  "contact_email",
+  "contact_address",
+] as const;
+
+export type SettingKey = (typeof SETTING_KEYS)[number];
+
+export const SETTING_DEFAULTS: Record<SettingKey, string> = {
+  site_name: "Malnad Realty Guide",
+  site_tagline: "Know the place before you buy",
+  site_description: "Property, land, homes and local insights across Shivamogga & Uttara Kannada.",
+  logo_image_url: "",
+  logo_text_line1: "MALNAD REALTY",
+  logo_text_line2: "GUIDE",
+  hero_title: "Know the place before you buy.",
+  hero_subtitle: "Property, land, homes and local insights across Shivamogga & Uttara Kannada.",
+  hero_bg_image: "/hero-bg.jpg",
+  hero_cta_text: "Explore Locations",
+  hero_cta_url: "/locations",
+  footer_tagline:
+    "Know the place before you buy. Property, land, homes and local insights across Shivamogga & Uttara Kannada.",
+  footer_copyright: "Malnad Realty",
+  footer_facebook: "",
+  footer_instagram: "",
+  footer_youtube: "",
+  contact_phone: "",
+  contact_email: "",
+  contact_address: "",
+};

@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 import Link from "next/link";
 import Image from "next/image";
 import { db } from "@/lib/db";
+import { getSettings } from "@/lib/settings";
 import { ArticleCard } from "@/components/public/ArticleCard";
 import { LocationCard } from "@/components/public/LocationCard";
 import { CTASection } from "@/components/public/CTASection";
@@ -120,7 +121,10 @@ async function getHomeData() {
 }
 
 export default async function HomePage() {
-  const { locations, featuredArticles, popularArticles } = await getHomeData();
+  const [{ locations, featuredArticles, popularArticles }, settings] = await Promise.all([
+    getHomeData(),
+    getSettings(),
+  ]);
 
   return (
     <>
@@ -129,7 +133,7 @@ export default async function HomePage() {
         {/* Hero background */}
         <div className="absolute inset-0">
           <Image
-            src="/hero-bg.jpg"
+            src={settings.hero_bg_image || "/hero-bg.jpg"}
             alt="Malnad landscape"
             fill
             className="object-cover opacity-50"
@@ -152,11 +156,10 @@ export default async function HomePage() {
           </div>
 
           <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-[1.1] mb-4 max-w-2xl">
-            Know the place{" "}
-            <span style={{ color: "#D7242A" }}>before you buy.</span>
+            {settings.hero_title || "Know the place before you buy."}
           </h1>
           <p className="text-base md:text-xl text-gray-200 mb-8 max-w-lg leading-relaxed">
-            Property, land, homes and local insights across Shivamogga &amp; Uttara Kannada.
+            {settings.hero_subtitle || "Property, land, homes and local insights across Shivamogga & Uttara Kannada."}
           </p>
 
           {/* Search */}
