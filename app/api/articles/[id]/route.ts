@@ -36,6 +36,8 @@ export async function PATCH(req: NextRequest, { params }: Params) {
       where: { id },
       data: {
         ...body,
+        categoryId: body.categoryId || null,
+        locationId: body.locationId || null,
         slug: body.slug || body.title ? toSlug(body.slug || body.title || existing.title) : existing.slug,
         publishedAt: nowPublished && !wasPublished ? new Date() : existing.publishedAt,
         updatedAt: new Date(),
