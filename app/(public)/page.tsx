@@ -115,16 +115,8 @@ export default async function HomePage() {
         </div>
 
         <div className="relative max-w-6xl mx-auto px-4 pb-10 pt-10 w-full">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-[1.1] mb-4 max-w-2xl">
-            {settings.hero_title || "Know the place"}
-            {(settings.hero_title_accent || "before you buy.") && (
-              <>
-                <br />
-                <span style={{ color: "#D7242A" }}>
-                  {settings.hero_title_accent || "before you buy."}
-                </span>
-              </>
-            )}
+          <h1 className="text-4xl md:text-6xl font-extrabold leading-[1.1] mb-4 max-w-2xl" style={{ color: "#D7242A" }}>
+            {settings.hero_title_accent || "before you buy."}
           </h1>
           <p className="text-base md:text-xl text-gray-200 mb-8 max-w-lg leading-relaxed">
             {settings.hero_subtitle || "Property, land, homes and local insights across Shivamogga & Uttara Kannada."}
