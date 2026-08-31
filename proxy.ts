@@ -1,4 +1,6 @@
-export { auth as middleware } from "@/lib/auth";
+import { auth } from "@/lib/auth";
+
+export { auth as proxy };
 
 export const config = {
   matcher: ["/admin/((?!login$).*)"],
