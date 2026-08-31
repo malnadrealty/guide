@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 
 import type { Metadata } from "next";
 import { db } from "@/lib/db";
+import { getCachedCategories } from "@/lib/db-cache";
 import { ArticleCard } from "@/components/public/ArticleCard";
 import { Breadcrumbs } from "@/components/public/Breadcrumbs";
 import Link from "next/link";
@@ -40,7 +41,7 @@ export default async function GuidesPage({ searchParams }: Props) {
         location: { select: { name: true, slug: true } },
       },
     }),
-    db.category.findMany({ orderBy: { order: "asc" } }),
+    getCachedCategories(),
     db.location.findMany({ where: { status: "published" }, orderBy: { order: "asc" }, select: { name: true, slug: true } }),
   ]);
 

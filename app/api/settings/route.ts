@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { SETTING_KEYS } from "@/lib/setting-constants";
@@ -27,6 +28,7 @@ export async function POST(req: Request) {
         })
       )
     );
+    revalidateTag("settings");
     return NextResponse.json({ ok: true });
   } catch {
     return NextResponse.json({ error: "Failed to save" }, { status: 500 });

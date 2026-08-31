@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { toSlug } from "@/lib/utils";
@@ -38,6 +39,7 @@ export async function PATCH(req: NextRequest, { params }: Params) {
       updatedAt: new Date(),
     },
   });
+  revalidateTag("articles");
   return NextResponse.json(article);
 }
 
@@ -46,5 +48,6 @@ export async function DELETE(_req: NextRequest, { params }: Params) {
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const { id } = await params;
   await db.article.delete({ where: { id } });
+  revalidateTag("articles");
   return NextResponse.json({ success: true });
 }

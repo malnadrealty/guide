@@ -1,9 +1,9 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 import Link from "next/link";
 import Image from "next/image";
-import { db } from "@/lib/db";
 import { getSettings } from "@/lib/settings";
+import { getCachedLocations, getCachedFeaturedArticles, getCachedPopularArticles } from "@/lib/db-cache";
 import { ArticleCard } from "@/components/public/ArticleCard";
 import { LocationCard } from "@/components/public/LocationCard";
 import { CTASection } from "@/components/public/CTASection";
@@ -86,43 +86,11 @@ const POPULAR_CHIPS = [
   "Stamp Duty",
 ];
 
-async function getHomeData() {
-  const [locations, featuredArticles, popularArticles] = await Promise.all([
-    db.location.findMany({
-      where: { status: "published" },
-      orderBy: { order: "asc" },
-      take: 8,
-      select: { id: true, name: true, slug: true, district: true, shortDescription: true, heroImage: true },
-    }),
-    db.article.findMany({
-      where: { status: "published" },
-      orderBy: { publishedAt: "desc" },
-      take: 5,
-      select: {
-        id: true, title: true, slug: true, excerpt: true, featuredImage: true,
-        publishedAt: true, content: true,
-        category: { select: { name: true, slug: true } },
-        location: { select: { name: true, slug: true } },
-      },
-    }),
-    db.article.findMany({
-      where: { status: "published" },
-      orderBy: { publishedAt: "asc" },
-      take: 4,
-      select: {
-        id: true, title: true, slug: true, excerpt: true, featuredImage: true,
-        publishedAt: true, content: true,
-        category: { select: { name: true, slug: true } },
-        location: { select: { name: true, slug: true } },
-      },
-    }),
-  ]);
-  return { locations, featuredArticles, popularArticles };
-}
-
 export default async function HomePage() {
-  const [{ locations, featuredArticles, popularArticles }, settings] = await Promise.all([
-    getHomeData(),
+  const [locations, featuredArticles, popularArticles, settings] = await Promise.all([
+    getCachedLocations(),
+    getCachedFeaturedArticles(),
+    getCachedPopularArticles(),
     getSettings(),
   ]);
 

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { toSlug } from "@/lib/utils";
@@ -20,5 +21,6 @@ export async function POST(req: NextRequest) {
   const location = await db.location.create({
     data: { name, slug: finalSlug, district, taluk, shortDescription, description, heroImage, gallery: gallery || [], seoTitle, metaDescription, ogImage, status: status || "draft" },
   });
+  revalidateTag("locations");
   return NextResponse.json(location, { status: 201 });
 }

@@ -1,7 +1,7 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 import type { Metadata } from "next";
-import { db } from "@/lib/db";
+import { getCachedAllLocations } from "@/lib/db-cache";
 import { LocationCard } from "@/components/public/LocationCard";
 import { Breadcrumbs } from "@/components/public/Breadcrumbs";
 
@@ -11,10 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function LocationsPage() {
-  const locations = await db.location.findMany({
-    where: { status: "published" },
-    orderBy: { order: "asc" },
-  });
+  const locations = await getCachedAllLocations();
 
   const shivamogga = locations.filter((l) => l.district === "Shivamogga");
   const uttaraKannada = locations.filter((l) => l.district === "Uttara Kannada");

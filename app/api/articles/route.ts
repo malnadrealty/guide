@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { toSlug } from "@/lib/utils";
@@ -49,5 +50,6 @@ export async function POST(req: NextRequest) {
     },
   });
 
+  revalidateTag("articles");
   return NextResponse.json(article, { status: 201 });
 }
