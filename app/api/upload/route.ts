@@ -1,12 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { writeFile, mkdir } from "fs/promises";
-import path from "path";
-import sharp from "sharp";
+import { createClient } from "@supabase/supabase-js";
 
 const MAX_SIZE = 10 * 1024 * 1024; // 10MB
 const ALLOWED_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/avif"];
+const BUCKET = "media";
+
+function getSupabase() {
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) throw new Error("SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required");
+  return createClient(url, key);
+}
 
 export async function POST(req: NextRequest) {
   const session = await auth();
@@ -24,26 +30,45 @@ export async function POST(req: NextRequest) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
 
-  // Process with sharp — convert to WebP
-  const image = sharp(buffer);
-  const metadata = await image.metadata();
-  const webpBuffer = await image.webp({ quality: 85 }).toBuffer();
+  const ext = file.type === "image/png" ? "png" : file.type === "image/webp" ? "webp" : file.type === "image/avif" ? "avif" : "jpg";
+  const filename = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
 
-  const filename = `${Date.now()}-${Math.random().toString(36).slice(2)}.webp`;
-  const uploadDir = path.join(process.cwd(), "public", "uploads");
-  await mkdir(uploadDir, { recursive: true });
-  await writeFile(path.join(uploadDir, filename), webpBuffer);
+  const supabase = getSupabase();
 
-  const url = `/uploads/${filename}`;
+  // Ensure bucket exists
+  const { data: buckets } = await supabase.storage.listBuckets();
+  if (!buckets?.find((b) => b.name === BUCKET)) {
+    await supabase.storage.createBucket(BUCKET, { public: true });
+  }
+
+  const { error: uploadError } = await supabase.storage
+    .from(BUCKET)
+    .upload(filename, buffer, { contentType: file.type, upsert: false });
+
+  if (uploadError) {
+    console.error("Supabase upload error:", uploadError);
+    return NextResponse.json({ error: "Upload failed: " + uploadError.message }, { status: 500 });
+  }
+
+  const { data: { publicUrl } } = supabase.storage.from(BUCKET).getPublicUrl(filename);
+
+  let width: number | null = null;
+  let height: number | null = null;
+  try {
+    const sharp = (await import("sharp")).default;
+    const meta = await sharp(buffer).metadata();
+    width = meta.width ?? null;
+    height = meta.height ?? null;
+  } catch { /* sharp unavailable */ }
 
   const media = await db.media.create({
     data: {
       filename: file.name,
-      url,
-      mimeType: "image/webp",
-      size: webpBuffer.length,
-      width: metadata.width || null,
-      height: metadata.height || null,
+      url: publicUrl,
+      mimeType: file.type,
+      size: buffer.length,
+      width,
+      height,
       alt: alt || null,
       caption: caption || null,
     },
@@ -59,11 +84,14 @@ export async function DELETE(req: NextRequest) {
   const media = await db.media.findUnique({ where: { id } });
   if (!media) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
-  // Remove file
-  try {
-    const { unlink } = await import("fs/promises");
-    await unlink(path.join(process.cwd(), "public", media.url));
-  } catch { /* file may already be gone */ }
+  // Remove from Supabase Storage if it's a Supabase URL
+  if (media.url.includes("supabase")) {
+    try {
+      const supabase = getSupabase();
+      const path = media.url.split(`/${BUCKET}/`)[1];
+      if (path) await supabase.storage.from(BUCKET).remove([path]);
+    } catch { /* ignore */ }
+  }
 
   await db.media.delete({ where: { id } });
   return NextResponse.json({ success: true });
