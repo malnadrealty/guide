@@ -103,8 +103,8 @@ export function LocationForm({ initialData }: Props) {
               <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">District</label>
               <select value={form.district} onChange={(e) => set("district", e.target.value)} className="w-full px-4 py-3 text-sm border border-gray-200 rounded-xl outline-none focus:border-[#D7242A] bg-white">
                 <option value="">Select district</option>
-                <option value="Shivamogga">Shivamogga</option>
-                <option value="Uttara Kannada">Uttara Kannada</option>
+                <option value="Shivamogga">Shimoga</option>
+                <option value="Uttara Kannada">Uttarakannada District</option>
               </select>
             </div>
             <div>

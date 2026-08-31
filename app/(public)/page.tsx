@@ -127,7 +127,7 @@ export default async function HomePage() {
           <div className="flex items-center gap-2 mb-6">
             <span className="w-5 h-px bg-[#D7242A]" />
             <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#D7242A]">
-              Shivamogga &amp; Uttara Kannada
+              Shimoga &amp; Uttarakannada District
             </p>
           </div>
 

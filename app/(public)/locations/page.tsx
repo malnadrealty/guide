@@ -7,7 +7,7 @@ import { Breadcrumbs } from "@/components/public/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Locations — Property & Land Guides",
-  description: "Explore local property, land and real estate guides across Shivamogga and Uttara Kannada. Find insights for Sagara, Sirsi, Honnavar, Kumta and more.",
+  description: "Explore local property, land and real estate guides across Shimoga and Uttarakannada District. Find insights for Sagara, Sirsi, Honnavar, Kumta and more.",
 };
 
 export default async function LocationsPage() {
@@ -25,7 +25,7 @@ export default async function LocationsPage() {
         <p className="text-xs font-bold tracking-[0.15em] uppercase mb-2" style={{ color: "#D7242A" }}>All Locations</p>
         <h1 className="text-3xl md:text-4xl font-extrabold text-black">Browse by location</h1>
         <p className="text-gray-500 mt-3 max-w-xl">
-          Find local property guides, land information and real estate insights for towns and taluks across Shivamogga and Uttara Kannada.
+          Find local property guides, land information and real estate insights for towns and taluks across Shimoga and Uttarakannada District.
         </p>
       </div>
 
@@ -38,7 +38,7 @@ export default async function LocationsPage() {
 
       {shivamogga.length > 0 && (
         <section className="mb-12">
-          <h2 className="text-xl font-bold text-black mb-5 pb-3 border-b border-gray-100">Shivamogga District</h2>
+          <h2 className="text-xl font-bold text-black mb-5 pb-3 border-b border-gray-100">Shimoga District</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {shivamogga.map((loc) => <LocationCard key={loc.id} location={loc} />)}
           </div>
@@ -47,7 +47,7 @@ export default async function LocationsPage() {
 
       {uttaraKannada.length > 0 && (
         <section className="mb-12">
-          <h2 className="text-xl font-bold text-black mb-5 pb-3 border-b border-gray-100">Uttara Kannada District</h2>
+          <h2 className="text-xl font-bold text-black mb-5 pb-3 border-b border-gray-100">Uttarakannada District</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {uttaraKannada.map((loc) => <LocationCard key={loc.id} location={loc} />)}
           </div>

@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
       template: "%s | Malnad Realty Guide",
     },
     description:
-      "Property, land, homes and local insights across Shivamogga & Uttara Kannada. Local real estate guides, location information and buying advice.",
+      "Property, land, homes and local insights across Shimoga & Uttarakannada District. Local real estate guides, location information and buying advice.",
     openGraph: {
       type: "website",
       locale: "en_IN",

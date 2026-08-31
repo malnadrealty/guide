@@ -33,7 +33,7 @@ export type SettingKey = (typeof SETTING_KEYS)[number];
 export const SETTING_DEFAULTS: Record<SettingKey, string> = {
   site_name: "Malnad Realty Guide",
   site_tagline: "Know the place before you buy",
-  site_description: "Property, land, homes and local insights across Shivamogga & Uttara Kannada.",
+  site_description: "Property, land, homes and local insights across Shimoga & Uttarakannada District.",
   logo_image_url: "",
   logo_dark_url: "",
   favicon_url: "",
@@ -41,7 +41,7 @@ export const SETTING_DEFAULTS: Record<SettingKey, string> = {
   logo_text_line2: "GUIDE",
   hero_title: "Know the place",
   hero_title_accent: "before you buy.",
-  hero_subtitle: "Property, land, homes and local insights across Shivamogga & Uttara Kannada.",
+  hero_subtitle: "Property, land, homes and local insights across Shimoga & Uttarakannada District.",
   hero_bg_image: "/hero-bg.jpg",
   hero_cta_text: "Explore Locations",
   hero_cta_url: "/locations",
@@ -51,7 +51,7 @@ export const SETTING_DEFAULTS: Record<SettingKey, string> = {
   cta_title_accent: "Malnad Realty",
   cta_cta_label: "Visit Malnad Realty",
   footer_tagline:
-    "Know the place before you buy. Property, land, homes and local insights across Shivamogga & Uttara Kannada.",
+    "Know the place before you buy. Property, land, homes and local insights across Shimoga & Uttarakannada District.",
   footer_copyright: "Malnad Realty",
   footer_facebook: "",
   footer_instagram: "",

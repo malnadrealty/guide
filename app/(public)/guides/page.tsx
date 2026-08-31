@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Guides — Property, Land & Local Real Estate",
-  description: "Practical guides on buying property, land, construction, legal documents and local real estate across Shivamogga and Uttara Kannada.",
+  description: "Practical guides on buying property, land, construction, legal documents and local real estate across Shimoga and Uttarakannada District.",
 };
 
 interface Props {

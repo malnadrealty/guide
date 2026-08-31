@@ -5,7 +5,7 @@ import { CTASection } from "@/components/public/CTASection";
 
 export const metadata: Metadata = {
   title: "About — Malnad Realty Guide",
-  description: "Malnad Realty Guide provides local property, land and real estate information across Shivamogga and Uttara Kannada to help you understand the place before you buy.",
+  description: "Malnad Realty Guide provides local property, land and real estate information across Shimoga and Uttarakannada District to help you understand the place before you buy.",
   alternates: { canonical: "/about" },
 };
 
@@ -24,7 +24,7 @@ export default function AboutPage() {
 
         <div className="prose prose-gray max-w-none space-y-6 text-base leading-relaxed text-gray-700">
           <p>
-            <strong className="text-black">Malnad Realty Guide</strong> is a local real estate knowledge resource focused on Shivamogga and Uttara Kannada — two of Karnataka&apos;s most distinctive regions for property, land and investment.
+            <strong className="text-black">Malnad Realty Guide</strong> is a local real estate knowledge resource focused on Shimoga and Uttarakannada District — two of Karnataka&apos;s most distinctive regions for property, land and investment.
           </p>
           <p>
             The Guide exists to fill a gap. When someone considers buying land near Sagara or a house in Sirsi, they need more than listings — they need to understand the place. Local property values, land documents, legal procedures, construction costs, connectivity, amenities. Information that is genuinely useful and locally specific.

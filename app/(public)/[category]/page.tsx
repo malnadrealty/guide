@@ -10,17 +10,17 @@ const CATEGORY_META: Record<string, { eyebrow: string; heading: string; desc: st
   property: {
     eyebrow: "Property",
     heading: "Property Guides",
-    desc: "Guides on buying, selling and renting residential and commercial property across Shivamogga and Uttara Kannada.",
+    desc: "Guides on buying, selling and renting residential and commercial property across Shimoga and Uttarakannada District.",
   },
   land: {
     eyebrow: "Land",
     heading: "Land Buying Guides",
-    desc: "Agricultural land, farmland, plantation land — everything about buying and selling land in the Malnad and Uttara Kannada region.",
+    desc: "Agricultural land, farmland, plantation land — everything about buying and selling land in the Malnad and Uttarakannada District region.",
   },
   construction: {
     eyebrow: "Construction",
     heading: "Construction Guides",
-    desc: "House construction costs, planning, building process and materials — practical guides for building in Shivamogga and Uttara Kannada.",
+    desc: "House construction costs, planning, building process and materials — practical guides for building in Shimoga and Uttarakannada District.",
   },
   legal: {
     eyebrow: "Legal",
