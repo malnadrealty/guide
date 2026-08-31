@@ -13,7 +13,6 @@ export function SectionHeader({
   heading,
   viewAllHref,
   viewAllLabel = "View all",
-  serif = true,
 }: SectionHeaderProps) {
   return (
     <div className="flex items-end justify-between mb-8">
@@ -24,12 +23,7 @@ export function SectionHeader({
         >
           {eyebrow}
         </p>
-        <h2
-          className={`text-2xl md:text-3xl font-bold text-[#0F0F0F] leading-tight ${
-            serif ? "font-display" : ""
-          }`}
-          style={serif ? { fontFamily: "var(--font-display)" } : {}}
-        >
+        <h2 className="text-2xl md:text-3xl font-bold text-[#0F0F0F] leading-tight">
           {heading}
         </h2>
       </div>

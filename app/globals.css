@@ -22,7 +22,7 @@
 
   /* Typography */
   --font-sans: "Inter", "Noto Sans Kannada", system-ui, -apple-system, sans-serif;
-  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-display: "Inter", "Noto Sans Kannada", system-ui, sans-serif;
   --font-kannada: "Noto Sans Kannada", sans-serif;
 
   /* Radius */
@@ -89,7 +89,6 @@ body {
   color: #2A2A2A;
 }
 .tiptap-content h1 {
-  font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 700;
   margin: 2rem 0 1rem;
@@ -97,7 +96,6 @@ body {
   color: #0F0F0F;
 }
 .tiptap-content h2 {
-  font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 700;
   margin: 1.75rem 0 0.75rem;
@@ -135,7 +133,6 @@ body {
   margin: 1.5rem 0;
   color: #555;
   font-style: italic;
-  font-family: var(--font-display);
   font-size: 1.05rem;
 }
 .tiptap-content table {

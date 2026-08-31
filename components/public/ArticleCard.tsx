@@ -61,7 +61,6 @@ export function ArticleCard({ article, variant = "default" }: ArticleCardProps) 
           )}
           <h3
             className="text-sm font-semibold text-[#0F0F0F] leading-snug line-clamp-2 group-hover:text-[#D7242A] transition-colors mt-0.5"
-            style={{ fontFamily: "var(--font-display)" }}
           >
             {article.title}
           </h3>
@@ -121,7 +120,6 @@ export function ArticleCard({ article, variant = "default" }: ArticleCardProps) 
 
         <h3
           className="text-[17px] font-bold text-[#0F0F0F] leading-snug mb-2 line-clamp-2 group-hover:text-[#D7242A] transition-colors"
-          style={{ fontFamily: "var(--font-display)" }}
         >
           {article.title}
         </h3>

@@ -126,7 +126,6 @@ export default async function HomePage() {
 
           <h1
             className="text-[2.6rem] leading-[1.08] md:text-[4.5rem] md:leading-[1.06] font-bold text-white mb-5 max-w-3xl"
-            style={{ fontFamily: "var(--font-display)" }}
           >
             {settings.hero_title || "Know the place"}
             <br />
@@ -282,14 +281,12 @@ export default async function HomePage() {
                 >
                   <div
                     className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-white text-[13px] font-bold mt-0.5"
-                    style={{ backgroundColor: "#D7242A", fontFamily: "var(--font-display)" }}
                   >
                     Q
                   </div>
                   <div className="min-w-0 flex-1">
                     <p
                       className="text-[15px] font-semibold text-[#0F0F0F] leading-snug group-hover:text-[#D7242A] transition-colors"
-                      style={{ fontFamily: "var(--font-display)" }}
                     >
                       {article.title}
                     </p>

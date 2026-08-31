@@ -110,7 +110,7 @@ export function CTASection({
           </p>
           <h2
             className="text-3xl md:text-5xl font-bold leading-tight mb-8 text-white"
-            style={{ fontFamily: "var(--font-display)" }}
+            
           >
             {title}{" "}
             <span style={{ color: "#D7242A" }}>{titleAccent}</span>
