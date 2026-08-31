@@ -205,7 +205,7 @@ export default function SettingsPage() {
           <Field label="Heading (white)" settingKey="cta_title" placeholder="Explore verified properties on" />
           <Field label="Heading accent (red)" settingKey="cta_title_accent" placeholder="Malnad Realty" />
         </div>
-        <Field label="Button Label" settingKey="cta_cta_label" placeholder="Visit Malnad Realty" />
+        <Field label="Button Label" settingKey="cta_cta_label" placeholder="Visit malnadrealty.com" />
       </Section>
 
       {/* Footer */}

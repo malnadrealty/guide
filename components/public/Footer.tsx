@@ -109,7 +109,7 @@ export function Footer({ settings }: FooterProps) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 mt-5 text-sm font-semibold text-white border border-white/20 px-4 py-2 rounded-lg hover:border-white/60 transition-colors"
             >
-              Visit Malnad Realty
+              Visit malnadrealty.com
               <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" strokeLinecap="round" />
                 <polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />

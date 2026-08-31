@@ -57,7 +57,7 @@ export function CTASection({
   eyebrow = "Looking for a property?",
   title = "Explore verified properties on",
   titleAccent = "Malnad Realty",
-  ctaLabel = "Visit Malnad Realty",
+  ctaLabel = "Visit malnadrealty.com",
   ctaHref = "https://malnadrealty.com",
   bgImage = "",
 }: CTASectionProps) {
