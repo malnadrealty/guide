@@ -16,13 +16,6 @@ const notoKannada = Noto_Sans_Kannada({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  let faviconUrl: string | undefined;
-  try {
-    const { getSettings } = await import("@/lib/settings");
-    const settings = await getSettings();
-    faviconUrl = settings.favicon_url || undefined;
-  } catch { /* fallback to default */ }
-
   return {
     metadataBase: new URL(process.env.NEXTAUTH_URL || "https://guide.malnadrealty.com"),
     title: {
@@ -43,9 +36,6 @@ export async function generateMetadata(): Promise<Metadata> {
       site: "@malnadrealty",
     },
     robots: { index: true, follow: true },
-    icons: faviconUrl
-      ? { icon: faviconUrl, apple: faviconUrl }
-      : { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },
   };
 }
 
