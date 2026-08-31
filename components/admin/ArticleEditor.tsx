@@ -69,7 +69,17 @@ export function ArticleEditor({ initialData, categories, locations }: Props) {
       StarterKit,
       Underline,
       TextAlign.configure({ types: ["heading", "paragraph"] }),
-      Link.configure({ openOnClick: false }),
+      Link.configure({
+        openOnClick: false,
+        isAllowedUri: (url) => {
+          try {
+            const parsed = url.startsWith("/") ? new URL(`https://x.com${url}`) : new URL(url);
+            return /^(https?|mailto|tel):$/.test(parsed.protocol);
+          } catch {
+            return false;
+          }
+        },
+      }),
       Image,
       Placeholder.configure({ placeholder: "Start writing your guide..." }),
       Table.configure({ resizable: true }),

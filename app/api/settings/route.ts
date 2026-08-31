@@ -5,6 +5,9 @@ import { db } from "@/lib/db";
 import { SETTING_KEYS } from "@/lib/setting-constants";
 
 export async function GET() {
+  const session = await auth();
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
   try {
     const rows = await db.siteSetting.findMany();
     return NextResponse.json(Object.fromEntries(rows.map((r) => [r.key, r.value])));
@@ -31,6 +34,6 @@ export async function POST(req: Request) {
     revalidateTag("settings", { expire: 0 });
     return NextResponse.json({ ok: true });
   } catch {
-    return NextResponse.json({ error: "Failed to save" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to save settings" }, { status: 500 });
   }
 }

@@ -1,4 +1,5 @@
 import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { getSettings } from "@/lib/settings";
@@ -16,7 +17,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const session = await auth();
 
   if (!session) {
-    return <>{children}</>;
+    redirect("/admin/login");
   }
 
   const settings = await getSettings();

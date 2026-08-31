@@ -9,6 +9,7 @@ import { CTASection } from "@/components/public/CTASection";
 import { ReadingProgress } from "@/components/public/ReadingProgress";
 import { ArticleShareBar } from "@/components/public/ArticleShareBar";
 import { formatDate } from "@/lib/utils";
+import { safeJsonLd } from "@/lib/sanitize";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -91,7 +92,7 @@ export default async function ArticlePage({ params }: Props) {
   return (
     <>
       <ReadingProgress />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
 
       {/* ── ARTICLE HEADER ─────────────────────────────────────────── */}
       <div className="bg-white">

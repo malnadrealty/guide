@@ -45,11 +45,13 @@ export default function SettingsPage() {
     settingKey,
     type = "text",
     placeholder,
+    hint,
   }: {
     label: string;
     settingKey: SettingKey;
     type?: string;
     placeholder?: string;
+    hint?: string;
   }) {
     return (
       <div>
@@ -61,6 +63,7 @@ export default function SettingsPage() {
           placeholder={placeholder || SETTING_DEFAULTS[settingKey] || ""}
           className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-xl outline-none focus:border-[#D7242A] transition-colors"
         />
+        {hint && <p className="mt-1 text-xs text-gray-400">{hint}</p>}
       </div>
     );
   }

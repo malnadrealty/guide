@@ -6,6 +6,7 @@ import { db } from "@/lib/db";
 import { Breadcrumbs } from "@/components/public/Breadcrumbs";
 import { ArticleCard } from "@/components/public/ArticleCard";
 import { CTASection } from "@/components/public/CTASection";
+import { safeJsonLd } from "@/lib/sanitize";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -55,7 +56,7 @@ export default async function LocationPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
 
       {/* Hero */}
       <div className="relative h-64 md:h-80 bg-black overflow-hidden">
