@@ -271,47 +271,82 @@ export default async function HomePage() {
 
       {/* ── POPULAR Q&A ──────────────────────────────────────────── */}
       {popularArticles.length > 0 && (
-        <section className="py-14 md:py-20 bg-white">
+        <section className="py-14 md:py-20 bg-[#0A0A0A]">
           <div className="max-w-7xl mx-auto px-5 md:px-8">
-            <SectionHeader eyebrow="Quick Answers" heading="Common questions" />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {popularArticles.map((article) => (
+
+            {/* Header */}
+            <div className="flex items-end justify-between mb-10">
+              <div>
+                <p className="text-[11px] font-semibold tracking-[0.18em] uppercase mb-2.5 text-[#D7242A]">
+                  Quick Answers
+                </p>
+                <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+                  Common questions
+                </h2>
+              </div>
+              <Link
+                href="/guides"
+                className="flex items-center gap-1.5 text-sm font-semibold text-[#D7242A] flex-shrink-0 ml-6 group hover:opacity-80 transition-opacity"
+              >
+                All guides
+                <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"
+                  className="group-hover:translate-x-0.5 transition-transform duration-200">
+                  <path d="m9 18 6-6-6-6" strokeLinecap="round"/>
+                </svg>
+              </Link>
+            </div>
+
+            {/* Q&A List */}
+            <div className="divide-y divide-[#1C1C1C]">
+              {popularArticles.map((article, i) => (
                 <Link
                   key={article.id}
                   href={`/guides/${article.slug}`}
-                  className="group flex items-start gap-4 p-5 bg-white rounded-xl border border-[#E8E4DF] hover:border-[#D7242A]/20 hover:shadow-md transition-all duration-200"
+                  className="group flex items-start gap-5 md:gap-8 py-5 md:py-6 -mx-5 px-5 md:-mx-8 md:px-8 hover:bg-[#111] transition-colors duration-200"
                 >
-                  <div
-                    className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-white text-[13px] font-bold mt-0.5"
+                  {/* Index number */}
+                  <span
+                    className="flex-shrink-0 text-[1.6rem] md:text-[2rem] font-black leading-none mt-0.5 tabular-nums w-8 md:w-10 text-right transition-colors duration-200"
+                    style={{ color: "#2A2A2A", fontVariantNumeric: "tabular-nums" }}
+                    aria-hidden="true"
                   >
-                    Q
-                  </div>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+
+                  {/* Content */}
                   <div className="min-w-0 flex-1">
-                    <p
-                      className="text-[15px] font-semibold text-[#0F0F0F] leading-snug group-hover:text-[#D7242A] transition-colors"
-                    >
+                    {article.category && (
+                      <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full text-white bg-[#D7242A] mb-2">
+                        {article.category.name}
+                      </span>
+                    )}
+                    <p className="text-[15px] md:text-[17px] font-bold text-white leading-snug group-hover:text-[#D7242A] transition-colors duration-200">
                       {article.title}
                     </p>
                     {article.excerpt && (
-                      <p className="text-sm text-[#8A8A8A] mt-1.5 line-clamp-1 leading-snug">
+                      <p className="text-[13px] text-[#555] mt-1.5 line-clamp-2 leading-relaxed">
                         {article.excerpt}
                       </p>
                     )}
                   </div>
+
+                  {/* Arrow */}
                   <svg
-                    width="14"
-                    height="14"
+                    width="16"
+                    height="16"
                     fill="none"
-                    stroke="#CBCBCB"
+                    stroke="#333"
                     strokeWidth="2"
                     viewBox="0 0 24 24"
-                    className="flex-shrink-0 mt-1 group-hover:stroke-[#D7242A] group-hover:translate-x-0.5 transition-all duration-200"
+                    className="flex-shrink-0 mt-1.5 group-hover:stroke-[#D7242A] group-hover:translate-x-1 transition-all duration-200"
+                    aria-hidden="true"
                   >
-                    <path d="m9 18 6-6-6-6" strokeLinecap="round" />
+                    <path d="m9 18 6-6-6-6" strokeLinecap="round"/>
                   </svg>
                 </Link>
               ))}
             </div>
+
           </div>
         </section>
       )}
