@@ -38,9 +38,10 @@ const TOPICS = [
     desc: "Costs, planning & building tips",
     icon: (
       <svg width="24" height="24" fill="none" stroke="#D7242A" strokeWidth="1.7" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M2 18h20"/>
-        <path d="M4 18a8 8 0 0 1 16 0"/>
-        <path d="M12 10V7"/>
+        {/* Hard hat — dome faces up (sweep=0) */}
+        <path d="M4 16a8 8 0 0 0 16 0"/>
+        <path d="M2 16h20"/>
+        <path d="M12 8v3"/>
       </svg>
     ),
   },
@@ -64,11 +65,12 @@ const TOPICS = [
     desc: "Loans, EMI & tax planning",
     icon: (
       <svg width="24" height="24" fill="none" stroke="#D7242A" strokeWidth="1.7" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M7 4h10"/>
-        <path d="M7 11h10"/>
-        <path d="M7 4v7"/>
-        <path d="M17 4a6 6 0 0 1-6 7"/>
-        <path d="M12 11l7 9"/>
+        {/* Rupee ₹ — vertical spine, two bars, D-bowl, diagonal leg */}
+        <path d="M6 3v18"/>
+        <path d="M6 3h12"/>
+        <path d="M6 10h9"/>
+        <path d="M18 3c3 0 3 7 0 7"/>
+        <path d="M15 10l5 11"/>
       </svg>
     ),
   },
