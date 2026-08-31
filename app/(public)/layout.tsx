@@ -1,15 +1,7 @@
-import type { Metadata } from "next";
 import { Header } from "@/components/public/Header";
 import { Footer } from "@/components/public/Footer";
 import { BottomNav } from "@/components/public/BottomNav";
 import { getSettings } from "@/lib/settings";
-
-export async function generateMetadata(): Promise<Metadata> {
-  const settings = await getSettings();
-  return settings.favicon_url
-    ? { icons: { icon: settings.favicon_url, apple: settings.favicon_url } }
-    : {};
-}
 
 export default async function PublicLayout({ children }: { children: React.ReactNode }) {
   const settings = await getSettings();

@@ -15,31 +15,39 @@ const notoKannada = Noto_Sans_Kannada({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXTAUTH_URL || "https://guide.malnadrealty.com"),
-  title: {
-    default: "Malnad Realty Guide — Know the place before you buy.",
-    template: "%s | Malnad Realty Guide",
-  },
-  description:
-    "Property, land, homes and local insights across Shivamogga & Uttara Kannada. Local real estate guides, location information and buying advice.",
-  openGraph: {
-    type: "website",
-    locale: "en_IN",
-    url: "https://guide.malnadrealty.com",
-    siteName: "Malnad Realty Guide",
-    images: [{ url: "/og-default.jpg", width: 1200, height: 630, alt: "Malnad Realty Guide" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@malnadrealty",
-  },
-  robots: { index: true, follow: true },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  let faviconUrl: string | undefined;
+  try {
+    const { getSettings } = await import("@/lib/settings");
+    const settings = await getSettings();
+    faviconUrl = settings.favicon_url || undefined;
+  } catch { /* fallback to default */ }
+
+  return {
+    metadataBase: new URL(process.env.NEXTAUTH_URL || "https://guide.malnadrealty.com"),
+    title: {
+      default: "Malnad Realty Guide — Know the place before you buy.",
+      template: "%s | Malnad Realty Guide",
+    },
+    description:
+      "Property, land, homes and local insights across Shivamogga & Uttara Kannada. Local real estate guides, location information and buying advice.",
+    openGraph: {
+      type: "website",
+      locale: "en_IN",
+      url: "https://guide.malnadrealty.com",
+      siteName: "Malnad Realty Guide",
+      images: [{ url: "/og-default.jpg", width: 1200, height: 630, alt: "Malnad Realty Guide" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@malnadrealty",
+    },
+    robots: { index: true, follow: true },
+    icons: faviconUrl
+      ? { icon: faviconUrl, apple: faviconUrl }
+      : { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },
+  };
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
