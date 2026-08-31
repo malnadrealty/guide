@@ -21,6 +21,6 @@ export async function POST(req: NextRequest) {
   const location = await db.location.create({
     data: { name, slug: finalSlug, district, taluk, shortDescription, description, heroImage, gallery: gallery || [], seoTitle, metaDescription, ogImage, status: status || "draft" },
   });
-  revalidateTag("locations", { expire: 0 });
+  revalidateTag("locations");
   return NextResponse.json(location, { status: 201 });
 }

@@ -28,7 +28,7 @@ export async function POST(req: Request) {
         })
       )
     );
-    revalidateTag("settings", { expire: 0 });
+    revalidateTag("settings");
     return NextResponse.json({ ok: true });
   } catch {
     return NextResponse.json({ error: "Failed to save" }, { status: 500 });
