@@ -105,3 +105,29 @@ export const getCachedArticlesByCategory = unstable_cache(
   ["articles-by-category"],
   { revalidate: 300, tags: ["articles"] }
 );
+
+export const getCachedRelatedArticles = unstable_cache(
+  async (excludeId: string, categoryId: string | null, locationId: string | null) => {
+    const orConditions = [
+      ...(categoryId ? [{ categoryId }] : []),
+      ...(locationId ? [{ locationId }] : []),
+    ];
+    return db.article.findMany({
+      where: {
+        status: "published",
+        id: { not: excludeId },
+        ...(orConditions.length > 0 ? { OR: orConditions } : {}),
+      },
+      take: 3,
+      orderBy: { publishedAt: "desc" },
+      select: {
+        id: true, title: true, slug: true, excerpt: true, featuredImage: true,
+        publishedAt: true, content: true,
+        category: { select: { name: true, slug: true } },
+        location: { select: { name: true, slug: true } },
+      },
+    });
+  },
+  ["related-articles"],
+  { revalidate: 300, tags: ["articles"] }
+);

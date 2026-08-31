@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { db } from "@/lib/db";
+import { getCachedArticleBySlug, getCachedRelatedArticles } from "@/lib/db-cache";
 import { Breadcrumbs } from "@/components/public/Breadcrumbs";
 import { ArticleCard } from "@/components/public/ArticleCard";
 import { CTASection } from "@/components/public/CTASection";
@@ -15,12 +16,18 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+// Pre-render all published articles at build time → static HTML served from CDN
+export async function generateStaticParams() {
+  const articles = await db.article.findMany({
+    where: { status: "published" },
+    select: { slug: true },
+  });
+  return articles.map((a) => ({ slug: a.slug }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const article = await db.article.findUnique({
-    where: { slug, status: "published" },
-    select: { title: true, seoTitle: true, metaDescription: true, excerpt: true, ogImage: true, featuredImage: true, canonicalUrl: true },
-  });
+  const article = await getCachedArticleBySlug(slug);
   if (!article) return {};
   return {
     title: article.seoTitle || article.title,
@@ -36,35 +43,15 @@ export const revalidate = 300;
 
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
-  const article = await db.article.findUnique({
-    where: { slug, status: "published" },
-    include: {
-      author: { select: { name: true } },
-      category: { select: { name: true, slug: true } },
-      location: { select: { name: true, slug: true } },
-    },
-  });
+  const article = await getCachedArticleBySlug(slug);
 
   if (!article) notFound();
 
-  const relatedArticles = await db.article.findMany({
-    where: {
-      status: "published",
-      id: { not: article.id },
-      OR: [
-        { categoryId: article.categoryId || undefined },
-        { locationId: article.locationId || undefined },
-      ],
-    },
-    take: 3,
-    orderBy: { publishedAt: "desc" },
-    select: {
-      id: true, title: true, slug: true, excerpt: true, featuredImage: true,
-      publishedAt: true, content: true,
-      category: { select: { name: true, slug: true } },
-      location: { select: { name: true, slug: true } },
-    },
-  });
+  const relatedArticles = await getCachedRelatedArticles(
+    article.id,
+    article.categoryId,
+    article.locationId
+  );
 
   const jsonLd = {
     "@context": "https://schema.org",
