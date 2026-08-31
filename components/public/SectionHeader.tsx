@@ -5,25 +5,50 @@ interface SectionHeaderProps {
   heading: string;
   viewAllHref?: string;
   viewAllLabel?: string;
+  serif?: boolean;
 }
 
-export function SectionHeader({ eyebrow, heading, viewAllHref, viewAllLabel = "View all" }: SectionHeaderProps) {
+export function SectionHeader({
+  eyebrow,
+  heading,
+  viewAllHref,
+  viewAllLabel = "View all",
+  serif = true,
+}: SectionHeaderProps) {
   return (
-    <div className="flex items-end justify-between mb-5">
+    <div className="flex items-end justify-between mb-8">
       <div>
-        <p className="text-xs font-bold tracking-[0.15em] uppercase mb-1.5" style={{ color: "#D7242A" }}>
+        <p
+          className="text-[11px] font-semibold tracking-[0.18em] uppercase mb-2.5"
+          style={{ color: "#D7242A" }}
+        >
           {eyebrow}
         </p>
-        <h2 className="text-2xl font-bold text-black">{heading}</h2>
+        <h2
+          className={`text-2xl md:text-3xl font-bold text-[#0F0F0F] leading-tight ${
+            serif ? "font-display" : ""
+          }`}
+          style={serif ? { fontFamily: "var(--font-display)" } : {}}
+        >
+          {heading}
+        </h2>
       </div>
       {viewAllHref && (
         <Link
           href={viewAllHref}
-          className="flex items-center gap-1 text-sm font-semibold transition-colors flex-shrink-0 ml-4"
+          className="flex items-center gap-1.5 text-sm font-semibold flex-shrink-0 ml-6 group transition-colors"
           style={{ color: "#D7242A" }}
         >
           {viewAllLabel}
-          <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+          <svg
+            width="14"
+            height="14"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+            className="group-hover:translate-x-0.5 transition-transform duration-200"
+          >
             <path d="m9 18 6-6-6-6" strokeLinecap="round" />
           </svg>
         </Link>

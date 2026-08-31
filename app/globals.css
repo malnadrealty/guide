@@ -3,85 +3,198 @@
 @theme {
   /* Brand Colors */
   --color-brand-red: #D7242A;
-  --color-brand-red-dark: #b01e23;
-  --color-brand-red-light: #f5e6e7;
-  --color-brand-black: #000000;
+  --color-brand-red-dark: #B01E23;
+  --color-brand-red-light: #FDF0F0;
+  --color-brand-black: #0A0A0A;
   --color-brand-white: #FFFFFF;
-  --color-brand-gray: #8F8F8F;
-  --color-brand-gray-light: #F5F5F5;
-  --color-brand-gray-mid: #E5E5E5;
-  --color-brand-gray-dark: #3D3D3D;
-  --color-brand-charcoal: #1A1A1A;
+  --color-brand-gold: #C9A84C;
+
+  /* Neutrals — warm-tinted for editorial feel */
+  --color-surface: #FFFFFF;
+  --color-surface-warm: #F8F6F3;
+  --color-surface-muted: #F2EFEB;
+  --color-border: #E8E4DF;
+  --color-border-light: #F0EDE9;
+  --color-text: #0F0F0F;
+  --color-text-secondary: #4A4A4A;
+  --color-text-muted: #8A8A8A;
+  --color-text-subtle: #AEAEAD;
 
   /* Typography */
   --font-sans: "Inter", "Noto Sans Kannada", system-ui, -apple-system, sans-serif;
-  --font-heading: "Inter", "Noto Sans Kannada", system-ui, -apple-system, sans-serif;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-kannada: "Noto Sans Kannada", sans-serif;
 
   /* Radius */
-  --radius-card: 12px;
+  --radius-xs: 4px;
   --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-card: 12px;
   --radius-lg: 16px;
+  --radius-xl: 20px;
   --radius-pill: 999px;
 
   /* Shadows */
-  --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.06);
-  --shadow-hover: 0 4px 16px rgba(0,0,0,0.12);
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-card: 0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-hover: 0 8px 24px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
+  --shadow-elevated: 0 16px 40px rgba(0,0,0,0.12);
 }
 
 :root {
   --background: #FFFFFF;
-  --foreground: #1A1A1A;
+  --foreground: #0F0F0F;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* Tiptap editor styles */
-.tiptap-content h1 { font-size: 1.875rem; font-weight: 700; margin: 1.5rem 0 0.75rem; line-height: 1.2; }
-.tiptap-content h2 { font-size: 1.5rem; font-weight: 700; margin: 1.25rem 0 0.5rem; line-height: 1.3; }
-.tiptap-content h3 { font-size: 1.25rem; font-weight: 600; margin: 1rem 0 0.5rem; line-height: 1.4; }
-.tiptap-content p { margin: 0 0 1rem; line-height: 1.75; }
-.tiptap-content ul, .tiptap-content ol { margin: 0 0 1rem 1.5rem; }
-.tiptap-content li { margin-bottom: 0.25rem; line-height: 1.7; }
-.tiptap-content a { color: #D7242A; text-decoration: underline; }
+/* Display font utility */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Scrollbar hide */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid #D7242A;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Article body typography */
+.tiptap-content {
+  font-family: var(--font-sans);
+  line-height: 1.8;
+  color: #2A2A2A;
+}
+.tiptap-content h1 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem;
+  line-height: 1.2;
+  color: #0F0F0F;
+}
+.tiptap-content h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 1.75rem 0 0.75rem;
+  line-height: 1.3;
+  color: #0F0F0F;
+}
+.tiptap-content h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 1.25rem 0 0.5rem;
+  line-height: 1.4;
+}
+.tiptap-content p {
+  margin: 0 0 1.25rem;
+  line-height: 1.8;
+}
+.tiptap-content ul,
+.tiptap-content ol {
+  margin: 0 0 1.25rem 1.5rem;
+}
+.tiptap-content li {
+  margin-bottom: 0.35rem;
+  line-height: 1.7;
+}
+.tiptap-content a {
+  color: #D7242A;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 .tiptap-content strong { font-weight: 700; }
 .tiptap-content em { font-style: italic; }
-.tiptap-content blockquote { border-left: 4px solid #D7242A; padding: 0.5rem 0 0.5rem 1rem; margin: 1rem 0; color: #8F8F8F; font-style: italic; }
-.tiptap-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
-.tiptap-content th { background: #F5F5F5; border: 1px solid #E5E5E5; padding: 0.5rem 0.75rem; text-align: left; font-weight: 600; }
-.tiptap-content td { border: 1px solid #E5E5E5; padding: 0.5rem 0.75rem; }
-.tiptap-content img { max-width: 100%; border-radius: 8px; margin: 1rem 0; }
+.tiptap-content blockquote {
+  border-left: 3px solid #D7242A;
+  padding: 0.75rem 0 0.75rem 1.25rem;
+  margin: 1.5rem 0;
+  color: #555;
+  font-style: italic;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+.tiptap-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+  overflow-x: auto;
+  display: block;
+}
+.tiptap-content th {
+  background: #F8F6F3;
+  border: 1px solid #E8E4DF;
+  padding: 0.6rem 0.875rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.tiptap-content td {
+  border: 1px solid #E8E4DF;
+  padding: 0.6rem 0.875rem;
+}
+.tiptap-content img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+}
 
-/* Editor wrapper */
+/* ProseMirror editor */
 .ProseMirror {
   outline: none;
   min-height: 300px;
 }
 .ProseMirror p.is-editor-empty:first-child::before {
   content: attr(data-placeholder);
-  color: #8F8F8F;
+  color: #9A9A9A;
   pointer-events: none;
   float: left;
   height: 0;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Line clamp utilities */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
-
-/* Focus ring */
-:focus-visible {
-  outline: 2px solid #D7242A;
-  outline-offset: 2px;
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }

@@ -62,8 +62,12 @@ export function BottomNav() {
 
   return (
     <nav
-      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-100"
-      style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
+      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white"
+      style={{
+        borderTop: "1px solid #E8E4DF",
+        paddingBottom: "env(safe-area-inset-bottom, 0px)",
+        boxShadow: "0 -4px 16px rgba(0,0,0,0.06)",
+      }}
       aria-label="Bottom navigation"
     >
       <div className="flex">
@@ -79,7 +83,7 @@ export function BottomNav() {
               {item.icon(active)}
               <span
                 className="text-[10px] font-semibold"
-                style={{ color: active ? "#D7242A" : "#8F8F8F" }}
+                style={{ color: active ? "#D7242A" : "#9A9A9A" }}
               >
                 {item.label}
               </span>

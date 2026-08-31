@@ -40,8 +40,8 @@ export function Footer({ settings }: FooterProps) {
   const hasContact = phone || email || address;
 
   return (
-    <footer className="bg-black text-white pb-16 md:pb-0">
-      <div className="max-w-6xl mx-auto px-4 py-12">
+    <footer className="bg-[#0A0A0A] text-white pb-16 md:pb-0">
+      <div className="max-w-7xl mx-auto px-5 md:px-8 py-14 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
           {/* Brand */}
           <div className="md:col-span-2">
@@ -53,13 +53,13 @@ export function Footer({ settings }: FooterProps) {
                 className="[&_span]:!text-white [&_span:last-child]:!text-gray-400"
               />
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
+            <p className="text-[#6A6A6A] text-[13px] leading-relaxed max-w-xs">
               {s(settings, "footer_tagline")}
             </p>
 
             {/* Contact info */}
             {hasContact && (
-              <div className="mt-5 space-y-1.5 text-sm text-gray-400">
+              <div className="mt-5 space-y-1.5 text-[13px] text-[#6A6A6A]">
                 {phone && <p>{phone}</p>}
                 {email && (
                   <a href={`mailto:${email}`} className="block hover:text-white transition-colors">
@@ -119,11 +119,11 @@ export function Footer({ settings }: FooterProps) {
 
           {/* Topics */}
           <div>
-            <h3 className="text-xs font-bold tracking-widest uppercase text-gray-500 mb-4">Topics</h3>
+            <h3 className="text-[10px] font-semibold tracking-[0.18em] uppercase text-[#4A4A4A] mb-4">Topics</h3>
             <ul className="space-y-2.5">
               {TOPIC_LINKS.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-sm text-gray-400 hover:text-white transition-colors">{l.label}</Link>
+                  <Link href={l.href} className="text-[13px] text-[#6A6A6A] hover:text-white transition-colors">{l.label}</Link>
                 </li>
               ))}
             </ul>
@@ -131,24 +131,24 @@ export function Footer({ settings }: FooterProps) {
 
           {/* Navigate */}
           <div>
-            <h3 className="text-xs font-bold tracking-widest uppercase text-gray-500 mb-4">Navigate</h3>
+            <h3 className="text-[10px] font-semibold tracking-[0.18em] uppercase text-[#4A4A4A] mb-4">Navigate</h3>
             <ul className="space-y-2.5">
               {GUIDE_LINKS.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-sm text-gray-400 hover:text-white transition-colors">{l.label}</Link>
+                  <Link href={l.href} className="text-[13px] text-[#6A6A6A] hover:text-white transition-colors">{l.label}</Link>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-gray-600">
+        <div className="border-t border-white/[0.08] pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
+          <p className="text-[12px] text-[#4A4A4A]">
             &copy; {year} {s(settings, "footer_copyright")}. All rights reserved.
           </p>
-          <p className="text-xs text-gray-600">
+          <p className="text-[12px] text-[#4A4A4A]">
             A content guide by{" "}
-            <a href="https://malnadrealty.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+            <a href="https://malnadrealty.com" target="_blank" rel="noopener noreferrer" className="text-[#6A6A6A] hover:text-white transition-colors">
               Malnad Realty
             </a>
           </p>

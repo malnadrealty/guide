@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Sans_Kannada } from "next/font/google";
+import { Inter, Noto_Sans_Kannada, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -42,7 +50,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${notoKannada.variable} antialiased`}>
+      <body className={`${inter.variable} ${playfair.variable} ${notoKannada.variable} antialiased`}>
         {children}
       </body>
     </html>

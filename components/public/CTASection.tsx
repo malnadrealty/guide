@@ -9,32 +9,32 @@ interface CTASectionProps {
   bgImage?: string;
 }
 
-const BADGES = [
+const TRUST_ITEMS = [
   {
     label: "Verified Listings",
-    desc: "100% verified properties on Malnad Realty",
+    desc: "100% verified properties",
     icon: (
-      <svg width="18" height="18" fill="none" stroke="#D7242A" strokeWidth="2" viewBox="0 0 24 24">
+      <svg width="20" height="20" fill="none" stroke="white" strokeWidth="1.8" viewBox="0 0 24 24">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round" />
         <polyline points="9 12 11 14 15 10" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
   {
-    label: "Local Insights",
-    desc: "Expert guides & real local knowledge",
+    label: "Local Knowledge",
+    desc: "Expert regional insights",
     icon: (
-      <svg width="18" height="18" fill="none" stroke="#D7242A" strokeWidth="2" viewBox="0 0 24 24">
+      <svg width="20" height="20" fill="none" stroke="white" strokeWidth="1.8" viewBox="0 0 24 24">
         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" strokeLinecap="round" strokeLinejoin="round" />
         <circle cx="12" cy="10" r="3" />
       </svg>
     ),
   },
   {
-    label: "Trusted Information",
-    desc: "Well researched & regularly updated",
+    label: "Trusted Research",
+    desc: "Regularly updated guides",
     icon: (
-      <svg width="18" height="18" fill="none" stroke="#D7242A" strokeWidth="2" viewBox="0 0 24 24">
+      <svg width="20" height="20" fill="none" stroke="white" strokeWidth="1.8" viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="10" />
         <polyline points="12 6 12 12 16 14" strokeLinecap="round" />
       </svg>
@@ -42,9 +42,9 @@ const BADGES = [
   },
   {
     label: "For Everyone",
-    desc: "Buyers, sellers, investors & homeowners",
+    desc: "Buyers, sellers & investors",
     icon: (
-      <svg width="18" height="18" fill="none" stroke="#D7242A" strokeWidth="2" viewBox="0 0 24 24">
+      <svg width="20" height="20" fill="none" stroke="white" strokeWidth="1.8" viewBox="0 0 24 24">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" strokeLinecap="round" />
         <circle cx="9" cy="7" r="4" />
         <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" strokeLinecap="round" />
@@ -62,28 +62,56 @@ export function CTASection({
   bgImage = "",
 }: CTASectionProps) {
   return (
-    <section className="relative overflow-hidden bg-black text-white">
+    <section className="relative overflow-hidden" style={{ backgroundColor: "#0A0A0A" }}>
       {/* Background */}
       {bgImage ? (
         <div className="absolute inset-0">
-          <Image src={bgImage} alt="" fill className="object-cover opacity-40" sizes="100vw" priority={false} />
+          <Image
+            src={bgImage}
+            alt=""
+            fill
+            className="object-cover opacity-30"
+            sizes="100vw"
+            priority={false}
+          />
           <div
             className="absolute inset-0"
-            style={{ background: "linear-gradient(to right, rgba(0,0,0,0.95) 45%, rgba(0,0,0,0.4) 100%)" }}
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(10,10,10,0.97) 30%, rgba(10,10,10,0.70) 100%)",
+            }}
           />
         </div>
       ) : (
-        <div
-          className="absolute inset-0 opacity-15"
-          style={{ backgroundImage: "radial-gradient(circle at 75% 50%, #D7242A, transparent 60%)" }}
-          aria-hidden="true"
-        />
+        <>
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage:
+                "radial-gradient(ellipse at 80% 40%, #D7242A, transparent 55%)",
+            }}
+            aria-hidden="true"
+          />
+          <div
+            className="absolute inset-0 opacity-5"
+            style={{
+              backgroundImage:
+                "radial-gradient(ellipse at 20% 80%, #C9A84C, transparent 50%)",
+            }}
+            aria-hidden="true"
+          />
+        </>
       )}
 
-      <div className="relative max-w-6xl mx-auto px-4 py-14 md:py-20">
-        <div className="max-w-xl">
-          <p className="text-xs font-bold tracking-[0.18em] uppercase text-gray-400 mb-4">{eyebrow}</p>
-          <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-7">
+      <div className="relative max-w-7xl mx-auto px-5 md:px-8 py-16 md:py-24">
+        <div className="max-w-2xl">
+          <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-[#8A8A8A] mb-5">
+            {eyebrow}
+          </p>
+          <h2
+            className="text-3xl md:text-5xl font-bold leading-tight mb-8 text-white"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
             {title}{" "}
             <span style={{ color: "#D7242A" }}>{titleAccent}</span>
           </h2>
@@ -91,28 +119,39 @@ export function CTASection({
             href={ctaHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-semibold text-black bg-white hover:bg-gray-100 transition-colors"
+            className="inline-flex items-center gap-3 px-7 py-3.5 rounded-xl font-semibold text-[#0A0A0A] bg-white hover:bg-[#F8F6F3] transition-all duration-200 text-[15px] group"
+            style={{ boxShadow: "0 4px 14px rgba(255,255,255,0.15)" }}
           >
             {ctaLabel}
-            <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-              <path d="m9 18 6-6-6-6" strokeLinecap="round" />
+            <svg
+              width="15"
+              height="15"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+              className="group-hover:translate-x-0.5 transition-transform duration-200"
+            >
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" strokeLinecap="round" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
             </svg>
           </a>
         </div>
 
-        {/* Trust badges */}
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-5 pt-10 border-t border-white/10">
-          {BADGES.map((b) => (
-            <div key={b.label} className="flex items-start gap-3">
+        {/* Trust strip */}
+        <div className="mt-14 pt-10 border-t border-white/[0.08] grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+          {TRUST_ITEMS.map((item) => (
+            <div key={item.label} className="flex items-start gap-3.5">
               <div
-                className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center"
-                style={{ backgroundColor: "rgba(215,36,42,0.15)" }}
+                className="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center"
+                style={{ backgroundColor: "rgba(215,36,42,0.20)" }}
               >
-                {b.icon}
+                {item.icon}
               </div>
               <div>
-                <p className="text-sm font-semibold text-white">{b.label}</p>
-                <p className="text-xs text-gray-400 mt-0.5 leading-snug">{b.desc}</p>
+                <p className="text-[13px] font-semibold text-white leading-snug">{item.label}</p>
+                <p className="text-[12px] text-[#6A6A6A] mt-0.5">{item.desc}</p>
               </div>
             </div>
           ))}
