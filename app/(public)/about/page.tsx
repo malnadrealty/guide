@@ -153,14 +153,14 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="mailto:support@malnadreality.com"
+                href="mailto:malnadrealty@gmail.com"
                 className="inline-flex items-center gap-3 px-5 py-3 rounded-xl border border-[#E8E4DF] text-[14px] font-semibold text-[#0F0F0F] hover:border-[#D7242A]/30 hover:bg-[#FFFAFA] transition-all duration-200 group"
               >
                 <svg width="16" height="16" fill="none" stroke="#D7242A" strokeWidth="2" viewBox="0 0 24 24">
                   <rect x="2" y="4" width="20" height="16" rx="2" />
                   <polyline points="2,4 12,13 22,4" strokeLinecap="round" />
                 </svg>
-                support@malnadreality.com
+                malnadrealty@gmail.com
               </a>
               <a
                 href="tel:+917090316316"
