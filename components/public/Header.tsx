@@ -68,6 +68,7 @@ export function Header({ logoLine1, logoLine2, logoImageUrl, logoDarkUrl }: Head
           {/* Actions */}
           <div className="flex items-center gap-1">
             <button
+              type="button"
               onClick={() => setSearchOpen(true)}
               aria-label="Search guides"
               className="flex items-center gap-2 px-3 py-2 text-sm text-[#4A4A4A] hover:text-[#D7242A] hover:bg-[#FDF0F0] rounded-lg transition-all duration-200 hidden md:flex"
@@ -80,6 +81,7 @@ export function Header({ logoLine1, logoLine2, logoImageUrl, logoDarkUrl }: Head
             </button>
 
             <button
+              type="button"
               onClick={() => setSearchOpen(true)}
               aria-label="Search"
               className="p-2.5 text-[#4A4A4A] hover:text-[#D7242A] hover:bg-[#FDF0F0] rounded-lg transition-all duration-200 md:hidden"
@@ -91,6 +93,7 @@ export function Header({ logoLine1, logoLine2, logoImageUrl, logoDarkUrl }: Head
             </button>
 
             <button
+              type="button"
               onClick={() => setMenuOpen(true)}
               aria-label="Open navigation menu"
               aria-expanded={menuOpen}

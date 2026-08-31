@@ -62,8 +62,8 @@ export function SearchModal({ open, onClose }: Props) {
     <div className="fixed inset-0 z-[70] flex items-start justify-center pt-[10vh] px-4">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
       <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden">
-        <form onSubmit={handleSubmit} className="flex items-center border-b border-gray-100">
-          <div className="pl-4 text-gray-400">
+        <form onSubmit={handleSubmit} className="flex items-center border-b border-gray-100 focus-within:border-[#D7242A]/30 transition-colors">
+          <div className="pl-4 text-[#ABABAB]">
             <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" strokeLinecap="round" />
             </svg>
@@ -74,7 +74,8 @@ export function SearchModal({ open, onClose }: Props) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search locations, topics, guides..."
-            className="flex-1 px-4 py-4 text-base outline-none bg-transparent"
+            className="flex-1 px-4 py-4 text-base bg-transparent"
+            style={{ outline: "none" }}
             autoComplete="off"
           />
           <button
