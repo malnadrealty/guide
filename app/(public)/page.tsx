@@ -115,14 +115,6 @@ export default async function HomePage() {
         </div>
 
         <div className="relative max-w-6xl mx-auto px-4 pb-10 pt-10 w-full">
-          {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1.5 mb-5">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D7242A" strokeWidth="2.5">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
-            </svg>
-            <span className="text-xs font-semibold text-white tracking-wide">Your Local Real Estate Guide</span>
-          </div>
-
           <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-[1.1] mb-4 max-w-2xl">
             {settings.hero_title || "Know the place"}
             {(settings.hero_title_accent || "before you buy.") && (
