@@ -20,7 +20,7 @@ export async function PATCH(req: NextRequest, { params }: Params) {
   const { id } = await params;
   const body = await req.json();
   const location = await db.location.update({ where: { id }, data: { ...body, updatedAt: new Date() } });
-  revalidateTag("locations");
+  revalidateTag("locations", { expire: 0 });
   return NextResponse.json(location);
 }
 
@@ -29,6 +29,6 @@ export async function DELETE(_req: NextRequest, { params }: Params) {
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const { id } = await params;
   await db.location.delete({ where: { id } });
-  revalidateTag("locations");
+  revalidateTag("locations", { expire: 0 });
   return NextResponse.json({ success: true });
 }

@@ -50,6 +50,6 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  revalidateTag("articles");
+  revalidateTag("articles", { expire: 0 });
   return NextResponse.json(article, { status: 201 });
 }

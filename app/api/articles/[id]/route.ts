@@ -22,32 +22,43 @@ export async function PATCH(req: NextRequest, { params }: Params) {
   const session = await auth();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const { id } = await params;
-  const body = await req.json();
 
-  const existing = await db.article.findUnique({ where: { id } });
-  if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  try {
+    const body = await req.json();
 
-  const wasPublished = existing.status === "published";
-  const nowPublished = body.status === "published";
+    const existing = await db.article.findUnique({ where: { id } });
+    if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
-  const article = await db.article.update({
-    where: { id },
-    data: {
-      ...body,
-      slug: body.slug || body.title ? toSlug(body.slug || body.title || existing.title) : existing.slug,
-      publishedAt: nowPublished && !wasPublished ? new Date() : existing.publishedAt,
-      updatedAt: new Date(),
-    },
-  });
-  revalidateTag("articles");
-  return NextResponse.json(article);
+    const wasPublished = existing.status === "published";
+    const nowPublished = body.status === "published";
+
+    const article = await db.article.update({
+      where: { id },
+      data: {
+        ...body,
+        slug: body.slug || body.title ? toSlug(body.slug || body.title || existing.title) : existing.slug,
+        publishedAt: nowPublished && !wasPublished ? new Date() : existing.publishedAt,
+        updatedAt: new Date(),
+      },
+    });
+    revalidateTag("articles", { expire: 0 });
+    return NextResponse.json(article);
+  } catch (err) {
+    console.error("PATCH /api/articles/[id]:", err);
+    return NextResponse.json({ error: err instanceof Error ? err.message : "Failed to update" }, { status: 500 });
+  }
 }
 
 export async function DELETE(_req: NextRequest, { params }: Params) {
   const session = await auth();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const { id } = await params;
-  await db.article.delete({ where: { id } });
-  revalidateTag("articles");
-  return NextResponse.json({ success: true });
+  try {
+    await db.article.delete({ where: { id } });
+    revalidateTag("articles", { expire: 0 });
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("DELETE /api/articles/[id]:", err);
+    return NextResponse.json({ error: err instanceof Error ? err.message : "Failed to delete" }, { status: 500 });
+  }
 }
