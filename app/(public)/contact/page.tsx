@@ -50,8 +50,8 @@ export default function ContactPage() {
           <div>
             <p className="font-bold text-black text-sm">Content feedback</p>
             <p className="text-xs text-gray-400 mt-0.5">Found something incorrect or outdated?</p>
-            <a href="mailto:guide@malnadrealty.com" className="text-xs font-medium text-[#D7242A] mt-2 block hover:underline">
-              guide@malnadrealty.com →
+            <a href="mailto:malnadrealty@gmail.com" className="text-xs font-medium text-[#D7242A] mt-2 block hover:underline">
+              malnadrealty@gmail.com →
             </a>
           </div>
         </div>
