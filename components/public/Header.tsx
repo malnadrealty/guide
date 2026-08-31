@@ -71,7 +71,8 @@ export function Header({ logoLine1, logoLine2, logoImageUrl, logoDarkUrl }: Head
               type="button"
               onClick={() => setSearchOpen(true)}
               aria-label="Search guides"
-              className="flex items-center gap-2 px-3 py-2 text-sm text-[#4A4A4A] hover:text-[#D7242A] hover:bg-[#FDF0F0] rounded-lg transition-all duration-200 hidden md:flex"
+              className="flex items-center gap-2 px-3 py-2 text-sm text-[#4A4A4A] hover:text-[#D7242A] hover:bg-[#FDF0F0] active:opacity-70 rounded-lg transition-all duration-200 hidden md:flex"
+              style={{ WebkitTapHighlightColor: "transparent" }}
             >
               <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
                 <circle cx="11" cy="11" r="8" />
@@ -84,7 +85,8 @@ export function Header({ logoLine1, logoLine2, logoImageUrl, logoDarkUrl }: Head
               type="button"
               onClick={() => setSearchOpen(true)}
               aria-label="Search"
-              className="p-2.5 text-[#4A4A4A] hover:text-[#D7242A] hover:bg-[#FDF0F0] rounded-lg transition-all duration-200 md:hidden"
+              className="p-2.5 text-[#4A4A4A] hover:text-[#D7242A] hover:bg-[#FDF0F0] active:opacity-70 rounded-lg transition-all duration-200 md:hidden"
+              style={{ WebkitTapHighlightColor: "transparent" }}
             >
               <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
                 <circle cx="11" cy="11" r="8" />
@@ -97,7 +99,8 @@ export function Header({ logoLine1, logoLine2, logoImageUrl, logoDarkUrl }: Head
               onClick={() => setMenuOpen(true)}
               aria-label="Open navigation menu"
               aria-expanded={menuOpen}
-              className="p-2.5 text-[#4A4A4A] hover:text-[#D7242A] hover:bg-[#FDF0F0] rounded-lg transition-all duration-200"
+              className="p-2.5 text-[#4A4A4A] hover:text-[#D7242A] hover:bg-[#FDF0F0] active:opacity-70 rounded-lg transition-all duration-200"
+              style={{ WebkitTapHighlightColor: "transparent" }}
             >
               <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
                 <line x1="3" y1="6" x2="21" y2="6" strokeLinecap="round" />

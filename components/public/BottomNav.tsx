@@ -43,21 +43,21 @@ const NAV = [
       </svg>
     ),
   },
-  {
-    href: "/guides",
-    label: "Menu",
-    isMenu: true,
-    icon: (active: boolean) => (
-      <svg width="22" height="22" fill="none" stroke={active ? "#D7242A" : "currentColor"} strokeWidth="2" viewBox="0 0 24 24">
-        <line x1="3" y1="6" x2="21" y2="6" strokeLinecap="round" />
-        <line x1="3" y1="12" x2="21" y2="12" strokeLinecap="round" />
-        <line x1="3" y1="18" x2="21" y2="18" strokeLinecap="round" />
-      </svg>
-    ),
-  },
 ];
 
-export function BottomNav() {
+const MENU_ICON = (
+  <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+    <line x1="3" y1="6" x2="21" y2="6" strokeLinecap="round" />
+    <line x1="3" y1="12" x2="21" y2="12" strokeLinecap="round" />
+    <line x1="3" y1="18" x2="21" y2="18" strokeLinecap="round" />
+  </svg>
+);
+
+interface Props {
+  onMenuOpen: () => void;
+}
+
+export function BottomNav({ onMenuOpen }: Props) {
   const pathname = usePathname();
 
   return (
@@ -77,8 +77,9 @@ export function BottomNav() {
             <Link
               key={item.label}
               href={item.href}
-              className="flex-1 flex flex-col items-center justify-center py-2.5 gap-0.5"
+              className="flex-1 flex flex-col items-center justify-center py-2.5 gap-0.5 active:opacity-60 transition-opacity duration-75"
               aria-current={active ? "page" : undefined}
+              style={{ WebkitTapHighlightColor: "transparent" }}
             >
               {item.icon(active)}
               <span
@@ -90,6 +91,18 @@ export function BottomNav() {
             </Link>
           );
         })}
+
+        {/* Menu button */}
+        <button
+          type="button"
+          onClick={onMenuOpen}
+          className="flex-1 flex flex-col items-center justify-center py-2.5 gap-0.5 active:opacity-60 transition-opacity duration-75"
+          aria-label="Open menu"
+          style={{ WebkitTapHighlightColor: "transparent", color: "#9A9A9A" }}
+        >
+          {MENU_ICON}
+          <span className="text-[10px] font-semibold" style={{ color: "#9A9A9A" }}>Menu</span>
+        </button>
       </div>
     </nav>
   );

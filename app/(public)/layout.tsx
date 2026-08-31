@@ -1,6 +1,7 @@
 import { Header } from "@/components/public/Header";
 import { Footer } from "@/components/public/Footer";
-import { BottomNav } from "@/components/public/BottomNav";
+import { NavShell } from "@/components/public/NavShell";
+import { NavigationProgress } from "@/components/public/NavigationProgress";
 import { getSettings } from "@/lib/settings";
 
 export default async function PublicLayout({ children }: { children: React.ReactNode }) {
@@ -8,6 +9,7 @@ export default async function PublicLayout({ children }: { children: React.React
 
   return (
     <div className="flex flex-col min-h-screen">
+      <NavigationProgress />
       <Header
         logoLine1={settings.logo_text_line1}
         logoLine2={settings.logo_text_line2}
@@ -18,7 +20,10 @@ export default async function PublicLayout({ children }: { children: React.React
         {children}
       </main>
       <Footer settings={settings} />
-      <BottomNav />
+      <NavShell
+        logoImageUrl={settings.logo_image_url || undefined}
+        logoDarkUrl={settings.logo_dark_url || undefined}
+      />
     </div>
   );
 }

@@ -56,12 +56,25 @@ export function SearchModal({ open, onClose }: Props) {
     }
   };
 
-  if (!open) return null;
-
   return (
-    <div className="fixed inset-0 z-[70] flex items-start justify-center pt-[10vh] px-4">
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
-      <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden">
+    <div
+      className="fixed inset-0 z-[70] flex items-start justify-center pt-[10vh] px-4"
+      style={{ pointerEvents: open ? "auto" : "none" }}
+      aria-hidden={!open}
+    >
+      <div
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-200"
+        style={{ opacity: open ? 1 : 0 }}
+        onClick={onClose}
+        aria-hidden="true"
+      />
+      <div
+        className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-200"
+        style={{
+          opacity: open ? 1 : 0,
+          transform: open ? "translateY(0) scale(1)" : "translateY(-8px) scale(0.97)",
+        }}
+      >
         <form onSubmit={handleSubmit} className="flex items-center border-b border-gray-100 focus-within:border-[#D7242A]/30 transition-colors">
           <div className="pl-4 text-[#ABABAB]">
             <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
