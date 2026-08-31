@@ -17,7 +17,7 @@ const FEATURES = [
       </svg>
     ),
     title: "Verified & Reliable Listings",
-    desc: "We work towards ensuring that property listings on the platform are genuine and useful. Our aim is to create a trusted environment where buyers and tenants can explore property options with confidence.",
+    desc: "Property listings on the platform are kept genuine and useful. Buyers and tenants can explore options knowing the listings have been verified.",
   },
   {
     icon: (
@@ -29,7 +29,7 @@ const FEATURES = [
       </svg>
     ),
     title: "Simple & Accessible Property Discovery",
-    desc: "The platform is designed to be easy to use even for people who are not very familiar with technology. Users can search, shortlist, and explore property details conveniently from their phone or computer.",
+    desc: "Search, shortlist, and explore property details from your phone or computer. The platform works for everyone, including people who are not tech-savvy.",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function AboutPage() {
               This often leads to confusion, lack of reliable information, and unnecessary delays in closing property deals.
             </p>
             <p>
-              Malnad Realty aims to solve this problem by bringing the local property market online — making it easier for buyers, tenants, property owners, brokers, and developers to discover and list properties in one place.
+              Malnad Realty brings the local property market online. Buyers, tenants, property owners, brokers, and developers can discover and list properties in one place.
             </p>
           </div>
 
@@ -126,7 +126,7 @@ export default function AboutPage() {
             Currently serving Shimoga District
           </h2>
           <p className="text-[15px] text-[#4A4A4A] leading-relaxed max-w-2xl mb-8">
-            Malnad Realty currently operates in the following regions of Shimoga District, with plans to expand to more towns across the Malnad region in the future.
+            Currently active in Sagara, Hosnagara, and Soraba in Shimoga District. More towns will be added as the platform grows.
           </p>
           <div className="flex flex-wrap gap-3 mb-10">
             {TOWNS.map((town) => (
@@ -149,7 +149,7 @@ export default function AboutPage() {
               Get in touch
             </p>
             <p className="text-[15px] text-[#4A4A4A] leading-relaxed mb-6 max-w-xl">
-              Whether you are a property owner, broker, developer, buyer, or tenant — Malnad Realty is here to help simplify the process.
+              Property owners, brokers, developers, buyers, and tenants. Malnad Realty is here to help.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a

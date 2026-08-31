@@ -15,22 +15,22 @@ const CATEGORY_META: Record<string, { eyebrow: string; heading: string; desc: st
   land: {
     eyebrow: "Land",
     heading: "Land Buying Guides",
-    desc: "Agricultural land, farmland, plantation land — everything about buying and selling land in the Malnad and Uttarakannada District region.",
+    desc: "Agricultural land, farmland and plantation land. Buying and selling guides for the Malnad and Uttarakannada District region.",
   },
   construction: {
     eyebrow: "Construction",
     heading: "Construction Guides",
-    desc: "House construction costs, planning, building process and materials — practical guides for building in Shimoga and Uttarakannada District.",
+    desc: "House construction costs, planning, process and materials. Practical guides for building in Shimoga and Uttarakannada District.",
   },
   legal: {
     eyebrow: "Legal",
     heading: "Legal & Documents",
-    desc: "RTC, Pahani, Khata, EC, sale deed, registration, stamp duty — understand the legal side of property and land transactions.",
+    desc: "RTC, Pahani, Khata, EC, sale deed, registration and stamp duty. Guides on the legal side of property and land transactions.",
   },
   finance: {
     eyebrow: "Finance",
     heading: "Finance & Loans",
-    desc: "Home loans, land loans, stamp duty, EMI and buying costs — financial guides for property buyers in Karnataka.",
+    desc: "Home loans, land loans, stamp duty, EMI and buying costs. Financial guides for property buyers in Karnataka.",
   },
 };
 

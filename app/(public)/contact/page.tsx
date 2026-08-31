@@ -16,7 +16,7 @@ export default function ContactPage() {
         <p className="text-xs font-bold tracking-[0.15em] uppercase mb-3" style={{ color: "#D7242A" }}>Get in touch</p>
         <h1 className="text-3xl font-extrabold text-black">Contact us</h1>
         <p className="text-gray-500 mt-3">
-          Questions, corrections, feedback — we&apos;d love to hear from you.
+          Questions, corrections, or feedback? We are happy to hear from you.
         </p>
       </div>
 
