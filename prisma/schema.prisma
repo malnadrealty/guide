@@ -1,0 +1,101 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  articles  Article[]
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  articles    Article[]
+}
+
+model Location {
+  id               String   @id @default(cuid())
+  name             String
+  slug             String   @unique
+  district         String?
+  taluk            String?
+  shortDescription String?
+  description      String?
+  heroImage        String?
+  gallery          String[]
+  seoTitle         String?
+  metaDescription  String?
+  ogImage          String?
+  status           String   @default("draft")
+  order            Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  articles         Article[]
+}
+
+model Article {
+  id              String    @id @default(cuid())
+  title           String
+  slug            String    @unique
+  excerpt         String?
+  content         String?
+  featuredImage   String?
+  author          User      @relation(fields: [authorId], references: [id])
+  authorId        String
+  category        Category? @relation(fields: [categoryId], references: [id])
+  categoryId      String?
+  location        Location? @relation(fields: [locationId], references: [id])
+  locationId      String?
+  seoTitle        String?
+  metaDescription String?
+  canonicalUrl    String?
+  ogImage         String?
+  status          String    @default("draft")
+  publishedAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([status, publishedAt])
+  @@index([categoryId])
+  @@index([locationId])
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  filename  String
+  url       String
+  mimeType  String
+  size      Int
+  width     Int?
+  height    Int?
+  alt       String?
+  caption   String?
+  createdAt DateTime @default(now())
+}
+
+model Redirect {
+  id         String   @id @default(cuid())
+  fromPath   String   @unique
+  toPath     String
+  statusCode Int      @default(301)
+  createdAt  DateTime @default(now())
+}
