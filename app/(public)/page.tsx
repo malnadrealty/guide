@@ -216,27 +216,27 @@ export default async function HomePage() {
               <Link
                 key={topic.href}
                 href={topic.href}
-                className="group flex items-center gap-4 p-4 md:p-5 bg-white rounded-xl border border-[#E8E4DF] hover:border-[#D7242A]/20 hover:bg-[#FFFAFA] hover:shadow-md transition-all duration-200"
+                className="group flex items-center gap-3 p-3 md:p-5 md:gap-4 bg-white rounded-xl border border-[#E8E4DF] hover:border-[#D7242A]/20 hover:bg-[#FFFAFA] hover:shadow-md transition-all duration-200"
               >
-                <div className="flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center bg-[#FDF0F0]">
-                  {topic.icon}
+                <div className="flex-shrink-0 w-9 h-9 md:w-11 md:h-11 rounded-xl flex items-center justify-center bg-[#FDF0F0]">
+                  <span className="scale-[0.82] md:scale-100 block">{topic.icon}</span>
                 </div>
-                <div className="min-w-0">
-                  <p className="font-semibold text-[#0F0F0F] text-[15px] group-hover:text-[#D7242A] transition-colors leading-snug">
+                <div className="min-w-0 flex-1">
+                  <p className="font-semibold text-[#0F0F0F] text-[13px] md:text-[15px] group-hover:text-[#D7242A] transition-colors leading-snug truncate">
                     {topic.label}
                   </p>
-                  <p className="text-[12px] text-[#8A8A8A] mt-0.5 leading-snug hidden sm:block">
+                  <p className="text-[11px] text-[#8A8A8A] mt-0.5 leading-snug hidden md:block">
                     {topic.desc}
                   </p>
                 </div>
                 <svg
-                  width="14"
-                  height="14"
+                  width="12"
+                  height="12"
                   fill="none"
                   stroke="#CBCBCB"
                   strokeWidth="2"
                   viewBox="0 0 24 24"
-                  className="flex-shrink-0 ml-auto group-hover:stroke-[#D7242A] group-hover:translate-x-0.5 transition-all duration-200"
+                  className="flex-shrink-0 hidden sm:block group-hover:stroke-[#D7242A] group-hover:translate-x-0.5 transition-all duration-200"
                 >
                   <path d="m9 18 6-6-6-6" strokeLinecap="round" />
                 </svg>
