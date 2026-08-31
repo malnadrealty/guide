@@ -84,20 +84,20 @@ export default function SettingsPage() {
     return (
       <div>
         <label className="block text-sm font-semibold text-black mb-1.5">{label}</label>
-        <div className="flex gap-2">
+        <div className="flex flex-col gap-2">
           <input
             type="text"
             value={settings[settingKey] || ""}
             onChange={(e) => set(settingKey, e.target.value)}
-            placeholder="Image URL or pick from library"
-            className="flex-1 px-3 py-2.5 text-sm border border-gray-200 rounded-xl outline-none focus:border-[#D7242A] transition-colors"
+            placeholder="Paste URL or pick →"
+            className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-xl outline-none focus:border-[#D7242A] transition-colors"
           />
           <button
             type="button"
             onClick={() => setPicker({ open: true, field: settingKey })}
-            className="px-4 py-2.5 text-sm font-semibold rounded-xl border border-gray-200 hover:border-[#D7242A] hover:text-[#D7242A] transition-colors whitespace-nowrap"
+            className="w-full px-4 py-2 text-sm font-semibold rounded-xl border border-gray-200 hover:border-[#D7242A] hover:text-[#D7242A] transition-colors"
           >
-            Pick Image
+            Pick from library
           </button>
         </div>
         {hint && <p className="mt-1 text-xs text-gray-400">{hint}</p>}
