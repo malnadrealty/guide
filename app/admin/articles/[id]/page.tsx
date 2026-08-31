@@ -32,6 +32,7 @@ export default async function EditArticlePage({ params }: Props) {
           metaDescription: article.metaDescription || "",
           ogImage: article.ogImage || "",
           status: article.status,
+          isFeatured: article.isFeatured,
         }}
         categories={categories}
         locations={locations}

@@ -31,6 +31,7 @@ interface ArticleData {
   metaDescription: string;
   ogImage: string;
   status: string;
+  isFeatured: boolean;
 }
 
 interface Props {
@@ -60,6 +61,7 @@ export function ArticleEditor({ initialData, categories, locations }: Props) {
     metaDescription: initialData?.metaDescription || "",
     ogImage: initialData?.ogImage || "",
     status: initialData?.status || "draft",
+    isFeatured: initialData?.isFeatured ?? false,
   });
 
   const editor = useEditor({
@@ -84,7 +86,7 @@ export function ArticleEditor({ initialData, categories, locations }: Props) {
     },
   });
 
-  const set = (key: keyof ArticleData, value: string) =>
+  const set = (key: keyof ArticleData, value: string | boolean) =>
     setForm((f) => ({ ...f, [key]: value }));
 
   const handleTitleChange = (val: string) => {
@@ -372,6 +374,31 @@ export function ArticleEditor({ initialData, categories, locations }: Props) {
               <option value="draft">Draft</option>
               <option value="published">Published</option>
             </select>
+          </div>
+          <div>
+            <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Visibility</label>
+            <label className="flex items-center gap-3 cursor-pointer group">
+              <div className="relative">
+                <input
+                  type="checkbox"
+                  checked={form.isFeatured}
+                  onChange={(e) => set("isFeatured", e.target.checked)}
+                  className="sr-only"
+                />
+                <div
+                  className="w-10 h-6 rounded-full transition-colors duration-200"
+                  style={{ backgroundColor: form.isFeatured ? "#D7242A" : "#E5E7EB" }}
+                />
+                <div
+                  className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow transition-transform duration-200"
+                  style={{ transform: form.isFeatured ? "translateX(16px)" : "translateX(0)" }}
+                />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-black">Featured on homepage</p>
+                <p className="text-xs text-gray-400 mt-0.5">Shows in the Featured guides section</p>
+              </div>
+            </label>
           </div>
         </div>
       )}
