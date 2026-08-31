@@ -72,7 +72,7 @@ export function Header({ logoLine1, logoLine2, logoImageUrl, logoDarkUrl }: Head
         </div>
       </header>
 
-      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} logoImageUrl={logoImageUrl} logoDarkUrl={logoDarkUrl} />
       <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );

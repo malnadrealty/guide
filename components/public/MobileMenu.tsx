@@ -18,9 +18,11 @@ const NAV_LINKS = [
 interface Props {
   open: boolean;
   onClose: () => void;
+  logoImageUrl?: string;
+  logoDarkUrl?: string;
 }
 
-export function MobileMenu({ open, onClose }: Props) {
+export function MobileMenu({ open, onClose, logoImageUrl, logoDarkUrl }: Props) {
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
@@ -41,7 +43,7 @@ export function MobileMenu({ open, onClose }: Props) {
       <div className="relative ml-auto w-[280px] h-full bg-white flex flex-col shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
-          <Logo />
+          <Logo imageUrl={logoImageUrl} darkImageUrl={logoDarkUrl} variant="dark" />
           <button
             onClick={onClose}
             aria-label="Close menu"
