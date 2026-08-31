@@ -156,7 +156,15 @@ export default async function HomePage() {
           </div>
 
           <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-[1.1] mb-4 max-w-2xl">
-            {settings.hero_title || "Know the place before you buy."}
+            {settings.hero_title || "Know the place"}
+            {(settings.hero_title_accent || "before you buy.") && (
+              <>
+                <br />
+                <span style={{ color: "#D7242A" }}>
+                  {settings.hero_title_accent || "before you buy."}
+                </span>
+              </>
+            )}
           </h1>
           <p className="text-base md:text-xl text-gray-200 mb-8 max-w-lg leading-relaxed">
             {settings.hero_subtitle || "Property, land, homes and local insights across Shivamogga & Uttara Kannada."}
@@ -192,29 +200,28 @@ export default async function HomePage() {
               viewAllLabel="View all locations"
             />
             {/* Horizontal scroll on mobile, grid on desktop */}
-            <div className="flex gap-4 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-4 md:overflow-visible snap-x snap-mandatory">
+            <div className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-4 md:overflow-visible snap-x snap-mandatory scrollbar-hide">
               {locations.map((loc) => (
-                <div key={loc.id} className="flex-shrink-0 w-44 md:w-auto snap-start">
+                <div key={loc.id} className="flex-shrink-0 w-52 md:w-auto snap-start">
                   <Link
                     href={`/locations/${loc.slug}`}
                     className="group block bg-white rounded-xl overflow-hidden border border-gray-100 hover:shadow-md transition-all duration-300"
                   >
-                    <div className="aspect-[4/3] overflow-hidden bg-gray-100 relative">
+                    <div className="aspect-[3/4] overflow-hidden bg-gray-100 relative">
                       {loc.heroImage ? (
-                        <Image src={loc.heroImage} alt={loc.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" sizes="200px" />
+                        <Image src={loc.heroImage} alt={loc.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" sizes="220px" />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200" />
                       )}
                     </div>
-                    <div className="p-3">
-                      <p className="text-sm font-bold text-black group-hover:text-[#D7242A] transition-colors">{loc.name}</p>
-                      {loc.district && <p className="text-[11px] text-gray-400 mt-0.5">{loc.district}</p>}
-                      <span className="mt-1.5 inline-flex items-center gap-0.5 text-[11px] font-semibold text-[#D7242A]">
-                        Explore
-                        <svg width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                          <path d="m9 18 6-6-6-6" strokeLinecap="round" />
-                        </svg>
-                      </span>
+                    <div className="p-3 flex items-start justify-between">
+                      <div>
+                        <p className="text-sm font-bold text-black group-hover:text-[#D7242A] transition-colors">{loc.name}</p>
+                        {loc.district && <p className="text-[11px] text-gray-400 mt-0.5">{loc.district}</p>}
+                      </div>
+                      <svg width="16" height="16" fill="none" stroke="#D7242A" strokeWidth="2.5" viewBox="0 0 24 24" className="flex-shrink-0 mt-0.5">
+                        <path d="m9 18 6-6-6-6" strokeLinecap="round" />
+                      </svg>
                     </div>
                   </Link>
                 </div>
@@ -292,7 +299,13 @@ export default async function HomePage() {
       </div>
 
       {/* CTA */}
-      <CTASection />
+      <CTASection
+        eyebrow={settings.cta_eyebrow}
+        title={settings.cta_title}
+        titleAccent={settings.cta_title_accent}
+        ctaLabel={settings.cta_cta_label}
+        bgImage={settings.cta_bg_image || undefined}
+      />
     </>
   );
 }

@@ -43,6 +43,18 @@ const NAV = [
       </svg>
     ),
   },
+  {
+    href: "/guides",
+    label: "Menu",
+    isMenu: true,
+    icon: (active: boolean) => (
+      <svg width="22" height="22" fill="none" stroke={active ? "#D7242A" : "currentColor"} strokeWidth="2" viewBox="0 0 24 24">
+        <line x1="3" y1="6" x2="21" y2="6" strokeLinecap="round" />
+        <line x1="3" y1="12" x2="21" y2="12" strokeLinecap="round" />
+        <line x1="3" y1="18" x2="21" y2="18" strokeLinecap="round" />
+      </svg>
+    ),
+  },
 ];
 
 export function BottomNav() {

@@ -2,6 +2,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { formatDate, readingTime } from "@/lib/utils";
 
+const CATEGORY_COLORS: Record<string, string> = {
+  property: "#2563EB",
+  land: "#16A34A",
+  construction: "#0891B2",
+  legal: "#374151",
+  finance: "#7C3AED",
+  living: "#9333EA",
+  location: "#7C3AED",
+};
+
 interface ArticleCardProps {
   article: {
     id: string;
@@ -80,7 +90,7 @@ export function ArticleCard({ article, variant = "default" }: ArticleCardProps) 
         {article.category && (
           <span
             className="absolute top-2.5 left-2.5 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-white"
-            style={{ backgroundColor: "#D7242A" }}
+            style={{ backgroundColor: CATEGORY_COLORS[article.category.slug] || "#D7242A" }}
           >
             {article.category.name}
           </span>

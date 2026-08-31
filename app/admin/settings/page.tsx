@@ -173,13 +173,31 @@ export default function SettingsPage() {
 
       {/* Hero */}
       <Section title="Homepage Hero" desc="The large banner at the top of the homepage">
-        <Field label="Heading" settingKey="hero_title" />
+        <div className="grid grid-cols-2 gap-4">
+          <Field label="Heading (white)" settingKey="hero_title" />
+          <Field label="Heading accent (red, second line)" settingKey="hero_title_accent" />
+        </div>
         <TextArea label="Subheading" settingKey="hero_subtitle" />
         <ImageField label="Background Image" settingKey="hero_bg_image" />
         <div className="grid grid-cols-2 gap-4">
           <Field label="CTA Button Text" settingKey="hero_cta_text" />
           <Field label="CTA Button URL" settingKey="hero_cta_url" />
         </div>
+      </Section>
+
+      {/* CTA Banner */}
+      <Section title="CTA Banner" desc="The dark promotional section at the bottom of the homepage">
+        <ImageField
+          label="Background Image"
+          settingKey="cta_bg_image"
+          hint="A property or landscape photo. Shown on the right side of the banner."
+        />
+        <Field label="Eyebrow Text" settingKey="cta_eyebrow" placeholder="Looking for a property?" />
+        <div className="grid grid-cols-2 gap-4">
+          <Field label="Heading (white)" settingKey="cta_title" placeholder="Explore verified properties on" />
+          <Field label="Heading accent (red)" settingKey="cta_title_accent" placeholder="Malnad Realty" />
+        </div>
+        <Field label="Button Label" settingKey="cta_cta_label" placeholder="Visit Malnad Realty" />
       </Section>
 
       {/* Footer */}
