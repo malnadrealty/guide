@@ -15,6 +15,7 @@ export default async function PublicLayout({ children }: { children: React.React
         logoLine2={settings.logo_text_line2}
         logoImageUrl={settings.logo_image_url || undefined}
         logoDarkUrl={settings.logo_dark_url || undefined}
+        popularSearches={settings.popular_searches}
       />
       <main className="flex-1">
         {children}

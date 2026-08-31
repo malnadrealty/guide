@@ -191,6 +191,12 @@ export default function SettingsPage() {
           <Field label="CTA Button Text" settingKey="hero_cta_text" />
           <Field label="CTA Button URL" settingKey="hero_cta_url" />
         </div>
+        <Field
+          label="Popular Searches"
+          settingKey="popular_searches"
+          placeholder="Property in Sagara, Land in Sirsi, Construction Cost"
+          hint="Comma-separated. Shown as chips in the search popup and hero section."
+        />
       </Section>
 
       {/* CTA Banner */}

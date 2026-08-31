@@ -10,6 +10,7 @@ interface HeaderProps {
   logoLine2?: string;
   logoImageUrl?: string;
   logoDarkUrl?: string;
+  popularSearches?: string;
 }
 
 const NAV_LINKS = [
@@ -22,7 +23,7 @@ const NAV_LINKS = [
   { href: "/guides", label: "All Guides" },
 ];
 
-export function Header({ logoLine1, logoLine2, logoImageUrl, logoDarkUrl }: HeaderProps) {
+export function Header({ logoLine1, logoLine2, logoImageUrl, logoDarkUrl, popularSearches }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -118,7 +119,7 @@ export function Header({ logoLine1, logoLine2, logoImageUrl, logoDarkUrl }: Head
         logoImageUrl={logoImageUrl}
         logoDarkUrl={logoDarkUrl}
       />
-      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
+      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} popularSearches={popularSearches} />
     </>
   );
 }

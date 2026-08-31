@@ -14,9 +14,16 @@ interface SearchResult {
 interface Props {
   open: boolean;
   onClose: () => void;
+  popularSearches?: string;
 }
 
-export function SearchModal({ open, onClose }: Props) {
+const DEFAULT_POPULAR = "Property in Sagara,Land in Sirsi,Construction Cost,Stamp Duty,Home Loan";
+
+export function SearchModal({ open, onClose, popularSearches }: Props) {
+  const chips = (popularSearches || DEFAULT_POPULAR)
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [loading, setLoading] = useState(false);
@@ -134,7 +141,7 @@ export function SearchModal({ open, onClose }: Props) {
           <div className="p-4">
             <p className="text-xs text-gray-400 mb-3 font-medium">Popular searches</p>
             <div className="flex flex-wrap gap-2">
-              {["Property in Sagara", "Land in Sirsi", "Construction Cost", "Stamp Duty", "Home Loan"].map((s) => (
+              {chips.map((s) => (
                 <button
                   key={s}
                   onClick={() => setQuery(s)}

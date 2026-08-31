@@ -86,12 +86,6 @@ const TOPICS = [
   },
 ];
 
-const POPULAR_CHIPS = [
-  "Property in Sagara",
-  "Land in Sirsi",
-  "Construction Cost",
-  "Stamp Duty",
-];
 
 export default async function HomePage() {
   const [locations, featuredArticles, popularArticles, settings] = await Promise.all([
@@ -144,7 +138,11 @@ export default async function HomePage() {
 
           <div className="mt-5 flex flex-wrap gap-2 items-center">
             <span className="text-[11px] text-[#8A8A8A] font-medium tracking-wide">Popular:</span>
-            {POPULAR_CHIPS.map((chip) => (
+            {(settings.popular_searches || "")
+              .split(",")
+              .map((s) => s.trim())
+              .filter(Boolean)
+              .map((chip) => (
               <Link
                 key={chip}
                 href={`/guides?q=${encodeURIComponent(chip)}`}

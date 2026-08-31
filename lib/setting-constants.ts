@@ -26,6 +26,7 @@ export const SETTING_KEYS = [
   "contact_phone",
   "contact_email",
   "contact_address",
+  "popular_searches",
 ] as const;
 
 export type SettingKey = (typeof SETTING_KEYS)[number];
@@ -59,4 +60,5 @@ export const SETTING_DEFAULTS: Record<SettingKey, string> = {
   contact_phone: "",
   contact_email: "",
   contact_address: "",
+  popular_searches: "Property in Sagara,Land in Sirsi,Construction Cost,Stamp Duty,Home Loan",
 };
