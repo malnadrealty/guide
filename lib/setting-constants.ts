@@ -49,7 +49,7 @@ export const SETTING_DEFAULTS: Record<SettingKey, string> = {
   cta_eyebrow: "Looking for a property?",
   cta_title: "Explore verified properties on",
   cta_title_accent: "Malnad Realty",
-  cta_cta_label: "Visit Malnad Realty",
+  cta_cta_label: "Visit malnadrealty.com",
   footer_tagline:
     "Know the place before you buy. Property, land, homes and local insights across Shimoga & Uttarakannada District.",
   footer_copyright: "Malnad Realty",
