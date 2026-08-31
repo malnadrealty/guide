@@ -8,7 +8,6 @@ import { ArticleCard } from "@/components/public/ArticleCard";
 import { CTASection } from "@/components/public/CTASection";
 import { ReadingProgress } from "@/components/public/ReadingProgress";
 import { ArticleShareBar } from "@/components/public/ArticleShareBar";
-import { BackToTop } from "@/components/public/BackToTop";
 import { formatDate } from "@/lib/utils";
 
 interface Props {
@@ -187,37 +186,21 @@ export default async function ArticlePage({ params }: Props) {
 
       {/* ── ARTICLE BODY ───────────────────────────────────────────── */}
       <div className="max-w-4xl mx-auto px-5 md:px-8 py-10 md:py-14">
-        <div className="lg:grid lg:grid-cols-[1fr_196px] lg:gap-14 lg:items-start">
+        <article className="min-w-0">
+          {article.content ? (
+            <div
+              className="tiptap-content"
+              dangerouslySetInnerHTML={{ __html: article.content }}
+            />
+          ) : (
+            <p className="text-[#9A9A9A] italic">No content yet.</p>
+          )}
 
-          {/* Content */}
-          <article className="min-w-0">
-            {article.content ? (
-              <div
-                className="tiptap-content"
-                dangerouslySetInnerHTML={{ __html: article.content }}
-              />
-            ) : (
-              <p className="text-[#9A9A9A] italic">No content yet.</p>
-            )}
-
-            {/* Mobile share — below content */}
-            <div className="mt-10 pt-8 border-t border-[#F0EDE8] sm:hidden">
-              <ArticleShareBar title={article.title} url={shareUrl} />
-            </div>
-
-            {/* Tablet share */}
-            <div className="mt-10 pt-8 border-t border-[#F0EDE8] hidden sm:flex lg:hidden">
-              <ArticleShareBar title={article.title} url={shareUrl} compact />
-            </div>
-          </article>
-
-          {/* Desktop sticky sidebar */}
-          <aside className="hidden lg:block sticky top-24 pt-1">
+          {/* Mobile share — below content */}
+          <div className="mt-10 pt-8 border-t border-[#F0EDE8] sm:hidden">
             <ArticleShareBar title={article.title} url={shareUrl} />
-
-            <BackToTop />
-          </aside>
-        </div>
+          </div>
+        </article>
       </div>
 
       {/* ── RELATED ARTICLES ───────────────────────────────────────── */}
