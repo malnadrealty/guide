@@ -117,28 +117,29 @@ export function Footer({ settings }: FooterProps) {
             </a>
           </div>
 
-          {/* Topics */}
-          <div>
-            <h3 className="text-[10px] font-semibold tracking-[0.18em] uppercase text-[#4A4A4A] mb-4">Topics</h3>
-            <ul className="space-y-2.5">
-              {TOPIC_LINKS.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-[13px] text-[#6A6A6A] hover:text-white transition-colors">{l.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Topics + Navigate — 2-col on mobile, individual columns on desktop */}
+          <div className="grid grid-cols-2 gap-8 md:contents">
+            <div>
+              <h3 className="text-[10px] font-semibold tracking-[0.18em] uppercase text-[#4A4A4A] mb-4">Topics</h3>
+              <ul className="space-y-2.5">
+                {TOPIC_LINKS.map((l) => (
+                  <li key={l.href}>
+                    <Link href={l.href} className="text-[13px] text-[#6A6A6A] hover:text-white transition-colors">{l.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Navigate */}
-          <div>
-            <h3 className="text-[10px] font-semibold tracking-[0.18em] uppercase text-[#4A4A4A] mb-4">Navigate</h3>
-            <ul className="space-y-2.5">
-              {GUIDE_LINKS.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-[13px] text-[#6A6A6A] hover:text-white transition-colors">{l.label}</Link>
-                </li>
-              ))}
-            </ul>
+            <div>
+              <h3 className="text-[10px] font-semibold tracking-[0.18em] uppercase text-[#4A4A4A] mb-4">Navigate</h3>
+              <ul className="space-y-2.5">
+                {GUIDE_LINKS.map((l) => (
+                  <li key={l.href}>
+                    <Link href={l.href} className="text-[13px] text-[#6A6A6A] hover:text-white transition-colors">{l.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
