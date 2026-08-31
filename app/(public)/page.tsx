@@ -168,26 +168,26 @@ export default async function HomePage() {
               viewAllLabel="View all locations"
             />
             {/* Horizontal scroll on mobile, grid on desktop */}
-            <div className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-4 md:overflow-visible snap-x snap-mandatory scrollbar-hide">
+            <div className="flex gap-3 overflow-x-auto pb-3 -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-4 md:overflow-visible snap-x snap-mandatory scrollbar-hide">
               {locations.map((loc) => (
-                <div key={loc.id} className="flex-shrink-0 w-52 md:w-auto snap-start">
+                <div key={loc.id} className="flex-shrink-0 w-36 md:w-auto snap-start">
                   <Link
                     href={`/locations/${loc.slug}`}
                     className="group block bg-white rounded-xl overflow-hidden border border-gray-100 hover:shadow-md transition-all duration-300"
                   >
-                    <div className="aspect-[3/4] overflow-hidden bg-gray-100 relative">
+                    <div className="aspect-[3/4] md:aspect-[3/4] overflow-hidden bg-gray-100 relative">
                       {loc.heroImage ? (
                         <Image src={loc.heroImage} alt={loc.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" sizes="220px" />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200" />
                       )}
                     </div>
-                    <div className="p-3 flex items-start justify-between">
+                    <div className="p-2 flex items-start justify-between">
                       <div>
-                        <p className="text-sm font-bold text-black group-hover:text-[#D7242A] transition-colors">{loc.name}</p>
-                        {loc.district && <p className="text-[11px] text-gray-400 mt-0.5">{loc.district}</p>}
+                        <p className="text-xs font-bold text-black group-hover:text-[#D7242A] transition-colors leading-snug">{loc.name}</p>
+                        {loc.district && <p className="text-[10px] text-gray-400 mt-0.5">{loc.district}</p>}
                       </div>
-                      <svg width="16" height="16" fill="none" stroke="#D7242A" strokeWidth="2.5" viewBox="0 0 24 24" className="flex-shrink-0 mt-0.5">
+                      <svg width="12" height="12" fill="none" stroke="#D7242A" strokeWidth="2.5" viewBox="0 0 24 24" className="flex-shrink-0 mt-0.5">
                         <path d="m9 18 6-6-6-6" strokeLinecap="round" />
                       </svg>
                     </div>
