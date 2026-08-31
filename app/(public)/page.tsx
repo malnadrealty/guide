@@ -124,13 +124,6 @@ export default async function HomePage() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-5 md:px-8 pb-12 pt-16 md:pb-16 w-full">
-          <div className="flex items-center gap-2 mb-6">
-            <span className="w-5 h-px bg-[#D7242A]" />
-            <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#D7242A]">
-              Shimoga &amp; Uttarakannada District
-            </p>
-          </div>
-
           <h1
             className="text-[2.6rem] leading-[1.08] md:text-[4.5rem] md:leading-[1.06] font-bold text-white mb-5 max-w-3xl"
           >
@@ -197,7 +190,7 @@ export default async function HomePage() {
                         className="absolute inset-x-0 bottom-0 p-3"
                         style={{
                           background:
-                            "linear-gradient(to top, rgba(10,10,10,0.80) 0%, transparent 100%)",
+                            "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0.2) 70%, transparent 100%)",
                         }}
                       >
                         <p className="text-[13px] font-bold text-white leading-snug">{loc.name}</p>
