@@ -97,7 +97,7 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-[520px] md:min-h-[600px] flex flex-col justify-end bg-black overflow-hidden">
+      <section className="relative min-h-[360px] md:min-h-[420px] flex flex-col justify-end bg-black overflow-hidden">
         {/* Hero background */}
         <div className="absolute inset-0">
           <Image
@@ -114,7 +114,7 @@ export default async function HomePage() {
           />
         </div>
 
-        <div className="relative max-w-6xl mx-auto px-4 pb-10 pt-24 w-full">
+        <div className="relative max-w-6xl mx-auto px-4 pb-10 pt-10 w-full">
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1.5 mb-5">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D7242A" strokeWidth="2.5">
