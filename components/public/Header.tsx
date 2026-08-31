@@ -9,9 +9,10 @@ interface HeaderProps {
   logoLine1?: string;
   logoLine2?: string;
   logoImageUrl?: string;
+  logoDarkUrl?: string;
 }
 
-export function Header({ logoLine1, logoLine2, logoImageUrl }: HeaderProps) {
+export function Header({ logoLine1, logoLine2, logoImageUrl, logoDarkUrl }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -33,7 +34,7 @@ export function Header({ logoLine1, logoLine2, logoImageUrl }: HeaderProps) {
         }}
       >
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-          <Logo line1={logoLine1} line2={logoLine2} imageUrl={logoImageUrl} />
+          <Logo line1={logoLine1} line2={logoLine2} imageUrl={logoImageUrl} darkImageUrl={logoDarkUrl} variant="dark" />
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-black">

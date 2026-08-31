@@ -159,15 +159,23 @@ export default function SettingsPage() {
       </Section>
 
       {/* Logo */}
-      <Section title="Logo" desc="Appears in the header and footer">
-        <ImageField
-          label="Logo Image"
-          settingKey="logo_image_url"
-          hint="If set, replaces the default house icon. Leave blank to use the default."
-        />
-        <div className="grid grid-cols-2 gap-4">
-          <Field label="Logo Text Line 1" settingKey="logo_text_line1" />
-          <Field label="Logo Text Line 2" settingKey="logo_text_line2" />
+      <Section title="Logo & Favicon" desc="Logo appears in the header and footer. Upload both versions if you have them.">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <ImageField
+            label="Logo — Light version"
+            settingKey="logo_image_url"
+            hint="Use on dark/coloured backgrounds (e.g. hero, dark overlays)"
+          />
+          <ImageField
+            label="Logo — Dark version"
+            settingKey="logo_dark_url"
+            hint="Use on white/light backgrounds (main header)"
+          />
+          <ImageField
+            label="Favicon"
+            settingKey="favicon_url"
+            hint="Browser tab icon. Square image recommended (512×512 px)."
+          />
         </div>
       </Section>
 

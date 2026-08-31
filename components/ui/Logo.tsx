@@ -6,17 +6,23 @@ interface LogoProps {
   line1?: string;
   line2?: string;
   imageUrl?: string;
+  darkImageUrl?: string;
+  variant?: "light" | "dark";
 }
 
-export function Logo({ className = "", line1, line2, imageUrl }: LogoProps) {
+export function Logo({ className = "", line1, line2, imageUrl, darkImageUrl, variant = "dark" }: LogoProps) {
   const text1 = line1 || "MALNAD REALTY";
   const text2 = line2 || "GUIDE";
+  const onDark = variant === "light";
+
+  // On dark bg: prefer light logo (imageUrl). On light bg: prefer dark logo (darkImageUrl).
+  const src = onDark ? (imageUrl || darkImageUrl) : (darkImageUrl || imageUrl);
 
   return (
     <Link href="/" className={`flex items-center gap-2.5 ${className}`} aria-label="Malnad Realty Guide — Home">
       <div className="flex-shrink-0" style={{ width: 36, height: 36 }}>
-        {imageUrl ? (
-          <Image src={imageUrl} alt={text1} width={36} height={36} className="rounded-md object-contain" unoptimized />
+        {src ? (
+          <Image src={src} alt={text1} width={36} height={36} className="rounded-md object-contain" unoptimized />
         ) : (
           <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect width="36" height="36" rx="6" fill="#D7242A" />
@@ -27,10 +33,16 @@ export function Logo({ className = "", line1, line2, imageUrl }: LogoProps) {
         )}
       </div>
       <div className="flex flex-col leading-none">
-        <span className="text-[13px] font-bold text-black" style={{ letterSpacing: "0.06em" }}>
+        <span
+          className="text-[13px] font-bold"
+          style={{ letterSpacing: "0.06em", color: onDark ? "#ffffff" : "#000000" }}
+        >
           {text1}
         </span>
-        <span className="text-[11px] font-semibold" style={{ color: "#8F8F8F", letterSpacing: "0.1em" }}>
+        <span
+          className="text-[11px] font-semibold"
+          style={{ letterSpacing: "0.1em", color: onDark ? "rgba(255,255,255,0.65)" : "#8F8F8F" }}
+        >
           {text2}
         </span>
       </div>
