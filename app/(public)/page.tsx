@@ -13,34 +13,34 @@ const TOPICS = [
   {
     href: "/property",
     label: "Property",
-    desc: "Buying, selling & renting",
+    desc: "Buying, selling & renting homes",
     icon: (
-      <svg width="22" height="22" fill="none" stroke="#D7242A" strokeWidth="1.8" viewBox="0 0 24 24">
-        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" strokeLinecap="round" strokeLinejoin="round" />
-        <polyline points="9 22 9 12 15 12 15 22" />
+      <svg width="24" height="24" fill="none" stroke="#D7242A" strokeWidth="1.7" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <path d="M9 22V12h6v10"/>
       </svg>
     ),
   },
   {
     href: "/land",
     label: "Land",
-    desc: "Agricultural & investment",
+    desc: "Agricultural & investment plots",
     icon: (
-      <svg width="22" height="22" fill="none" stroke="#D7242A" strokeWidth="1.8" viewBox="0 0 24 24">
-        <path d="M2 20 L8 8 L12 14 L17 4 L22 20" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M2 20 h20" strokeLinecap="round" />
+      <svg width="24" height="24" fill="none" stroke="#D7242A" strokeWidth="1.7" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M2 20h20"/>
+        <path d="M4 20 8 12l4 5 4-8 4 11"/>
       </svg>
     ),
   },
   {
     href: "/construction",
     label: "Construction",
-    desc: "Costs, planning & tips",
+    desc: "Costs, planning & building tips",
     icon: (
-      <svg width="22" height="22" fill="none" stroke="#D7242A" strokeWidth="1.8" viewBox="0 0 24 24">
-        <path d="M3 14 h18" strokeLinecap="round" />
-        <path d="M5 14 Q5 7 12 7 Q19 7 19 14" strokeLinecap="round" />
-        <path d="M12 7 V4" strokeLinecap="round" />
+      <svg width="24" height="24" fill="none" stroke="#D7242A" strokeWidth="1.7" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M2 18h20"/>
+        <path d="M4 18a8 8 0 0 1 16 0"/>
+        <path d="M12 10V7"/>
       </svg>
     ),
   },
@@ -49,25 +49,26 @@ const TOPICS = [
     label: "Legal",
     desc: "Docs, registration & law",
     icon: (
-      <svg width="22" height="22" fill="none" stroke="#D7242A" strokeWidth="1.8" viewBox="0 0 24 24">
-        <line x1="12" y1="3" x2="12" y2="21" strokeLinecap="round" />
-        <line x1="5" y1="3" x2="19" y2="3" strokeLinecap="round" />
-        <path d="M5 3 L2 10 h6 Z" strokeLinejoin="round" />
-        <path d="M19 3 L16 10 h6 Z" strokeLinejoin="round" />
-        <line x1="8" y1="21" x2="16" y2="21" strokeLinecap="round" />
+      <svg width="24" height="24" fill="none" stroke="#D7242A" strokeWidth="1.7" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 3v18"/>
+        <path d="M5 21h14"/>
+        <path d="M4 7h16"/>
+        <path d="M4 7 2 13h4z"/>
+        <path d="M20 7l2 6h-4z"/>
       </svg>
     ),
   },
   {
     href: "/finance",
     label: "Finance",
-    desc: "Loans, EMI & tax",
+    desc: "Loans, EMI & tax planning",
     icon: (
-      <svg width="22" height="22" fill="none" stroke="#D7242A" strokeWidth="1.8" viewBox="0 0 24 24">
-        <path d="M7 5 h10" strokeLinecap="round" />
-        <path d="M7 10 h8" strokeLinecap="round" />
-        <path d="M7 5 v14" strokeLinecap="round" />
-        <path d="M7 10 L16 19" strokeLinecap="round" />
+      <svg width="24" height="24" fill="none" stroke="#D7242A" strokeWidth="1.7" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M7 4h10"/>
+        <path d="M7 11h10"/>
+        <path d="M7 4v7"/>
+        <path d="M17 4a6 6 0 0 1-6 7"/>
+        <path d="M12 11l7 9"/>
       </svg>
     ),
   },
@@ -76,10 +77,10 @@ const TOPICS = [
     label: "Living",
     desc: "Lifestyle & local insights",
     icon: (
-      <svg width="22" height="22" fill="none" stroke="#D7242A" strokeWidth="1.8" viewBox="0 0 24 24">
-        <circle cx="12" cy="9" r="6" />
-        <line x1="12" y1="15" x2="12" y2="20" strokeLinecap="round" />
-        <line x1="9" y1="20" x2="15" y2="20" strokeLinecap="round" />
+      <svg width="24" height="24" fill="none" stroke="#D7242A" strokeWidth="1.7" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22v-8"/>
+        <path d="M12 14c1-4 5-8 9-9-1 4-5 8-9 9z"/>
+        <path d="M12 14c-1-4-5-8-9-9 1 4 5 8 9 9z"/>
       </svg>
     ),
   },
@@ -211,35 +212,36 @@ export default async function HomePage() {
       <section className="py-14 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <SectionHeader eyebrow="Explore Topics" heading="Find what you're looking for" />
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {TOPICS.map((topic) => (
               <Link
                 key={topic.href}
                 href={topic.href}
-                className="group flex items-center gap-3 p-3 md:p-5 md:gap-4 bg-white rounded-xl border border-[#E8E4DF] hover:border-[#D7242A]/20 hover:bg-[#FFFAFA] hover:shadow-md transition-all duration-200"
+                className="group relative flex flex-col p-5 bg-white rounded-2xl border border-[#E8E4DF] hover:border-[#D7242A]/25 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden"
               >
-                <div className="flex-shrink-0 w-9 h-9 md:w-11 md:h-11 rounded-xl flex items-center justify-center bg-[#FDF0F0]">
-                  <span className="scale-[0.82] md:scale-100 block">{topic.icon}</span>
+                {/* Accent sweep bar */}
+                <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#D7242A] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+
+                {/* Icon */}
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#FEF2F2] group-hover:bg-[#FDDEDE] transition-colors duration-300 mb-4">
+                  {topic.icon}
                 </div>
-                <div className="min-w-0 flex-1">
-                  <p className="font-semibold text-[#0F0F0F] text-[13px] md:text-[15px] group-hover:text-[#D7242A] transition-colors leading-snug truncate">
-                    {topic.label}
-                  </p>
-                  <p className="text-[11px] text-[#8A8A8A] mt-0.5 leading-snug hidden md:block">
-                    {topic.desc}
-                  </p>
+
+                {/* Text */}
+                <p className="font-bold text-[#0F0F0F] text-[15px] leading-snug group-hover:text-[#D7242A] transition-colors duration-200 mb-1.5">
+                  {topic.label}
+                </p>
+                <p className="text-[12px] text-[#8A8A8A] leading-snug flex-1">
+                  {topic.desc}
+                </p>
+
+                {/* Explore link */}
+                <div className="mt-5 flex items-center gap-1 text-[#D7242A] opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  <span className="text-[11px] font-semibold tracking-wide">Explore</span>
+                  <svg width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path d="m9 18 6-6-6-6" strokeLinecap="round"/>
+                  </svg>
                 </div>
-                <svg
-                  width="12"
-                  height="12"
-                  fill="none"
-                  stroke="#CBCBCB"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  className="flex-shrink-0 hidden sm:block group-hover:stroke-[#D7242A] group-hover:translate-x-0.5 transition-all duration-200"
-                >
-                  <path d="m9 18 6-6-6-6" strokeLinecap="round" />
-                </svg>
               </Link>
             ))}
           </div>

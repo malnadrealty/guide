@@ -75,7 +75,7 @@ export function BottomNav() {
           const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
           return (
             <Link
-              key={item.href}
+              key={item.label}
               href={item.href}
               className="flex-1 flex flex-col items-center justify-center py-2.5 gap-0.5"
               aria-current={active ? "page" : undefined}

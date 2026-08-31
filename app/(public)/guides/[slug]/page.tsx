@@ -6,6 +6,9 @@ import { db } from "@/lib/db";
 import { Breadcrumbs } from "@/components/public/Breadcrumbs";
 import { ArticleCard } from "@/components/public/ArticleCard";
 import { CTASection } from "@/components/public/CTASection";
+import { ReadingProgress } from "@/components/public/ReadingProgress";
+import { ArticleShareBar } from "@/components/public/ArticleShareBar";
+import { BackToTop } from "@/components/public/BackToTop";
 import { formatDate } from "@/lib/utils";
 
 interface Props {
@@ -82,20 +85,26 @@ export default async function ArticlePage({ params }: Props) {
     { label: article.title },
   ];
 
+  const shareUrl = `https://guide.malnadrealty.com/guides/${slug}`;
+  const authorInitial = (article.author.name || "M")[0].toUpperCase();
+  const isUpdated = article.updatedAt && article.publishedAt && article.updatedAt > article.publishedAt;
+
   return (
     <>
+      <ReadingProgress />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <Breadcrumbs crumbs={crumbs} />
+      {/* ── ARTICLE HEADER ─────────────────────────────────────────── */}
+      <div className="bg-white">
+        <div className="max-w-4xl mx-auto px-5 md:px-8 pt-6 pb-0">
+          <Breadcrumbs crumbs={crumbs} />
 
-        {/* Header */}
-        <div className="mt-6 mb-8">
-          <div className="flex items-center gap-2 mb-4 flex-wrap">
+          {/* Tags */}
+          <div className="flex items-center gap-2 mt-6 flex-wrap">
             {article.category && (
               <Link
                 href={`/guides?category=${article.category.slug}`}
-                className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full text-white"
+                className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full text-white"
                 style={{ backgroundColor: "#D7242A" }}
               >
                 {article.category.name}
@@ -104,64 +113,134 @@ export default async function ArticlePage({ params }: Props) {
             {article.location && (
               <Link
                 href={`/locations/${article.location.slug}`}
-                className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-gray-200 text-gray-600 hover:border-[#D7242A] hover:text-[#D7242A] transition-colors"
+                className="text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full border border-[#E8E4DF] text-[#555] hover:border-[#D7242A]/40 hover:text-[#D7242A] transition-colors"
               >
                 {article.location.name}
               </Link>
             )}
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-extrabold text-black leading-tight mb-4">
+          {/* Title */}
+          <h1 className="mt-4 text-[1.85rem] md:text-[2.6rem] lg:text-[3rem] font-extrabold text-[#0F0F0F] leading-[1.1] md:leading-[1.08] text-balance">
             {article.title}
           </h1>
 
+          {/* Excerpt / Lead */}
           {article.excerpt && (
-            <p className="text-lg text-gray-500 leading-relaxed mb-5">{article.excerpt}</p>
+            <p className="mt-4 text-[1.05rem] md:text-[1.15rem] text-[#555] leading-relaxed font-normal max-w-[680px]">
+              {article.excerpt}
+            </p>
           )}
 
-          <div className="flex items-center gap-4 text-sm text-gray-400 pb-6 border-b border-gray-100">
-            {article.author.name && <span className="font-medium text-gray-600">{article.author.name}</span>}
-            {article.publishedAt && <span>{formatDate(article.publishedAt)}</span>}
-            {article.updatedAt && article.publishedAt && article.updatedAt > article.publishedAt && (
-              <span className="text-xs bg-gray-100 px-2 py-0.5 rounded-full">Updated {formatDate(article.updatedAt)}</span>
-            )}
+          {/* Author + Meta */}
+          <div className="mt-7 flex items-center gap-3 pb-7 border-b border-[#F0EDE8]">
+            <div
+              className="w-9 h-9 rounded-full flex items-center justify-center text-white text-[13px] font-bold flex-shrink-0"
+              style={{ backgroundColor: "#D7242A" }}
+              aria-hidden="true"
+            >
+              {authorInitial}
+            </div>
+            <div className="min-w-0">
+              <p className="text-[13px] font-semibold text-[#0F0F0F] leading-none mb-1">
+                {article.author.name || "Malnad Realty"}
+              </p>
+              <div className="flex items-center gap-2 text-[12px] text-[#9A9A9A] flex-wrap">
+                {article.publishedAt && <span>{formatDate(article.publishedAt)}</span>}
+                {isUpdated && (
+                  <>
+                    <span>·</span>
+                    <span className="bg-[#F0EDE8] text-[#666] px-2 py-0.5 rounded-full text-[11px] font-medium">
+                      Updated {formatDate(article.updatedAt!)}
+                    </span>
+                  </>
+                )}
+              </div>
+            </div>
+
+            {/* Desktop inline share */}
+            <div className="ml-auto hidden sm:block">
+              <ArticleShareBar title={article.title} url={shareUrl} compact />
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Featured image */}
-        {article.featuredImage && (
-          <div className="mb-8 rounded-2xl overflow-hidden aspect-[16/9] relative">
+      {/* ── FEATURED IMAGE ─────────────────────────────────────────── */}
+      {article.featuredImage && (
+        <div className="max-w-5xl mx-auto px-0 sm:px-5 md:px-8 mt-7 mb-2">
+          <div
+            className="sm:rounded-2xl overflow-hidden relative bg-[#F0EDE8]"
+            style={{ aspectRatio: "16/9" }}
+          >
             <Image
               src={article.featuredImage}
               alt={article.title}
               fill
               className="object-cover"
               priority
-              sizes="(max-width: 768px) 100vw, 800px"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px"
             />
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Content */}
-        {article.content && (
-          <div
-            className="tiptap-content"
-            dangerouslySetInnerHTML={{ __html: article.content }}
-          />
-        )}
+      {/* ── ARTICLE BODY ───────────────────────────────────────────── */}
+      <div className="max-w-4xl mx-auto px-5 md:px-8 py-10 md:py-14">
+        <div className="lg:grid lg:grid-cols-[1fr_196px] lg:gap-14 lg:items-start">
 
-        {/* Related articles */}
-        {relatedArticles.length > 0 && (
-          <section className="mt-16 pt-10 border-t border-gray-100">
-            <h2 className="text-xl font-bold text-black mb-6">Related guides</h2>
+          {/* Content */}
+          <article className="min-w-0">
+            {article.content ? (
+              <div
+                className="tiptap-content"
+                dangerouslySetInnerHTML={{ __html: article.content }}
+              />
+            ) : (
+              <p className="text-[#9A9A9A] italic">No content yet.</p>
+            )}
+
+            {/* Mobile share — below content */}
+            <div className="mt-10 pt-8 border-t border-[#F0EDE8] sm:hidden">
+              <ArticleShareBar title={article.title} url={shareUrl} />
+            </div>
+
+            {/* Tablet share */}
+            <div className="mt-10 pt-8 border-t border-[#F0EDE8] hidden sm:flex lg:hidden">
+              <ArticleShareBar title={article.title} url={shareUrl} compact />
+            </div>
+          </article>
+
+          {/* Desktop sticky sidebar */}
+          <aside className="hidden lg:block sticky top-24 pt-1">
+            <ArticleShareBar title={article.title} url={shareUrl} />
+
+            <BackToTop />
+          </aside>
+        </div>
+      </div>
+
+      {/* ── RELATED ARTICLES ───────────────────────────────────────── */}
+      {relatedArticles.length > 0 && (
+        <section className="border-t border-[#F0EDE8] bg-[#F8F6F3] py-14 md:py-16">
+          <div className="max-w-4xl mx-auto px-5 md:px-8">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-bold text-[#0F0F0F]">Continue reading</h2>
+              <Link
+                href="/guides"
+                className="text-[13px] font-semibold text-[#D7242A] hover:underline underline-offset-2"
+              >
+                All guides →
+              </Link>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {relatedArticles.map((a) => (
                 <ArticleCard key={a.id} article={a} />
               ))}
             </div>
-          </section>
-        )}
-      </div>
+          </div>
+        </section>
+      )}
 
       <CTASection />
     </>
