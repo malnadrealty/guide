@@ -1,5 +1,4 @@
 import { auth } from "@/lib/auth";
-import { redirect } from "next/navigation";
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 
@@ -13,7 +12,10 @@ const NAV = [
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const session = await auth();
-  if (!session) redirect("/admin/login");
+
+  if (!session) {
+    return <>{children}</>;
+  }
 
   return (
     <div className="flex min-h-screen bg-gray-50">
