@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { db } from "@/lib/db";
 import { getCachedArticleBySlug, getCachedRelatedArticles } from "@/lib/db-cache";
 import { Breadcrumbs } from "@/components/public/Breadcrumbs";
 import { ArticleCard } from "@/components/public/ArticleCard";
@@ -16,14 +15,10 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-// Pre-render all published articles at build time → static HTML served from CDN
-export async function generateStaticParams() {
-  const articles = await db.article.findMany({
-    where: { status: "published" },
-    select: { slug: true },
-  });
-  return articles.map((a) => ({ slug: a.slug }));
-}
+// Pages are rendered on first visit then cached by ISR (revalidate = 300 below).
+// generateStaticParams was removed to prevent concurrent DB connections exhausting
+// Supabase's connection pool limit during build.
+export const dynamicParams = true;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
