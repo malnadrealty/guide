@@ -70,7 +70,7 @@ export function CTASection({
             src={bgImage}
             alt=""
             fill
-            className="object-cover opacity-30"
+            className="object-cover opacity-60"
             sizes="100vw"
             priority={false}
           />
@@ -78,7 +78,7 @@ export function CTASection({
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(135deg, rgba(10,10,10,0.97) 30%, rgba(10,10,10,0.70) 100%)",
+                "linear-gradient(135deg, rgba(10,10,10,0.82) 30%, rgba(10,10,10,0.50) 100%)",
             }}
           />
         </div>
