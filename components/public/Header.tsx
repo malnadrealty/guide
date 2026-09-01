@@ -34,6 +34,12 @@ export function Header({ logoLine1, logoLine2, logoImageUrl, logoDarkUrl, popula
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const handler = () => setSearchOpen(true);
+    window.addEventListener("open-search", handler);
+    return () => window.removeEventListener("open-search", handler);
+  }, []);
+
   return (
     <>
       <header
