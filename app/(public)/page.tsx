@@ -120,7 +120,7 @@ export default async function HomePage() {
           />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-5 md:px-8 pb-12 pt-16 md:pb-16 w-full">
+        <div className="relative max-w-7xl mx-auto px-5 md:px-8 pb-10 pt-8 md:pt-16 md:pb-16 w-full">
           <h1
             className="text-[2.6rem] leading-[1.08] md:text-[4.5rem] md:leading-[1.06] font-bold text-white mb-5 max-w-3xl"
           >
@@ -138,8 +138,8 @@ export default async function HomePage() {
 
           <SearchBar />
 
-          <div className="mt-5 flex flex-wrap gap-2 items-center">
-            <span className="text-[11px] text-[#8A8A8A] font-medium tracking-wide">Popular:</span>
+          <div className="mt-4 flex items-center gap-2 overflow-x-auto pb-1 -mx-5 px-5 md:mx-0 md:px-0 scrollbar-hide">
+            <span className="text-[11px] text-[#8A8A8A] font-medium tracking-wide flex-shrink-0">Popular:</span>
             {(settings.popular_searches || "")
               .split(",")
               .map((s) => s.trim())
@@ -148,7 +148,7 @@ export default async function HomePage() {
               <Link
                 key={chip}
                 href={`/guides?q=${encodeURIComponent(chip)}`}
-                className="text-[12px] px-3.5 py-1.5 rounded-full border border-white/20 text-white font-medium transition-all duration-200 hover:bg-white hover:text-[#0A0A0A]"
+                className="flex-shrink-0 text-[12px] px-3.5 py-1.5 rounded-full border border-white/20 text-white font-medium transition-all duration-200 hover:bg-white hover:text-[#0A0A0A]"
                 style={{ backgroundColor: "rgba(255,255,255,0.08)" }}
               >
                 {chip}
