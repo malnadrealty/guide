@@ -100,7 +100,7 @@ export default async function HomePage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────── */}
-      <section className="relative min-h-[520px] md:min-h-[620px] flex flex-col justify-end bg-[#0A0A0A] overflow-hidden">
+      <section className="relative min-h-[460px] md:min-h-[500px] flex flex-col justify-end bg-[#0A0A0A] overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src={settings.hero_bg_image || "/hero-bg.jpg"}
