@@ -113,7 +113,7 @@ export const getCachedPublishedArticles = unstable_cache(
       orderBy: { publishedAt: "desc" },
       select: {
         id: true, title: true, slug: true, excerpt: true, featuredImage: true,
-        publishedAt: true, content: true,
+        publishedAt: true, updatedAt: true, content: true,
         category: { select: { name: true, slug: true } },
         location: { select: { name: true, slug: true } },
       },
