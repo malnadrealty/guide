@@ -14,10 +14,10 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   const { q, category, location } = await searchParams;
   const hasFilters = !!(q || category || location);
   return {
-    title: "Guides — Property, Land & Local Real Estate",
+    title: "Guides - Property, Land & Local Real Estate",
     description: "Practical guides on buying property, land, construction, legal documents and local real estate across Shimoga and Uttarakannada District.",
     alternates: { canonical: "https://guide.malnadrealty.com/guides" },
-    // Filtered/search URLs must not be indexed — they duplicate content across infinite param combos
+    // Filtered/search URLs must not be indexed - they duplicate content across infinite param combos
     robots: hasFilters ? { index: false, follow: true } : { index: true, follow: true },
   };
 }

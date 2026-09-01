@@ -10,7 +10,7 @@ import { safeJsonLd } from "@/lib/sanitize";
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings();
   const raw = settings.site_meta_title || "";
-  const title = raw.length > 0 && raw.length <= 70 ? raw : "Malnad Realty Guide — Know Before You Buy";
+  const title = raw.length > 0 && raw.length <= 70 ? raw : "Malnad Realty Guide - Know Before You Buy";
   return {
     title,
     alternates: { canonical: "https://guide.malnadrealty.com" },

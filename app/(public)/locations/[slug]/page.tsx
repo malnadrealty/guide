@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const loc = await getCachedLocationBySlug(slug);
   if (!loc) return {};
-  const title = loc.seoTitle || `${loc.name} — Property & Land Guide | Malnad Realty`;
+  const title = loc.seoTitle || `${loc.name} - Property & Land Guide | Malnad Realty`;
   const description = loc.metaDescription || loc.shortDescription || `Property, land and real estate guides for ${loc.name}.`;
   return {
     title,
