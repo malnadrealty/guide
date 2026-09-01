@@ -55,7 +55,7 @@ export async function PATCH(req: NextRequest, { params }: Params) {
         updatedAt: new Date(),
       },
     });
-    revalidateTag("articles");
+    revalidateTag("articles", { expire: 0 });
     return NextResponse.json(article);
   } catch (err) {
     console.error("PATCH /api/articles/[id]:", err);
@@ -69,7 +69,7 @@ export async function DELETE(_req: NextRequest, { params }: Params) {
   const { id } = await params;
   try {
     await db.article.delete({ where: { id } });
-    revalidateTag("articles");
+    revalidateTag("articles", { expire: 0 });
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("DELETE /api/articles/[id]:", err);
