@@ -59,22 +59,23 @@ export default async function LocationPage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
 
       {/* Hero */}
-      <div className="relative h-64 md:h-80 bg-black overflow-hidden">
-        {loc.heroImage ? (
-          <Image src={loc.heroImage} alt={loc.name} fill className="object-cover opacity-60" priority sizes="100vw" />
-        ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900" />
+      <div className="relative h-64 md:h-80 bg-[#0A0A0A] overflow-hidden">
+        {loc.heroImage && (
+          <Image src={loc.heroImage} alt={loc.name} fill className="object-cover opacity-55" priority sizes="100vw" />
         )}
-        <div className="absolute inset-0 flex flex-col justify-end p-6 max-w-6xl mx-auto w-full left-0 right-0">
-          <div className="relative">
-            <Breadcrumbs crumbs={[{ label: "Locations", href: "/locations" }, { label: loc.name }]} />
-            <h1 className="text-3xl md:text-5xl font-extrabold text-white mt-3">{loc.name}</h1>
-            {loc.district && (
-              <p className="text-gray-300 mt-1 font-medium">
-                {loc.taluk ? `${loc.taluk}, ` : ""}{loc.district}
-              </p>
-            )}
-          </div>
+        {/* Gradient overlay to ensure text is always readable over any image */}
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.2) 100%)" }}
+        />
+        <div className="absolute inset-0 flex flex-col justify-end px-5 pb-6 md:px-8 max-w-6xl mx-auto w-full left-0 right-0">
+          <Breadcrumbs crumbs={[{ label: "Locations", href: "/locations" }, { label: loc.name }]} dark />
+          <h1 className="text-3xl md:text-5xl font-extrabold text-white mt-3">{loc.name}</h1>
+          {loc.district && (
+            <p className="text-white/70 mt-1 font-medium">
+              {loc.taluk ? `${loc.taluk}, ` : ""}{loc.district}
+            </p>
+          )}
         </div>
       </div>
 

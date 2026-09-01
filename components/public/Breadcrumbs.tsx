@@ -7,18 +7,19 @@ interface Crumb {
 
 interface Props {
   crumbs: Crumb[];
+  dark?: boolean;
 }
 
-export function Breadcrumbs({ crumbs }: Props) {
+export function Breadcrumbs({ crumbs, dark }: Props) {
   return (
     <nav aria-label="Breadcrumb">
       <ol
-        className="flex items-center flex-wrap gap-1 text-sm text-gray-500"
+        className={`flex items-center flex-wrap gap-1 text-sm ${dark ? "text-white/60" : "text-gray-500"}`}
         itemScope
         itemType="https://schema.org/BreadcrumbList"
       >
         <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-          <Link href="/" className="hover:text-[#D7242A] transition-colors" itemProp="item">
+          <Link href="/" className={`transition-colors ${dark ? "hover:text-white" : "hover:text-[#D7242A]"}`} itemProp="item">
             <span itemProp="name">Home</span>
           </Link>
           <meta itemProp="position" content="1" />
@@ -29,11 +30,11 @@ export function Breadcrumbs({ crumbs }: Props) {
               <path d="m9 18 6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             {crumb.href ? (
-              <Link href={crumb.href} className="hover:text-[#D7242A] transition-colors" itemProp="item">
+              <Link href={crumb.href} className={`transition-colors ${dark ? "hover:text-white" : "hover:text-[#D7242A]"}`} itemProp="item">
                 <span itemProp="name">{crumb.label}</span>
               </Link>
             ) : (
-              <span className="text-gray-800 font-medium" itemProp="name">{crumb.label}</span>
+              <span className={`font-medium ${dark ? "text-white" : "text-gray-800"}`} itemProp="name">{crumb.label}</span>
             )}
             <meta itemProp="position" content={String(i + 2)} />
           </li>
