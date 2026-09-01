@@ -10,6 +10,7 @@ interface Article {
   slug: string;
   status: string;
   updatedAt: Date;
+  wordCount: number;
   category: { name: string } | null;
   location: { name: string } | null;
 }
@@ -86,6 +87,7 @@ export function ArticlesTable({ articles }: { articles: Article[] }) {
               <th className="text-left px-3 py-3 hidden md:table-cell">Category</th>
               <th className="text-left px-3 py-3 hidden md:table-cell">Location</th>
               <th className="text-left px-3 py-3">Status</th>
+              <th className="text-right px-3 py-3 hidden md:table-cell">Words</th>
               <th className="text-left px-3 py-3 hidden md:table-cell">Updated</th>
               <th className="px-3 py-3"></th>
             </tr>
@@ -118,6 +120,9 @@ export function ArticlesTable({ articles }: { articles: Article[] }) {
                   >
                     {a.status}
                   </span>
+                </td>
+                <td className="px-3 py-4 text-right text-gray-400 hidden md:table-cell text-xs tabular-nums">
+                  {a.wordCount > 0 ? a.wordCount.toLocaleString() : "—"}
                 </td>
                 <td className="px-3 py-4 text-gray-400 hidden md:table-cell text-xs">{formatDate(a.updatedAt)}</td>
                 <td className="px-3 py-4">

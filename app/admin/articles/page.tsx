@@ -2,11 +2,28 @@ import { db } from "@/lib/db";
 import Link from "next/link";
 import { ArticlesTable } from "@/components/admin/ArticlesTable";
 
+function countWords(html: string | null): number {
+  if (!html) return 0;
+  const text = html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+  return text ? text.split(" ").length : 0;
+}
+
 export default async function ArticlesPage() {
-  const articles = await db.article.findMany({
+  const raw = await db.article.findMany({
     orderBy: { updatedAt: "desc" },
     include: { category: { select: { name: true } }, location: { select: { name: true } } },
   });
+
+  const articles = raw.map((a) => ({
+    id: a.id,
+    title: a.title,
+    slug: a.slug,
+    status: a.status,
+    updatedAt: a.updatedAt,
+    wordCount: countWords(a.content),
+    category: a.category,
+    location: a.location,
+  }));
 
   const published = articles.filter((a) => a.status === "published");
   const drafts = articles.filter((a) => a.status === "draft");
