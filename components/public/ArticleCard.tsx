@@ -104,15 +104,13 @@ export function ArticleCard({ article, variant = "default" }: ArticleCardProps) 
 
       {/* Content */}
       <div className="p-5 flex flex-col flex-1">
-        {article.location && (
-          <p className="text-[11px] font-medium text-[#8A8A8A] mb-1.5 flex items-center gap-1">
-            <svg width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-            {article.location.name}
-          </p>
-        )}
+        <p className="text-[11px] font-medium text-[#8A8A8A] mb-1.5 flex items-center gap-1">
+          <svg width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          {article.location?.name ?? "General"}
+        </p>
 
         <h3
           className="text-[17px] font-bold text-[#0F0F0F] leading-snug mb-2 line-clamp-2 group-hover:text-[#D7242A] transition-colors"
