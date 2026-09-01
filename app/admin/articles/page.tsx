@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import Link from "next/link";
-import { formatDate } from "@/lib/utils";
+import { ArticlesTable } from "@/components/admin/ArticlesTable";
 
 export default async function ArticlesPage() {
   const articles = await db.article.findMany({
@@ -29,50 +29,7 @@ export default async function ArticlesPage() {
           <Link href="/admin/articles/new" className="text-sm font-semibold text-[#D7242A]">Create your first article →</Link>
         </div>
       ) : (
-        <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="text-xs font-bold uppercase tracking-wider text-gray-400 border-b border-gray-100">
-                <th className="text-left px-5 py-3">Title</th>
-                <th className="text-left px-3 py-3 hidden md:table-cell">Category</th>
-                <th className="text-left px-3 py-3 hidden md:table-cell">Location</th>
-                <th className="text-left px-3 py-3">Status</th>
-                <th className="text-left px-3 py-3 hidden md:table-cell">Updated</th>
-                <th className="px-3 py-3"></th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-50">
-              {articles.map((a) => (
-                <tr key={a.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-5 py-4">
-                    <Link href={`/admin/articles/${a.id}`} className="font-medium text-black hover:text-[#D7242A] transition-colors line-clamp-1">
-                      {a.title}
-                    </Link>
-                  </td>
-                  <td className="px-3 py-4 text-gray-500 hidden md:table-cell">{a.category?.name || "—"}</td>
-                  <td className="px-3 py-4 text-gray-500 hidden md:table-cell">{a.location?.name || "—"}</td>
-                  <td className="px-3 py-4">
-                    <span
-                      className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
-                      style={{ backgroundColor: a.status === "published" ? "#e6f9f0" : "#F5F5F5", color: a.status === "published" ? "#16a34a" : "#8F8F8F" }}
-                    >
-                      {a.status}
-                    </span>
-                  </td>
-                  <td className="px-3 py-4 text-gray-400 hidden md:table-cell text-xs">{formatDate(a.updatedAt)}</td>
-                  <td className="px-3 py-4">
-                    <div className="flex items-center gap-2">
-                      <Link href={`/admin/articles/${a.id}`} className="text-xs font-semibold text-gray-500 hover:text-black">Edit</Link>
-                      {a.status === "published" && (
-                        <a href={`/guides/${a.slug}`} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-[#D7242A]">View</a>
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <ArticlesTable articles={articles} />
       )}
     </div>
   );
