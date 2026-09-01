@@ -50,6 +50,7 @@ export async function PATCH(req: NextRequest, { params }: Params) {
         ogImage: body.ogImage !== undefined ? body.ogImage || null : existing.ogImage,
         status: newStatus,
         isFeatured: body.isFeatured !== undefined ? Boolean(body.isFeatured) : existing.isFeatured,
+        isPopular: body.isPopular !== undefined ? Boolean(body.isPopular) : existing.isPopular,
         publishedAt: nowPublished && !wasPublished ? new Date() : existing.publishedAt,
         updatedAt: new Date(),
       },

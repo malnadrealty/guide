@@ -32,6 +32,7 @@ interface ArticleData {
   ogImage: string;
   status: string;
   isFeatured: boolean;
+  isPopular: boolean;
 }
 
 interface Props {
@@ -62,6 +63,7 @@ export function ArticleEditor({ initialData, categories, locations }: Props) {
     ogImage: initialData?.ogImage || "",
     status: initialData?.status || "draft",
     isFeatured: initialData?.isFeatured ?? false,
+    isPopular: initialData?.isPopular ?? false,
   });
 
   const editor = useEditor({
@@ -407,6 +409,30 @@ export function ArticleEditor({ initialData, categories, locations }: Props) {
               <div>
                 <p className="text-sm font-semibold text-black">Featured on homepage</p>
                 <p className="text-xs text-gray-400 mt-0.5">Shows in the Featured guides section</p>
+              </div>
+            </label>
+          </div>
+          <div>
+            <label className="flex items-center gap-3 cursor-pointer group">
+              <div className="relative">
+                <input
+                  type="checkbox"
+                  checked={form.isPopular}
+                  onChange={(e) => set("isPopular", e.target.checked)}
+                  className="sr-only"
+                />
+                <div
+                  className="w-10 h-6 rounded-full transition-colors duration-200"
+                  style={{ backgroundColor: form.isPopular ? "#D7242A" : "#E5E7EB" }}
+                />
+                <div
+                  className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow transition-transform duration-200"
+                  style={{ transform: form.isPopular ? "translateX(16px)" : "translateX(0)" }}
+                />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-black">Show in Quick Answers</p>
+                <p className="text-xs text-gray-400 mt-0.5">Appears in the Quick Answers section on the homepage</p>
               </div>
             </label>
           </div>

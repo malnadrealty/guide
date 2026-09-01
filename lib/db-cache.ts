@@ -33,8 +33,8 @@ export const getCachedFeaturedArticles = unstable_cache(
 export const getCachedPopularArticles = unstable_cache(
   async () =>
     db.article.findMany({
-      where: { status: "published" },
-      orderBy: { publishedAt: "asc" },
+      where: { status: "published", isPopular: true },
+      orderBy: { publishedAt: "desc" },
       take: 6,
       select: {
         id: true, title: true, slug: true, excerpt: true, featuredImage: true,

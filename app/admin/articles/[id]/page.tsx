@@ -33,6 +33,7 @@ export default async function EditArticlePage({ params }: Props) {
           ogImage: article.ogImage || "",
           status: article.status,
           isFeatured: article.isFeatured,
+          isPopular: article.isPopular,
         }}
         categories={categories}
         locations={locations}
