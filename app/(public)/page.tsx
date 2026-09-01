@@ -90,12 +90,12 @@ const TOPICS = [
 
 
 export default async function HomePage() {
-  const [locations, featuredArticles, popularArticles, settings] = await Promise.all([
-    getCachedLocations(),
-    getCachedFeaturedArticles(),
-    getCachedPopularArticles(),
-    getSettings(),
-  ]);
+  // Sequential fetches to avoid exhausting the single pgBouncer connection
+  // available to this serverless instance during build-time pre-rendering.
+  const locations = await getCachedLocations();
+  const featuredArticles = await getCachedFeaturedArticles();
+  const popularArticles = await getCachedPopularArticles();
+  const settings = await getSettings();
 
   return (
     <>
