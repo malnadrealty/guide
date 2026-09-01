@@ -1,5 +1,5 @@
 "use client";
-import { useState, useTransition } from "react";
+import { useState, useTransition, useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { formatDate } from "@/lib/utils";
@@ -21,7 +21,31 @@ export function ArticlesTable({ articles }: { articles: Article[] }) {
   const [deleting, setDeleting] = useState<Set<string>>(new Set());
   const [isPending, startTransition] = useTransition();
 
-  const allIds = articles.map((a) => a.id);
+  const [filterCategory, setFilterCategory] = useState("");
+  const [filterLocation, setFilterLocation] = useState("");
+  const [filterStatus, setFilterStatus] = useState("");
+
+  // Unique options derived from data
+  const categories = useMemo(() => {
+    const names = [...new Set(articles.map((a) => a.category?.name).filter(Boolean) as string[])].sort();
+    return names;
+  }, [articles]);
+
+  const locations = useMemo(() => {
+    const names = [...new Set(articles.map((a) => a.location?.name).filter(Boolean) as string[])].sort();
+    return names;
+  }, [articles]);
+
+  const filtered = useMemo(() => articles.filter((a) => {
+    if (filterCategory && a.category?.name !== filterCategory) return false;
+    if (filterLocation && a.location?.name !== filterLocation) return false;
+    if (filterStatus && a.status !== filterStatus) return false;
+    return true;
+  }), [articles, filterCategory, filterLocation, filterStatus]);
+
+  const hasFilters = filterCategory || filterLocation || filterStatus;
+
+  const allIds = filtered.map((a) => a.id);
   const allSelected = allIds.length > 0 && allIds.every((id) => selected.has(id));
 
   const toggle = (id: string) =>
@@ -53,8 +77,42 @@ export function ArticlesTable({ articles }: { articles: Article[] }) {
     startTransition(() => router.refresh());
   };
 
+  const selectClass = "px-3 py-2 text-sm border border-gray-200 rounded-xl outline-none focus:border-[#D7242A] transition-colors bg-white text-gray-700 cursor-pointer";
+
   return (
     <>
+      {/* Filters */}
+      <div className="flex flex-wrap items-center gap-2 mb-4">
+        <select value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)} className={selectClass}>
+          <option value="">All categories</option>
+          {categories.map((c) => <option key={c} value={c}>{c}</option>)}
+        </select>
+
+        <select value={filterLocation} onChange={(e) => setFilterLocation(e.target.value)} className={selectClass}>
+          <option value="">All locations</option>
+          {locations.map((l) => <option key={l} value={l}>{l}</option>)}
+        </select>
+
+        <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)} className={selectClass}>
+          <option value="">All statuses</option>
+          <option value="published">Published</option>
+          <option value="draft">Draft</option>
+        </select>
+
+        {hasFilters && (
+          <button
+            onClick={() => { setFilterCategory(""); setFilterLocation(""); setFilterStatus(""); }}
+            className="px-3 py-2 text-sm text-gray-500 hover:text-black transition-colors"
+          >
+            Clear filters
+          </button>
+        )}
+
+        <span className="ml-auto text-xs text-gray-400">
+          {filtered.length} of {articles.length} articles
+        </span>
+      </div>
+
       {/* Bulk action bar */}
       {selected.size > 0 && (
         <div className="mb-3 flex items-center gap-3 px-4 py-2.5 bg-red-50 border border-red-100 rounded-xl">
@@ -93,7 +151,13 @@ export function ArticlesTable({ articles }: { articles: Article[] }) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-50">
-            {articles.map((a) => (
+            {filtered.length === 0 ? (
+              <tr>
+                <td colSpan={8} className="px-5 py-12 text-center text-gray-400 text-sm">
+                  No articles match the selected filters.
+                </td>
+              </tr>
+            ) : filtered.map((a) => (
               <tr
                 key={a.id}
                 className={`transition-colors ${selected.has(a.id) ? "bg-red-50/50" : "hover:bg-gray-50"}`}
