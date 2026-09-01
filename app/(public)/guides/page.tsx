@@ -6,13 +6,20 @@ import { ArticleCard } from "@/components/public/ArticleCard";
 import { Breadcrumbs } from "@/components/public/Breadcrumbs";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "Guides — Property, Land & Local Real Estate",
-  description: "Practical guides on buying property, land, construction, legal documents and local real estate across Shimoga and Uttarakannada District.",
-};
-
 interface Props {
   searchParams: Promise<{ q?: string; category?: string; location?: string }>;
+}
+
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+  const { q, category, location } = await searchParams;
+  const hasFilters = !!(q || category || location);
+  return {
+    title: "Guides — Property, Land & Local Real Estate",
+    description: "Practical guides on buying property, land, construction, legal documents and local real estate across Shimoga and Uttarakannada District.",
+    alternates: { canonical: "https://guide.malnadrealty.com/guides" },
+    // Filtered/search URLs must not be indexed — they duplicate content across infinite param combos
+    robots: hasFilters ? { index: false, follow: true } : { index: true, follow: true },
+  };
 }
 
 export default async function GuidesPage({ searchParams }: Props) {

@@ -1,9 +1,21 @@
 export const revalidate = 300;
 
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { getSettings } from "@/lib/settings";
 import { getCachedLocations, getCachedFeaturedArticles, getCachedPopularArticles } from "@/lib/db-cache";
+import { safeJsonLd } from "@/lib/sanitize";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSettings();
+  const raw = settings.site_meta_title || "";
+  const title = raw.length > 0 && raw.length <= 70 ? raw : "Malnad Realty Guide — Know Before You Buy";
+  return {
+    title,
+    alternates: { canonical: "https://guide.malnadrealty.com" },
+  };
+}
 import { ArticleCard } from "@/components/public/ArticleCard";
 import { CTASection } from "@/components/public/CTASection";
 import { SectionHeader } from "@/components/public/SectionHeader";
@@ -97,8 +109,31 @@ export default async function HomePage() {
   const popularArticles = await getCachedPopularArticles();
   const settings = await getSettings();
 
+  const orgJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Malnad Realty",
+    url: "https://malnadrealty.com",
+    logo: "https://guide.malnadrealty.com/logo.png",
+    sameAs: ["https://guide.malnadrealty.com"],
+  };
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: settings.site_name || "Malnad Realty Guide",
+    url: "https://guide.malnadrealty.com",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://guide.malnadrealty.com/guides?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(orgJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(websiteJsonLd) }} />
       {/* ── HERO ─────────────────────────────────────────────────── */}
       <section className="relative min-h-[460px] md:min-h-[500px] flex flex-col justify-end bg-[#0A0A0A] overflow-hidden">
         <div className="absolute inset-0">

@@ -1,19 +1,29 @@
 import type { NextConfig } from "next";
 
 const securityHeaders = [
-  // Block MIME-type sniffing
   { key: "X-Content-Type-Options", value: "nosniff" },
-  // Clickjacking protection
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
-  // Stop leaking referrer info to external sites
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  // Disable dangerous browser features we don't use
   {
     key: "Permissions-Policy",
     value: "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
   },
-  // Opt out of FLoC / Topics API
   { key: "X-DNS-Prefetch-Control", value: "on" },
+  // Enforce HTTPS for 1 year; includeSubDomains so all subdomains are covered
+  { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },
+  // Allow images/fonts from Supabase storage; scripts self-only; no inline eval
+  {
+    key: "Content-Security-Policy",
+    value: [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline'",
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      "font-src 'self' https://fonts.gstatic.com",
+      "img-src 'self' data: blob: https://dgjgpraenrinbbubeuvq.supabase.co",
+      "connect-src 'self'",
+      "frame-ancestors 'none'",
+    ].join("; "),
+  },
 ];
 
 const nextConfig: NextConfig = {
