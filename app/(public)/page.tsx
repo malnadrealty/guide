@@ -148,8 +148,7 @@ export default async function HomePage() {
               <Link
                 key={chip}
                 href={`/guides?q=${encodeURIComponent(chip)}`}
-                className="flex-shrink-0 text-[12px] px-3.5 py-1.5 rounded-full border border-white/20 text-white font-medium transition-all duration-200 hover:bg-white hover:text-[#0A0A0A]"
-                style={{ backgroundColor: "rgba(255,255,255,0.08)" }}
+                className="flex-shrink-0 text-[12px] px-3.5 py-1.5 rounded-full border border-white/20 bg-white/[0.08] text-white font-medium transition-all duration-200 hover:bg-white hover:text-[#0A0A0A]"
               >
                 {chip}
               </Link>
