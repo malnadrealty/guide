@@ -92,14 +92,6 @@ export function ArticleCard({ article, variant = "default" }: ArticleCardProps) 
             </svg>
           </div>
         )}
-        {article.category && (
-          <span
-            className="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md text-white"
-            style={{ backgroundColor: categoryColor }}
-          >
-            {article.category.name}
-          </span>
-        )}
       </div>
 
       {/* Content */}
