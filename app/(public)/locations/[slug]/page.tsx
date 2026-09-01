@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { db } from "@/lib/db";
+import { getCachedLocationBySlug } from "@/lib/db-cache";
 import { Breadcrumbs } from "@/components/public/Breadcrumbs";
 import { ArticleCard } from "@/components/public/ArticleCard";
 import { CTASection } from "@/components/public/CTASection";
@@ -14,7 +14,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const loc = await db.location.findUnique({ where: { slug, status: "published" } });
+  const loc = await getCachedLocationBySlug(slug);
   if (!loc) return {};
   return {
     title: loc.seoTitle || `${loc.name} — Property & Land Guide`,
@@ -28,20 +28,9 @@ export const revalidate = 300;
 
 export default async function LocationPage({ params }: Props) {
   const { slug } = await params;
-  const [loc, relatedArticles] = await Promise.all([
-    db.location.findUnique({ where: { slug, status: "published" } }),
-    db.article.findMany({
-      where: { status: "published", location: { slug } },
-      orderBy: { publishedAt: "desc" },
-      take: 6,
-      select: {
-        id: true, title: true, slug: true, excerpt: true, featuredImage: true,
-        publishedAt: true, content: true,
-        category: { select: { name: true, slug: true } },
-        location: { select: { name: true, slug: true } },
-      },
-    }),
-  ]);
+  // getCachedLocationBySlug includes articles — one query, one cache entry
+  const loc = await getCachedLocationBySlug(slug);
+  const relatedArticles = loc?.articles ?? [];
 
   if (!loc) notFound();
 

@@ -1,20 +1,14 @@
 import { MetadataRoute } from "next";
-import { db } from "@/lib/db";
+import { getCachedPublishedArticles, getCachedAllLocations } from "@/lib/db-cache";
 
 const BASE = "https://guide.malnadrealty.com";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [articles, locations] = await Promise.all([
-    db.article.findMany({
-      where: { status: "published" },
-      select: { slug: true, updatedAt: true },
-    }),
-    db.location.findMany({
-      where: { status: "published" },
-      select: { slug: true, updatedAt: true },
-    }),
+    getCachedPublishedArticles(),
+    getCachedAllLocations(),
   ]);
 
   const staticPages: MetadataRoute.Sitemap = [

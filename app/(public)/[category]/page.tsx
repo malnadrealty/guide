@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { db } from "@/lib/db";
+import { getCachedArticlesByCategory } from "@/lib/db-cache";
 import { ArticleCard } from "@/components/public/ArticleCard";
 import { Breadcrumbs } from "@/components/public/Breadcrumbs";
 
@@ -57,19 +57,7 @@ export default async function CategoryPage({ params }: Props) {
 
   const meta = CATEGORY_META[category];
 
-  const articles = await db.article.findMany({
-    where: {
-      status: "published",
-      category: { slug: category },
-    },
-    orderBy: { publishedAt: "desc" },
-    select: {
-      id: true, title: true, slug: true, excerpt: true, featuredImage: true,
-      publishedAt: true, content: true,
-      category: { select: { name: true, slug: true } },
-      location: { select: { name: true, slug: true } },
-    },
-  });
+  const articles = await getCachedArticlesByCategory(category);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">

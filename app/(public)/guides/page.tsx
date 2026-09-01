@@ -1,8 +1,7 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 import type { Metadata } from "next";
-import { db } from "@/lib/db";
-import { getCachedCategories } from "@/lib/db-cache";
+import { getCachedPublishedArticles, getCachedCategories, getCachedLocations } from "@/lib/db-cache";
 import { ArticleCard } from "@/components/public/ArticleCard";
 import { Breadcrumbs } from "@/components/public/Breadcrumbs";
 import Link from "next/link";
@@ -19,31 +18,25 @@ interface Props {
 export default async function GuidesPage({ searchParams }: Props) {
   const { q, category, location } = await searchParams;
 
-  const [articles, categories, locations] = await Promise.all([
-    db.article.findMany({
-      where: {
-        status: "published",
-        ...(q ? {
-          OR: [
-            { title: { contains: q, mode: "insensitive" } },
-            { excerpt: { contains: q, mode: "insensitive" } },
-            { content: { contains: q, mode: "insensitive" } },
-          ],
-        } : {}),
-        ...(category ? { category: { slug: category } } : {}),
-        ...(location ? { location: { slug: location } } : {}),
-      },
-      orderBy: { publishedAt: "desc" },
-      select: {
-        id: true, title: true, slug: true, excerpt: true, featuredImage: true,
-        publishedAt: true, content: true,
-        category: { select: { name: true, slug: true } },
-        location: { select: { name: true, slug: true } },
-      },
-    }),
+  const [allArticles, categories, locations] = await Promise.all([
+    getCachedPublishedArticles(),
     getCachedCategories(),
-    db.location.findMany({ where: { status: "published" }, orderBy: { order: "asc" }, select: { name: true, slug: true } }),
+    getCachedLocations(),
   ]);
+
+  // Filter cached data in JS — no DB hit for every filter/search combination
+  const articles = allArticles.filter((article) => {
+    if (category && article.category?.slug !== category) return false;
+    if (location && article.location?.slug !== location) return false;
+    if (q) {
+      const s = q.toLowerCase();
+      return (
+        article.title.toLowerCase().includes(s) ||
+        (article.excerpt?.toLowerCase().includes(s) ?? false)
+      );
+    }
+    return true;
+  });
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
