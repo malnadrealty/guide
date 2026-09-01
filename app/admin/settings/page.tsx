@@ -158,7 +158,23 @@ export default function SettingsPage() {
       <Section title="Site Identity" desc="Basic information shown in browser tabs and SEO">
         <Field label="Site Name" settingKey="site_name" />
         <Field label="Tagline" settingKey="site_tagline" />
-        <TextArea label="Site Description" settingKey="site_description" />
+      </Section>
+
+      {/* SEO & Social Sharing */}
+      <Section title="SEO & Social Sharing" desc="Controls the meta title, description, and image shown in Google results and when the link is shared on WhatsApp, Twitter, etc.">
+        <Field
+          label="Meta Title"
+          settingKey="site_meta_title"
+          placeholder="Malnad Realty Guide — Know the place before you buy."
+          hint="Shown in Google search results and browser tab. Keep under 60 characters. Leave blank to use Site Name."
+        />
+        <TextArea label="Meta Description" settingKey="site_description" />
+        <p className="text-xs text-gray-400 -mt-2">Shown under the title in Google results. Aim for 140–160 characters.</p>
+        <ImageField
+          label="Social Share Image (OG Image)"
+          settingKey="site_og_image"
+          hint="Shown when the site is shared on WhatsApp, Twitter, LinkedIn, etc. Use a 1200×630 px image for best results."
+        />
       </Section>
 
       {/* Logo */}
