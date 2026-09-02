@@ -173,7 +173,7 @@ export default async function HomePage() {
 
           <SearchBar />
 
-          <div className="mt-4 flex items-center gap-2 overflow-x-auto pb-1 -mx-5 px-5 md:mx-0 md:px-0 scrollbar-hide">
+          <div className="mt-4 flex flex-wrap items-center gap-2">
             <span className="text-[11px] text-[#8A8A8A] font-medium tracking-wide flex-shrink-0">Popular:</span>
             {(settings.popular_searches || "")
               .split(",")
