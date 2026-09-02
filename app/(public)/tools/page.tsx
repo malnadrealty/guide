@@ -35,6 +35,19 @@ const TOOLS = [
       </svg>
     ),
   },
+  {
+    href: "/tools/stamp-duty-registration-calculator",
+    label: "Stamp Duty & Registration Calculator",
+    desc: "Estimate stamp duty and registration charges when buying property in Karnataka.",
+    icon: (
+      <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" strokeLinecap="round" strokeLinejoin="round" />
+        <polyline points="14 2 14 8 20 8" strokeLinecap="round" strokeLinejoin="round" />
+        <line x1="8" y1="13" x2="16" y2="13" strokeLinecap="round" />
+        <line x1="8" y1="17" x2="16" y2="17" strokeLinecap="round" />
+      </svg>
+    ),
+  },
 ];
 
 export default function ToolsPage() {

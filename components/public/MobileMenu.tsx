@@ -14,6 +14,7 @@ const NAV_LINKS = [
   { href: "/tools", label: "Tools" },
   { href: "/tools/land-area-converter", label: "Land Area Converter" },
   { href: "/tools/construction-cost-calculator", label: "Construction Cost Calculator" },
+  { href: "/tools/stamp-duty-registration-calculator", label: "Stamp Duty Calculator" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
