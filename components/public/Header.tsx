@@ -21,7 +21,7 @@ const NAV_LINKS = [
   { href: "/legal", label: "Legal" },
   { href: "/finance", label: "Finance" },
   { href: "/guides", label: "All Guides" },
-  { href: "/tools/land-area-converter", label: "Tools" },
+  { href: "/tools", label: "Tools" },
 ];
 
 export function Header({ logoLine1, logoLine2, logoImageUrl, logoDarkUrl, popularSearches }: HeaderProps) {

@@ -11,7 +11,9 @@ const NAV_LINKS = [
   { href: "/construction", label: "Construction" },
   { href: "/legal", label: "Legal" },
   { href: "/finance", label: "Finance" },
+  { href: "/tools", label: "Tools" },
   { href: "/tools/land-area-converter", label: "Land Area Converter" },
+  { href: "/tools/construction-cost-calculator", label: "Construction Cost Calculator" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
