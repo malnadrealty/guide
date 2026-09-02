@@ -5,7 +5,7 @@ import { useState, useCallback, useEffect, useRef, useId } from "react";
 // All rates sourced from publicly available information.
 // Stamp duty slabs: Karnataka Stamp Act, 1957.
 // Registration fee: 2% effective 31 August 2025 (revised from 1%).
-// Cess: 10% of stamp duty — applies uniformly.
+// Cess: 10% of stamp duty - applies uniformly.
 // Surcharge (2% BBMP / 3% rural) varies by property location and is noted
 // in the disclaimer but not included here to avoid jurisdiction errors.
 // Rates verified September 2026 from multiple corroborating sources.
@@ -277,7 +277,7 @@ export function StampDutyCalculator() {
           </p>
         </div>
 
-        {/* Transaction type — static, only Sale/Purchase supported */}
+        {/* Transaction type - static, only Sale/Purchase supported */}
         <div>
           <p className="block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D7242A] mb-3">
             Transaction type
@@ -312,7 +312,7 @@ export function StampDutyCalculator() {
           </div>
         ) : (
           <>
-            {/* Primary total — largest figure */}
+            {/* Primary total - largest figure */}
             <div className="mb-5">
               <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#9A9A9A] mb-2">
                 Estimated total purchase cost

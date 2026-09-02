@@ -32,7 +32,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "How is stamp duty calculated in Karnataka?",
-    a: "Karnataka uses a slab-based system. For properties valued up to ₹20 lakh, stamp duty is 2%. For ₹20 lakh to ₹45 lakh it is 3%. Above ₹45 lakh it is 5%. An additional cess of 10% of the stamp duty amount also applies. Charges are calculated on whichever is higher — the agreed sale price or the government guidance value (circle rate) for the property.",
+    a: "Karnataka uses a slab-based system. For properties valued up to ₹20 lakh, stamp duty is 2%. For ₹20 lakh to ₹45 lakh it is 3%. Above ₹45 lakh it is 5%. An additional cess of 10% of the stamp duty amount also applies. Charges are calculated on whichever is higher - the agreed sale price or the government guidance value (circle rate) for the property.",
   },
   {
     q: "Who pays stamp duty?",
@@ -86,7 +86,7 @@ export default function StampDutyPage() {
               Stamp Duty &amp; Registration Calculator
             </h1>
             <p className="text-[#555] text-[1.05rem] mt-2 leading-relaxed">
-              Karnataka — Property Purchase
+              Karnataka - Property Purchase
             </p>
             <p className="text-[#6A6A6A] mt-3 max-w-2xl leading-relaxed text-[15px]">
               Estimate the stamp duty and registration charges payable when buying property in Karnataka.
