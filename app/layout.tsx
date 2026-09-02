@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(process.env.NEXTAUTH_URL || "https://guide.malnadrealty.com"),
     title: {
       default: metaTitle,
-      template: `%s | ${siteName}`,
+      template: `%s | ${siteName.split(" | ")[0]}`,
     },
     description,
     openGraph: {
