@@ -47,6 +47,8 @@ const ShareIcon = () => (
   </svg>
 );
 
+const TAP = { WebkitTapHighlightColor: "transparent", touchAction: "manipulation" } as const;
+
 export function ConstructionCostCalculator() {
   const [area, setArea] = useState("");
   const [rate, setRate] = useState("");
@@ -157,8 +159,12 @@ export function ConstructionCostCalculator() {
               value={area}
               onChange={(e) => handleAreaChange(e.target.value)}
               placeholder="e.g. 1500"
-              className={`flex-1 h-14 px-4 rounded-xl border border-[#E8E4DF] text-[#0F0F0F] font-semibold transition-colors duration-150 motion-reduce:transition-none ${FOCUS_RING}`}
-              style={{ fontSize: "1.15rem" }}
+              className={`flex-1 h-14 px-4 rounded-xl border text-[#0F0F0F] font-semibold transition-colors duration-150 motion-reduce:transition-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none ${FOCUS_RING}`}
+              style={{
+                fontSize: "1.15rem",
+                borderColor: areaNegative ? "#D7242A" : "#E8E4DF",
+                ...TAP,
+              }}
               aria-invalid={areaNegative}
               aria-describedby={areaNegative ? "ccc-area-error" : "ccc-area-hint"}
             />
@@ -197,13 +203,14 @@ export function ConstructionCostCalculator() {
                     key={q.label}
                     type="button"
                     aria-pressed={isActive}
+                    aria-label={`${q.label} — example rate ₹${q.exampleRate.toLocaleString("en-IN")} per square foot`}
                     onClick={() => handleQualityPreset(q)}
-                    title={q.desc}
-                    className={`min-h-[44px] px-4 py-2 rounded-lg border text-[13px] font-semibold transition-colors duration-150 motion-reduce:transition-none ${FOCUS_RING}`}
+                    className={`min-h-[44px] px-4 py-2 rounded-lg border text-[13px] font-semibold transition-colors duration-150 motion-reduce:transition-none active:scale-95 motion-reduce:active:scale-100 ${FOCUS_RING}`}
                     style={{
                       backgroundColor: isActive ? "#D7242A" : "#F8F6F3",
                       color: isActive ? "white" : "#0F0F0F",
                       borderColor: isActive ? "#D7242A" : "#E8E4DF",
+                      ...TAP,
                     }}
                   >
                     {q.label}
@@ -230,11 +237,14 @@ export function ConstructionCostCalculator() {
               value={rate}
               onChange={(e) => handleRateChange(e.target.value)}
               placeholder="e.g. 2000"
-              className={`flex-1 h-14 px-4 rounded-xl border border-[#E8E4DF] text-[#0F0F0F] font-semibold transition-colors duration-150 motion-reduce:transition-none ${FOCUS_RING}`}
-              style={{ fontSize: "1.15rem" }}
+              className={`flex-1 h-14 px-4 rounded-xl border text-[#0F0F0F] font-semibold transition-colors duration-150 motion-reduce:transition-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none ${FOCUS_RING}`}
+              style={{
+                fontSize: "1.15rem",
+                borderColor: rateNegative ? "#D7242A" : "#E8E4DF",
+                ...TAP,
+              }}
               aria-invalid={rateNegative}
               aria-describedby={rateNegative ? "ccc-rate-error" : "ccc-rate-hint"}
-              aria-label="Construction rate in rupees per square foot"
             />
             <span className="text-[#6A6A6A] font-semibold text-[13px] flex-shrink-0 select-none">per sq ft</span>
           </div>
@@ -251,7 +261,18 @@ export function ConstructionCostCalculator() {
       </div>
 
       {/* ── Result ── */}
-      <div className="p-5 md:p-8" aria-live="polite" aria-atomic="true">
+      {/* Hidden live announcement — only the sentence changes, not the whole layout */}
+      <span
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only"
+      >
+        {isValid
+          ? `Estimated construction cost: ${fmtINR(total)} for ${fmtArea(areaNum)} square feet at ${fmtRate(rateNum)} per square foot.`
+          : ""}
+      </span>
+      <div className="p-5 md:p-8">
         {!isValid ? (
           <div className="flex items-center gap-3 py-2">
             <svg width="20" height="20" fill="none" stroke="#C8C4BF" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true" className="flex-shrink-0">
@@ -284,10 +305,11 @@ export function ConstructionCostCalculator() {
                   onClick={handleCopyResult}
                   aria-label={copied ? "Copied" : `Copy ${fmtINR(total)}`}
                   aria-pressed={copied}
-                  className={`p-3 rounded-lg border transition-colors duration-150 motion-reduce:transition-none ${FOCUS_RING}`}
+                  className={`p-3 rounded-lg border transition-colors duration-150 motion-reduce:transition-none active:opacity-70 motion-reduce:active:opacity-100 ${FOCUS_RING}`}
                   style={{
                     color: copied ? "#D7242A" : "#9A9A9A",
                     borderColor: copied ? "#D7242A" : "#E8E4DF",
+                    ...TAP,
                   }}
                 >
                   {copied ? <CheckIcon /> : <CopyIcon />}
@@ -296,10 +318,11 @@ export function ConstructionCostCalculator() {
                   type="button"
                   onClick={handleShare}
                   aria-label="Copy shareable link to this calculation"
-                  className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border text-[12px] font-semibold transition-colors duration-150 motion-reduce:transition-none ${FOCUS_RING}`}
+                  className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border text-[12px] font-semibold transition-colors duration-150 motion-reduce:transition-none active:opacity-70 motion-reduce:active:opacity-100 ${FOCUS_RING}`}
                   style={{
                     color: shareLabel === "Copied!" ? "#D7242A" : "#9A9A9A",
                     borderColor: shareLabel === "Copied!" ? "#D7242A" : "#E8E4DF",
+                    ...TAP,
                   }}
                 >
                   <ShareIcon />
