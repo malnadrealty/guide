@@ -36,6 +36,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export const revalidate = 300;
 
+function extractFaqItems(html: string): { question: string; answer: string }[] {
+  const faqSection = html.match(/<h2[^>]*>.*?(?:FAQ|Frequently Asked).*?<\/h2>([\s\S]*?)(?=<h2|$)/i)?.[1] ?? "";
+  const pairs: { question: string; answer: string }[] = [];
+  const re = /<h3[^>]*>([\s\S]*?)<\/h3>\s*<p[^>]*>([\s\S]*?)<\/p>/gi;
+  let m;
+  while ((m = re.exec(faqSection)) !== null) {
+    const q = m[1].replace(/<[^>]+>/g, "").trim();
+    const a = m[2].replace(/<[^>]+>/g, "").trim();
+    if (q && a) pairs.push({ question: q, answer: a });
+  }
+  return pairs;
+}
+
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
   const article = await getCachedArticleBySlug(slug);
@@ -61,6 +74,17 @@ export default async function ArticlePage({ params }: Props) {
     url: `https://guide.malnadrealty.com/guides/${slug}`,
   };
 
+  const faqItems = extractFaqItems(article.content ?? "");
+  const faqJsonLd = faqItems.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer },
+    })),
+  } : null;
+
   const crumbs = [
     { label: "Guides", href: "/guides" },
     ...(article.category ? [{ label: article.category.name, href: `/guides?category=${article.category.slug}` }] : []),
@@ -75,6 +99,7 @@ export default async function ArticlePage({ params }: Props) {
     <>
       <ReadingProgress />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
+      {faqJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }} />}
 
       {/* ── ARTICLE HEADER ─────────────────────────────────────────── */}
       <div className="bg-white">
