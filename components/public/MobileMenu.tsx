@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { href: "/construction", label: "Construction" },
   { href: "/legal", label: "Legal" },
   { href: "/finance", label: "Finance" },
+  { href: "/tools/land-area-converter", label: "Land Area Converter" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
