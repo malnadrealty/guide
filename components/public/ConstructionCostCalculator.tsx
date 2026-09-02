@@ -159,7 +159,7 @@ export function ConstructionCostCalculator() {
               value={area}
               onChange={(e) => handleAreaChange(e.target.value)}
               placeholder="e.g. 1500"
-              className={`flex-1 h-14 px-4 rounded-xl border text-[#0F0F0F] font-semibold transition-colors duration-150 motion-reduce:transition-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none ${FOCUS_RING}`}
+              className={`flex-1 min-w-0 h-14 px-4 rounded-xl border text-[#0F0F0F] font-semibold transition-colors duration-150 motion-reduce:transition-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none ${FOCUS_RING}`}
               style={{
                 fontSize: "1.15rem",
                 borderColor: areaNegative ? "#D7242A" : "#E8E4DF",
@@ -237,7 +237,7 @@ export function ConstructionCostCalculator() {
               value={rate}
               onChange={(e) => handleRateChange(e.target.value)}
               placeholder="e.g. 2000"
-              className={`flex-1 h-14 px-4 rounded-xl border text-[#0F0F0F] font-semibold transition-colors duration-150 motion-reduce:transition-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none ${FOCUS_RING}`}
+              className={`flex-1 min-w-0 h-14 px-4 rounded-xl border text-[#0F0F0F] font-semibold transition-colors duration-150 motion-reduce:transition-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none ${FOCUS_RING}`}
               style={{
                 fontSize: "1.15rem",
                 borderColor: rateNegative ? "#D7242A" : "#E8E4DF",
