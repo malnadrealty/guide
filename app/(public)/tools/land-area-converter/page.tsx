@@ -69,7 +69,12 @@ export default function LandAreaConverterPage() {
       {/* Page header */}
       <div className="bg-white border-b border-[#F0EDE8]">
         <div className="max-w-4xl mx-auto px-5 md:px-8 pt-6 pb-8">
-          <Breadcrumbs crumbs={[{ label: "Land Area Converter" }]} />
+          <Breadcrumbs
+            crumbs={[
+              { label: "Tools", href: "/tools" },
+              { label: "Land Area Converter" },
+            ]}
+          />
 
           <div className="mt-6">
             <p
@@ -162,9 +167,18 @@ export default function LandAreaConverterPage() {
           style={{ backgroundColor: "#F8F6F3" }}
         >
           <h2 className="font-bold text-[#0F0F0F] mb-4 text-[15px]">
-            Related land guides
+            Related guides and tools
           </h2>
           <ul className="space-y-2.5">
+            <li>
+              <a
+                href="/tools"
+                className="text-[14px] font-medium hover:underline underline-offset-2"
+                style={{ color: "#D7242A" }}
+              >
+                All property tools and calculators →
+              </a>
+            </li>
             <li>
               <a
                 href="/land"

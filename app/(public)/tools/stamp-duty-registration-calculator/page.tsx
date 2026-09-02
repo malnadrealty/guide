@@ -6,7 +6,7 @@ import { CTASection } from "@/components/public/CTASection";
 export const revalidate = false;
 
 export const metadata: Metadata = {
-  title: "Stamp Duty & Registration Calculator Karnataka | Malnad Realty",
+  title: "Stamp Duty & Registration Calculator Karnataka",
   description:
     "Calculate estimated stamp duty and registration charges for property purchases in Karnataka. Simple, quick and easy to understand.",
   alternates: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    title: "Stamp Duty & Registration Calculator Karnataka | Malnad Realty",
+    title: "Stamp Duty & Registration Calculator Karnataka",
     description:
       "Calculate estimated stamp duty and registration charges for property purchases in Karnataka.",
     url: "https://guide.malnadrealty.com/tools/stamp-duty-registration-calculator",
@@ -171,6 +171,15 @@ export default function StampDutyPage() {
         >
           <h2 className="font-bold text-[#0F0F0F] mb-4 text-[15px]">Related guides and tools</h2>
           <ul className="space-y-2.5">
+            <li>
+              <a
+                href="/tools"
+                className="text-[14px] font-medium hover:underline underline-offset-2"
+                style={{ color: "#D7242A" }}
+              >
+                All property tools and calculators →
+              </a>
+            </li>
             <li>
               <a
                 href="/legal"

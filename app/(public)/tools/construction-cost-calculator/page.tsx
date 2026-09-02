@@ -158,8 +158,17 @@ export default function ConstructionCostCalculatorPage() {
           className="mt-14 p-6 rounded-2xl border border-[#E8E4DF]"
           style={{ backgroundColor: "#F8F6F3" }}
         >
-          <h2 className="font-bold text-[#0F0F0F] mb-4 text-[15px]">Related guides</h2>
+          <h2 className="font-bold text-[#0F0F0F] mb-4 text-[15px]">Related guides and tools</h2>
           <ul className="space-y-2.5">
+            <li>
+              <a
+                href="/tools"
+                className="text-[14px] font-medium hover:underline underline-offset-2"
+                style={{ color: "#D7242A" }}
+              >
+                All property tools and calculators →
+              </a>
+            </li>
             <li>
               <a
                 href="/construction"
