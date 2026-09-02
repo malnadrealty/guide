@@ -1,5 +1,5 @@
 "use client";
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect, useRef, useId } from "react";
 
 // ─── Rate Configuration ────────────────────────────────────────────────────
 // All rates sourced from publicly available information.
@@ -85,6 +85,7 @@ function ResultRow({
 }: { label: string; sub?: string; amount: number; highlight?: boolean }) {
   return (
     <div
+      role="listitem"
       className={`flex items-start justify-between gap-4 py-3 ${highlight ? "border-t border-[#E8E4DF] mt-1 pt-4" : ""}`}
     >
       <div className="min-w-0">
@@ -113,6 +114,7 @@ export function StampDutyCalculator() {
   const [copied, setCopied]     = useState(false);
   const [shareLabel, setShareLabel] = useState<"Share" | "Copied!">("Share");
   const initialized = useRef(false);
+  const chipGroupId = useId();
 
   // Restore URL state on mount
   useEffect(() => {
@@ -146,6 +148,23 @@ export function StampDutyCalculator() {
     setPropType(t);
     syncUrl(value, t);
   };
+
+  // Arrow-key navigation within property type chip group (roving focus)
+  const handleChipKeyDown = useCallback(
+    (e: React.KeyboardEvent, idx: number) => {
+      const dir = e.key === "ArrowRight" || e.key === "ArrowDown" ? 1
+                : e.key === "ArrowLeft"  || e.key === "ArrowUp"   ? -1
+                : 0;
+      if (!dir) return;
+      e.preventDefault();
+      const next = (idx + dir + PROPERTY_TYPES.length) % PROPERTY_TYPES.length;
+      const nextType = PROPERTY_TYPES[next].id;
+      setPropType(nextType);
+      syncUrl(value, nextType);
+      document.getElementById(`${chipGroupId}-${nextType}`)?.focus();
+    },
+    [value, chipGroupId, syncUrl],
+  );
 
   // Derived
   const valueNum    = parseFloat(value);
@@ -225,17 +244,21 @@ export function StampDutyCalculator() {
           </p>
           <div
             className="flex flex-wrap gap-2"
-            role="group"
-            aria-label="Select property type"
+            role="radiogroup"
+            aria-label="Property type"
           >
-            {PROPERTY_TYPES.map((pt) => {
+            {PROPERTY_TYPES.map((pt, idx) => {
               const isActive = propType === pt.id;
               return (
                 <button
                   key={pt.id}
+                  id={`${chipGroupId}-${pt.id}`}
                   type="button"
-                  aria-pressed={isActive}
+                  role="radio"
+                  aria-checked={isActive}
+                  tabIndex={isActive ? 0 : -1}
                   onClick={() => handleTypeChange(pt.id)}
+                  onKeyDown={(e) => handleChipKeyDown(e, idx)}
                   className={`min-h-[44px] px-4 py-2 rounded-lg border text-[13px] font-semibold transition-colors duration-150 motion-reduce:transition-none active:scale-95 motion-reduce:active:scale-100 ${FOCUS_RING}`}
                   style={{
                     backgroundColor: isActive ? "#D7242A" : "#F8F6F3",
@@ -306,7 +329,7 @@ export function StampDutyCalculator() {
             </div>
 
             {/* Breakdown */}
-            <div className="rounded-xl border border-[#E8E4DF] px-4 mb-5" aria-label="Cost breakdown">
+            <div role="list" className="rounded-xl border border-[#E8E4DF] px-4 mb-5" aria-label="Cost breakdown">
               <ResultRow
                 label="Property value"
                 amount={valueNum}
@@ -340,8 +363,7 @@ export function StampDutyCalculator() {
               <button
                 type="button"
                 onClick={handleCopy}
-                aria-label={copied ? "Copied" : `Copy total charges ${fmtINR(result!.govtTotal)}`}
-                aria-pressed={copied}
+                aria-label={copied ? "Copied to clipboard" : `Copy total government charges ${fmtINR(result!.govtTotal)}`}
                 className={`p-3 rounded-lg border transition-colors duration-150 motion-reduce:transition-none active:opacity-70 motion-reduce:active:opacity-100 ${FOCUS_RING}`}
                 style={{
                   color: copied ? "#D7242A" : "#9A9A9A",
