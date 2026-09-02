@@ -135,7 +135,7 @@ export default async function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(orgJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(websiteJsonLd) }} />
       {/* ── HERO ─────────────────────────────────────────────────── */}
-      <section className="relative min-h-[460px] md:min-h-[500px] flex flex-col justify-end bg-[#0A0A0A] overflow-hidden">
+      <section className="relative min-h-[460px] md:min-h-[500px] flex flex-col justify-center bg-[#0A0A0A] overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src={settings.hero_bg_image || "/hero-bg.jpg"}
@@ -150,14 +150,14 @@ export default async function HomePage() {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0.15) 100%)",
+                "linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.5) 50%, rgba(10,10,10,0.2) 100%)",
             }}
           />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-5 md:px-8 pb-10 pt-8 md:pt-16 md:pb-16 w-full">
+        <div className="relative max-w-7xl mx-auto px-5 md:px-8 py-16 md:py-20 w-full">
           <h1
-            className="text-[1.45rem] leading-[1.35] md:text-[1.9rem] md:leading-[1.3] font-semibold text-white mb-8 max-w-2xl"
+            className="text-[2rem] leading-[1.25] md:text-[3rem] md:leading-[1.2] font-bold text-white mb-8 max-w-2xl"
           >
             {settings.hero_title || "Simple guides and useful information about property, land and life across Shivamogga & Uttara Kannada District."}
             {settings.hero_title_accent && (
