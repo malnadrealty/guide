@@ -157,19 +157,22 @@ export default async function HomePage() {
 
         <div className="relative max-w-7xl mx-auto px-5 md:px-8 pb-10 pt-8 md:pt-16 md:pb-16 w-full">
           <h1
-            className="text-[2.6rem] leading-[1.08] md:text-[4.5rem] md:leading-[1.06] font-bold text-white mb-5 max-w-3xl"
+            className="text-[1.45rem] leading-[1.35] md:text-[1.9rem] md:leading-[1.3] font-semibold text-white mb-8 max-w-2xl"
           >
-            {settings.hero_title || "Know the place"}
-            <br />
-            <span style={{ color: "#D7242A" }}>
-              {settings.hero_title_accent || "before you buy."}
-            </span>
+            {settings.hero_title || "Simple guides and useful information about property, land and life across Shivamogga & Uttara Kannada District."}
+            {settings.hero_title_accent && (
+              <>
+                <br />
+                <span style={{ color: "#D7242A" }}>{settings.hero_title_accent}</span>
+              </>
+            )}
           </h1>
 
-          <p className="text-base md:text-lg text-[#C0BAB4] mb-8 max-w-lg leading-relaxed">
-            {settings.hero_subtitle ||
-              "Property, land, homes and local insights across the Malnad region."}
-          </p>
+          {settings.hero_subtitle && (
+            <p className="text-base md:text-lg text-[#C0BAB4] mb-8 max-w-lg leading-relaxed">
+              {settings.hero_subtitle}
+            </p>
+          )}
 
           <SearchBar />
 
