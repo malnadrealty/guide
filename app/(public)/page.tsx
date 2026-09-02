@@ -159,11 +159,21 @@ export default async function HomePage() {
           <h1
             className="text-[2rem] leading-[1.25] md:text-[3rem] md:leading-[1.2] font-bold text-white mb-8 max-w-2xl"
           >
-            {settings.hero_title || "Simple guides and useful information about property, land and life across Shivamogga & Uttara Kannada District."}
-            {settings.hero_title_accent && (
+            {settings.hero_title ? (
               <>
-                <br />
-                <span style={{ color: "#D7242A" }}>{settings.hero_title_accent}</span>
+                {settings.hero_title}
+                {settings.hero_title_accent && (
+                  <>
+                    <br />
+                    <span style={{ color: "#D7242A" }}>{settings.hero_title_accent}</span>
+                  </>
+                )}
+              </>
+            ) : (
+              <>
+                Simple guides and useful information about{" "}
+                <span style={{ color: "#D7242A" }}>property, land and life</span>
+                {" "}across Shivamogga & Uttara Kannada District.
               </>
             )}
           </h1>
