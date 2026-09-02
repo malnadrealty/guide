@@ -24,13 +24,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const article = await getCachedArticleBySlug(slug);
   if (!article) return {};
+  const title = article.seoTitle || article.title;
+  const description = article.metaDescription || article.excerpt || undefined;
+  const image = article.ogImage || article.featuredImage || "/og-default.jpg";
+  const canonical = article.canonicalUrl || `https://guide.malnadrealty.com/guides/${slug}`;
   return {
-    title: article.seoTitle || article.title,
-    description: article.metaDescription || article.excerpt || undefined,
+    title,
+    description,
     openGraph: {
-      images: [{ url: article.ogImage || article.featuredImage || "/og-default.jpg" }],
+      type: "article",
+      title,
+      description,
+      url: canonical,
+      images: [{ url: image, width: 1200, height: 630, alt: title }],
+      publishedTime: article.publishedAt ? new Date(article.publishedAt).toISOString() : undefined,
+      modifiedTime: article.updatedAt ? new Date(article.updatedAt).toISOString() : undefined,
     },
-    alternates: { canonical: article.canonicalUrl || `/guides/${slug}` },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
+    alternates: { canonical },
   };
 }
 
