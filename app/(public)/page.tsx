@@ -173,7 +173,7 @@ export default async function HomePage() {
               <>
                 Simple guides and useful information about{" "}
                 <span style={{ color: "#D7242A" }}>property, land and life</span>
-                {" "}across Shivamogga & Uttara Kannada District.
+                {" "}across Shimoga & Uttara Kannada District.
               </>
             )}
           </h1>
