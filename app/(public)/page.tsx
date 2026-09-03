@@ -295,6 +295,139 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* ── FREE TOOLS ───────────────────────────────────────────── */}
+      <section className="py-14 md:py-20 bg-[#F8F6F3]">
+        <div className="max-w-7xl mx-auto px-5 md:px-8">
+
+          {/* Section header */}
+          <div className="mb-8 md:mb-10">
+            <p className="text-[11px] font-bold uppercase tracking-[0.18em] mb-2.5" style={{ color: "#D7242A" }}>
+              Free Tools
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#0F0F0F] leading-tight mb-3">
+              Tools that make property decisions easier.
+            </h2>
+            <p className="text-[#6A6A6A] text-[15px] leading-relaxed max-w-xl">
+              Use these simple tools to calculate, convert and plan before you buy or build.
+            </p>
+          </div>
+
+          {/* Tool cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+            {/* Land Area Converter */}
+            <Link
+              href="/tools/land-area-converter"
+              className="group flex flex-col gap-4 p-6 rounded-2xl border border-[#E8E4DF] bg-white hover:border-[#D7242A] hover:shadow-sm transition-all duration-150"
+            >
+              <span
+                className="flex items-center justify-center w-10 h-10 rounded-xl flex-shrink-0"
+                style={{ backgroundColor: "#F8F6F3", color: "#D7242A" }}
+                aria-hidden="true"
+              >
+                <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M3 9h18M9 3v18" strokeLinecap="round" />
+                </svg>
+              </span>
+              <div className="flex-1 min-w-0">
+                <p className="font-bold text-[#0F0F0F] mb-1.5 group-hover:text-[#D7242A] transition-colors duration-150">
+                  Land Area Converter
+                </p>
+                <p className="text-[#6A6A6A] text-[13px] leading-relaxed">
+                  Convert Acre, Gunta, Sq Ft, Sq M and Cent.
+                </p>
+              </div>
+              <span
+                className="inline-flex items-center justify-center w-full py-2.5 rounded-lg text-[13px] font-semibold text-white transition-opacity duration-150 group-hover:opacity-90"
+                style={{ backgroundColor: "#D7242A" }}
+                aria-label="Use Land Area Converter"
+              >
+                Use Converter
+              </span>
+            </Link>
+
+            {/* Construction Cost Calculator */}
+            <Link
+              href="/tools/construction-cost-calculator"
+              className="group flex flex-col gap-4 p-6 rounded-2xl border border-[#E8E4DF] bg-white hover:border-[#D7242A] hover:shadow-sm transition-all duration-150"
+            >
+              <span
+                className="flex items-center justify-center w-10 h-10 rounded-xl flex-shrink-0"
+                style={{ backgroundColor: "#F8F6F3", color: "#D7242A" }}
+                aria-hidden="true"
+              >
+                <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                  <path d="M3 21h18M9 21V8.5L12 5l3 3.5V21M3 21V14l3-3m15 10V14l-3-3" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <div className="flex-1 min-w-0">
+                <p className="font-bold text-[#0F0F0F] mb-1.5 group-hover:text-[#D7242A] transition-colors duration-150">
+                  Construction Cost Calculator
+                </p>
+                <p className="text-[#6A6A6A] text-[13px] leading-relaxed">
+                  Get a quick estimate for building a house.
+                </p>
+              </div>
+              <span
+                className="inline-flex items-center justify-center w-full py-2.5 rounded-lg text-[13px] font-semibold text-white transition-opacity duration-150 group-hover:opacity-90"
+                style={{ backgroundColor: "#D7242A" }}
+                aria-label="Calculate construction cost"
+              >
+                Calculate Cost
+              </span>
+            </Link>
+
+            {/* Stamp Duty & Registration Calculator */}
+            <Link
+              href="/tools/stamp-duty-registration-calculator"
+              className="group flex flex-col gap-4 p-6 rounded-2xl border border-[#E8E4DF] bg-white hover:border-[#D7242A] hover:shadow-sm transition-all duration-150"
+            >
+              <span
+                className="flex items-center justify-center w-10 h-10 rounded-xl flex-shrink-0"
+                style={{ backgroundColor: "#F8F6F3", color: "#D7242A" }}
+                aria-hidden="true"
+              >
+                <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" strokeLinecap="round" strokeLinejoin="round" />
+                  <polyline points="14 2 14 8 20 8" strokeLinecap="round" strokeLinejoin="round" />
+                  <line x1="8" y1="13" x2="16" y2="13" strokeLinecap="round" />
+                  <line x1="8" y1="17" x2="16" y2="17" strokeLinecap="round" />
+                </svg>
+              </span>
+              <div className="flex-1 min-w-0">
+                <p className="font-bold text-[#0F0F0F] mb-1.5 group-hover:text-[#D7242A] transition-colors duration-150">
+                  Stamp Duty &amp; Registration Calculator
+                </p>
+                <p className="text-[#6A6A6A] text-[13px] leading-relaxed">
+                  Estimate property registration charges in Karnataka.
+                </p>
+              </div>
+              <span
+                className="inline-flex items-center justify-center w-full py-2.5 rounded-lg text-[13px] font-semibold text-white transition-opacity duration-150 group-hover:opacity-90"
+                style={{ backgroundColor: "#D7242A" }}
+                aria-label="Calculate stamp duty and registration charges"
+              >
+                Calculate Charges
+              </span>
+            </Link>
+
+          </div>
+
+          {/* View all */}
+          <div className="mt-8 text-center">
+            <Link
+              href="/tools"
+              className="text-[14px] font-medium hover:underline underline-offset-2"
+              style={{ color: "#D7242A" }}
+            >
+              View All Tools →
+            </Link>
+          </div>
+
+        </div>
+      </section>
+
       {/* ── FEATURED GUIDES ──────────────────────────────────────── */}
       {featuredArticles.length > 0 && (
         <section className="py-14 md:py-20 bg-[#F8F6F3]">
