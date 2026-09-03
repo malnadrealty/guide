@@ -64,7 +64,7 @@ const TOOLS = [
   },
 ];
 
-const TRUST_CHIPS = ["Free to use", "No login required", "Updated for 2025"];
+const TRUST_CHIPS = ["Free to use", "No login required", "Updated for 2026"];
 
 export default function ToolsPage() {
   return (
