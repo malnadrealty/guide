@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Sans_Kannada } from "next/font/google";
+import Script from "next/script";
 import { getSettings } from "@/lib/settings";
 import "./globals.css";
 
@@ -50,6 +51,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={`${inter.variable} ${notoKannada.variable} antialiased`}>
         {children}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-S6H7W1F1T4"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-S6H7W1F1T4');
+          `}
+        </Script>
       </body>
     </html>
   );
